@@ -53,6 +53,7 @@ const T = {
     de: 'Prüfung abgeben? Nicht beantwortete Fragen zählen als falsch.',
     en: 'Submit the exam? Unanswered questions count as wrong.',
   },
+  confirmOk: { de: 'Ja', en: 'Yes' },
 
   all: { de: 'Alle', en: 'All' },
   search: { de: 'Suchen', en: 'Search' },

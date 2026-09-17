@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ExamRecord, Lang, Question, State } from '../types.ts';
 import { QuestionView } from './QuestionView.tsx';
+import { Confirm } from './Confirm.tsx';
 import { t } from '../lib/i18n.ts';
 import { EXAM_DURATION_MS, EXAM_PASS_MARK, EXAM_TOTAL, buildExam, formatClock, isPass } from '../lib/exam.ts';
 import { grade } from '../lib/srs.ts';
@@ -23,6 +24,7 @@ export function Exam({ state, lang, onExit }: Props) {
   const [phase, setPhase] = useState<Phase>('running');
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [now, setNow] = useState(() => Date.now());
+  const [confirmingSubmit, setConfirmingSubmit] = useState(false);
   const recorded = useRef(false);
 
   const remaining = startedAt + EXAM_DURATION_MS - now;
@@ -143,13 +145,7 @@ export function Exam({ state, lang, onExit }: Props) {
             {t('next', lang)} →
           </button>
         ) : (
-          <button
-            type="button"
-            className="btn primary spacer"
-            onClick={() => {
-              if (window.confirm(t('confirmSubmit', lang))) finish();
-            }}
-          >
+          <button type="button" className="btn primary spacer" onClick={() => setConfirmingSubmit(true)}>
             {t('finish', lang)}
           </button>
         )}
@@ -170,16 +166,22 @@ export function Exam({ state, lang, onExit }: Props) {
       </div>
 
       <div className="row" style={{ marginTop: 16 }}>
-        <button
-          type="button"
-          className="btn small ghost"
-          onClick={() => {
-            if (window.confirm(t('confirmSubmit', lang))) finish();
-          }}
-        >
+        <button type="button" className="btn small ghost" onClick={() => setConfirmingSubmit(true)}>
           {t('finishNow', lang)}
         </button>
       </div>
+
+      {confirmingSubmit && (
+        <Confirm
+          message={t('confirmSubmit', lang)}
+          lang={lang}
+          onConfirm={() => {
+            setConfirmingSubmit(false);
+            finish();
+          }}
+          onCancel={() => setConfirmingSubmit(false)}
+        />
+      )}
     </div>
   );
 }

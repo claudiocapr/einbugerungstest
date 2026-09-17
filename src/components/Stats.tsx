@@ -11,11 +11,13 @@ import {
 } from '../lib/storage.ts';
 import { isPass } from '../lib/exam.ts';
 import { AnswerDots, StrengthBadge, StrengthBar, levelClass, levelLabel } from './Strength.tsx';
+import { Confirm } from './Confirm.tsx';
 
 const LIST_SIZE = 8;
 
 export function Stats({ state, lang, onExit }: { state: State; lang: Lang; onExit: () => void }) {
   const [store, update] = useStore();
+  const [confirmingReset, setConfirmingReset] = useState(false);
 
   const view = useMemo(() => {
     const catalogue = catalogueFor(state);
@@ -193,16 +195,22 @@ export function Stats({ state, lang, onExit }: { state: State; lang: Lang; onExi
       <ProgressFile lang={lang} />
 
       <div style={{ marginTop: 20 }}>
-        <button
-          type="button"
-          className="btn small danger"
-          onClick={() => {
-            if (window.confirm(t('confirmReset', lang))) resetProgress();
-          }}
-        >
+        <button type="button" className="btn small danger" onClick={() => setConfirmingReset(true)}>
           {t('resetProgress', lang)}
         </button>
       </div>
+
+      {confirmingReset && (
+        <Confirm
+          message={t('confirmReset', lang)}
+          lang={lang}
+          onConfirm={() => {
+            setConfirmingReset(false);
+            resetProgress();
+          }}
+          onCancel={() => setConfirmingReset(false)}
+        />
+      )}
     </div>
   );
 }
@@ -216,6 +224,7 @@ export function Stats({ state, lang, onExit }: { state: State; lang: Lang; onExi
 function ProgressFile({ lang }: { lang: Lang }) {
   const input = useRef<HTMLInputElement>(null);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+  const [pending, setPending] = useState<File | null>(null);
 
   const save = () => {
     const blob = new Blob([exportStore()], { type: 'application/json' });
@@ -257,11 +266,21 @@ function ProgressFile({ lang }: { lang: Lang }) {
         onChange={(event) => {
           const file = event.target.files?.[0];
           event.target.value = '';
-          if (!file) return;
-          if (!window.confirm(t('confirmImport', lang))) return;
-          void load(file);
+          if (file) setPending(file);
         }}
       />
+      {pending && (
+        <Confirm
+          message={t('confirmImport', lang)}
+          lang={lang}
+          onConfirm={() => {
+            const file = pending;
+            setPending(null);
+            void load(file);
+          }}
+          onCancel={() => setPending(null)}
+        />
+      )}
     </div>
   );
 }
