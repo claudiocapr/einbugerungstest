@@ -25,6 +25,15 @@ export interface Question {
 
 export type Lang = 'de' | 'en';
 
+/** One recorded answer to a question. */
+export interface Attempt {
+  /** Epoch ms. */
+  at: number;
+  /** Index of the option the user picked. */
+  chosen: number;
+  ok: boolean;
+}
+
 /** Leitner box 0 (unseen) to 5 (mastered). */
 export interface QuestionProgress {
   box: number;
@@ -33,6 +42,23 @@ export interface QuestionProgress {
   correct: number;
   wrong: number;
   lastSeen: number;
+  /** Recent answers, newest first, capped at HISTORY_LENGTH. */
+  history: Attempt[];
+}
+
+/** How well a question is known right now, coarse enough to show as a label. */
+export type StrengthLevel = 'new' | 'weak' | 'shaky' | 'good' | 'strong';
+
+export type RecommendationKind = 'due' | 'weak' | 'new' | 'topic' | 'exam';
+
+/** A suggested next practice session, produced from the user's progress. */
+export interface Recommendation {
+  kind: RecommendationKind;
+  /** How many questions the suggestion concerns. */
+  count: number;
+  topic?: Topic;
+  /** Hash route that starts the suggested session. */
+  route: string;
 }
 
 export interface ExamRecord {

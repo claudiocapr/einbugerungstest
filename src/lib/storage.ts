@@ -7,11 +7,45 @@ export interface Store {
   state: State | null;
   lang: Lang;
   theme: 'dark' | 'light' | 'system';
+  /** Questions to answer per day, shown as the daily goal. */
+  dailyGoal: number;
   progress: Record<number, QuestionProgress>;
   exams: ExamRecord[];
 }
 
-const EMPTY: Store = { state: null, lang: 'de', theme: 'system', progress: {}, exams: [] };
+export const DAILY_GOAL_CHOICES = [10, 20, 30, 50];
+
+const EMPTY: Store = { state: null, lang: 'de', theme: 'system', dailyGoal: 20, progress: {}, exams: [] };
+
+/**
+ * Progress saved before answer history existed has no `history` array. Those
+ * entries are filled in from the counts that were kept, so an older store
+ * still produces a sensible strength instead of reading as never answered.
+ */
+export function migrateProgress(raw: unknown): Record<number, QuestionProgress> {
+  if (!raw || typeof raw !== 'object') return {};
+  const out: Record<number, QuestionProgress> = {};
+  for (const [key, value] of Object.entries(raw as Record<string, QuestionProgress>)) {
+    const id = Number(key);
+    if (!Number.isFinite(id) || !value || typeof value !== 'object') continue;
+    const p: QuestionProgress = {
+      box: Number(value.box) || 0,
+      due: Number(value.due) || 0,
+      correct: Number(value.correct) || 0,
+      wrong: Number(value.wrong) || 0,
+      lastSeen: Number(value.lastSeen) || 0,
+      history: Array.isArray(value.history) ? value.history : [],
+    };
+    if (p.history.length === 0 && (p.correct > 0 || p.wrong > 0)) {
+      // Reconstruct a plausible history: the box says the last answer was
+      // right unless the question was knocked back to box 1 by a mistake.
+      const lastOk = p.box > 1 || (p.box === 1 && p.wrong === 0);
+      p.history = [{ at: p.lastSeen, chosen: -1, ok: lastOk }];
+    }
+    out[id] = p;
+  }
+  return out;
+}
 
 /**
  * Private windows and blocked site data make localStorage throw on access,
@@ -25,7 +59,8 @@ function read(): Store {
     return {
       ...EMPTY,
       ...parsed,
-      progress: parsed.progress ?? {},
+      dailyGoal: Number(parsed.dailyGoal) > 0 ? Number(parsed.dailyGoal) : EMPTY.dailyGoal,
+      progress: migrateProgress(parsed.progress),
       exams: Array.isArray(parsed.exams) ? parsed.exams : [],
     };
   } catch {

@@ -2,13 +2,20 @@ import { useMemo, useState } from 'react';
 import type { Lang, State, Topic } from '../types.ts';
 import { countQuestions, t } from '../lib/i18n.ts';
 import { TOPICS, catalogueFor } from '../lib/questions.ts';
+import { historyOf, strengthLevel } from '../lib/srs.ts';
+import { useStore } from '../lib/storage.ts';
+import { AnswerDots, StrengthBadge } from './Strength.tsx';
 
 const KEYS = ['A', 'B', 'C', 'D'];
 
 type Filter = 'all' | Topic;
+/** Extra filters that look at how the user has answered, not at the content. */
+type Status = 'any' | 'weak' | 'strong' | 'new';
 
 export function Browse({ state, lang, onExit }: { state: State; lang: Lang; onExit: () => void }) {
+  const [store] = useStore();
   const [filter, setFilter] = useState<Filter>('all');
+  const [status, setStatus] = useState<Status>('any');
   const [query, setQuery] = useState('');
 
   const results = useMemo(() => {
@@ -16,12 +23,19 @@ export function Browse({ state, lang, onExit }: { state: State; lang: Lang; onEx
     return catalogueFor(state)
       .filter((q) => filter === 'all' || q.topic === filter)
       .filter((q) => {
+        if (status === 'any') return true;
+        const level = strengthLevel(store.progress[q.id]);
+        if (status === 'new') return level === 'new';
+        if (status === 'weak') return level === 'weak' || level === 'shaky';
+        return level === 'good' || level === 'strong';
+      })
+      .filter((q) => {
         if (!needle) return true;
         if (String(q.id) === needle) return true;
         const haystack = [q.text, ...q.options, q.en.text, ...q.en.options].join(' ').toLowerCase();
         return haystack.includes(needle);
       });
-  }, [state, filter, query]);
+  }, [state, filter, status, query, store.progress]);
 
   return (
     <div>
@@ -56,6 +70,26 @@ export function Browse({ state, lang, onExit }: { state: State; lang: Lang; onEx
         ))}
       </div>
 
+      <div className="chips" style={{ marginBottom: 12 }}>
+        {(['any', 'weak', 'strong', 'new'] as Status[]).map((option) => (
+          <button
+            key={option}
+            type="button"
+            className="chip"
+            aria-pressed={status === option}
+            onClick={() => setStatus(option)}
+          >
+            {option === 'any'
+              ? t('all', lang)
+              : option === 'weak'
+                ? t('levelWeak', lang)
+                : option === 'strong'
+                  ? t('levelStrong', lang)
+                  : t('levelNew', lang)}
+          </button>
+        ))}
+      </div>
+
       <p className="small muted">{countQuestions(results.length, lang)}</p>
 
       {results.length === 0 && <p className="muted">{t('noResults', lang)}</p>}
@@ -67,6 +101,10 @@ export function Browse({ state, lang, onExit }: { state: State; lang: Lang; onEx
               <span className="num">#{q.id}</span>
               {lang === 'de' ? q.text : q.en.text}
             </summary>
+            <div className="foot" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginTop: 10 }}>
+              <StrengthBadge level={strengthLevel(store.progress[q.id])} lang={lang} />
+              <AnswerDots history={historyOf(store.progress[q.id])} lang={lang} />
+            </div>
             {q.image && (
               <div className="qimage" style={{ maxWidth: 320 }}>
                 <img src={q.image} alt="" loading="lazy" />

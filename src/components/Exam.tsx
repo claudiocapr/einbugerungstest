@@ -54,7 +54,7 @@ export function Exam({ state, lang, onExit }: Props) {
       for (const q of questions) {
         const given = answers[q.id];
         if (given === undefined || given === null) continue;
-        progress[q.id] = grade(progress[q.id], given === q.answer, finishedAt);
+        progress[q.id] = grade(progress[q.id], given === q.answer, finishedAt, given);
       }
       return { ...s, progress, exams: [record, ...s.exams].slice(0, 50) };
     });

@@ -46,6 +46,32 @@ const topicForId = (id) => TOPICS.find((t) => id >= t.from && id <= t.to)?.id ??
 const stripNumberPrefix = (text, id) =>
   text.replace(new RegExp(`^\\s*${id}\\.\\s+`), '').trim();
 
+/**
+ * Words that lost their spaces upstream. Each fix is applied only where the
+ * broken text is still present, so the build keeps working once the source is
+ * corrected; `npm run data` reports any fix that has become unnecessary.
+ */
+const TEXT_FIXES = [
+  { id: 14, from: 'meine Meinung imInternetäußern kann.', to: 'meine Meinung im Internet äußern kann.' },
+  {
+    id: 14,
+    from: 'Nazi-, Hamas- oder Islamischer Staat-Symbole öffentlichtragen darf.',
+    to: 'Nazi-, Hamas- oder Islamischer Staat-Symbole öffentlich tragen darf.',
+  },
+];
+
+function applyTextFixes(questions) {
+  const unused = [];
+  for (const fix of TEXT_FIXES) {
+    const q = questions.find((x) => x.id === fix.id);
+    const index = q ? q.options.indexOf(fix.from) : -1;
+    if (index === -1) unused.push(fix);
+    else q.options[index] = fix.to;
+  }
+  console.log(`text fixes: ${TEXT_FIXES.length - unused.length} applied, ${unused.length} no longer needed`);
+  for (const fix of unused) console.log(`  - question ${fix.id}: upstream no longer has "${fix.from}"`);
+}
+
 async function optimiseImages(refs) {
   await rm(OUT_IMG, { recursive: true, force: true });
   await mkdir(OUT_IMG, { recursive: true });
@@ -100,11 +126,18 @@ const questions = raw.map((q) => {
   return out;
 });
 
+applyTextFixes(questions);
+
 for (const q of questions) {
   if (q.answer < 0) throw new Error(`question ${q.id} has no correct answer`);
   if (q.options.length !== 4 || q.options.some((o) => !o)) throw new Error(`question ${q.id} has bad options`);
   if (q.optionImages && q.optionImages.length !== 4) throw new Error(`question ${q.id} has ${q.optionImages.length} option images`);
   if (/^\s*\d+\.\s/.test(q.text)) throw new Error(`question ${q.id} still carries a number prefix`);
+  // Catches words that ran together, the way "imInternetäußern" did.
+  for (const text of [q.text, ...q.options]) {
+    const join = text.match(/[a-zäöüß][A-ZÄÖÜ][a-zäöüß]/);
+    if (join) throw new Error(`question ${q.id} has a missing space near "${join[0]}" in: ${text}`);
+  }
 }
 
 const perTopic = {};

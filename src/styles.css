@@ -419,3 +419,118 @@ footer.foot {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ---------- strength levels ---------- */
+
+.lvl {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 620;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.lvl-new { color: var(--muted); }
+.lvl-weak { color: var(--bad); }
+.lvl-shaky { color: #d98218; }
+.lvl-good { color: #2f8fd6; }
+.lvl-strong { color: var(--good); }
+
+.bar.strength { height: 7px; }
+.bar.strength.lvl-weak > span { background: var(--bad); }
+.bar.strength.lvl-shaky > span { background: #d98218; }
+.bar.strength.lvl-good > span { background: #2f8fd6; }
+.bar.strength.lvl-strong > span { background: var(--good); }
+.bar.strength.lvl-new > span { background: var(--border); }
+
+.dots { display: inline-flex; gap: 3px; flex-wrap: wrap; }
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+.dot.ok { background: var(--good); }
+.dot.no { background: var(--bad); }
+
+/* ---------- recommendations ---------- */
+
+.rec {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  padding: 15px 17px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.rec:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+.rec.lead { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.rec .icon { font-size: 20px; line-height: 1.2; flex: none; }
+.rec .title { display: block; font-weight: 640; }
+.rec .why { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.rec .count {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 2px 9px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+/* ---------- streak / daily goal ---------- */
+
+.goalrow { display: flex; align-items: center; gap: 14px; }
+.streak { font-size: 15px; font-weight: 650; white-space: nowrap; }
+.streak .n { font-size: 22px; }
+
+/* ---------- activity sparkline ---------- */
+
+.activity {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 64px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.activity .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.activity .col > span {
+  display: block;
+  border-radius: 4px 4px 2px 2px;
+  background: var(--accent);
+  min-height: 6px;
+}
+/* Days without practice still show a marker, so the row reads as a calendar. */
+.activity .col.empty > span {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  height: 6px !important;
+}
+
+/* ---------- ranked question lists ---------- */
+
+.ranklist { display: grid; gap: 8px; }
+.ranked {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  padding: 11px 13px;
+}
+.ranked .head { display: flex; gap: 9px; align-items: baseline; }
+.ranked .num { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; flex: none; }
+.ranked .text { font-size: 14px; font-weight: 550; flex: 1; min-width: 0; }
+.ranked .foot { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }

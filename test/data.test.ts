@@ -33,6 +33,20 @@ test('question text never leaks the catalogue numbering', () => {
   }
 });
 
+test('no question has words that ran together', () => {
+  for (const q of QUESTIONS) {
+    for (const text of [q.text, ...q.options]) {
+      assert.doesNotMatch(text, /[a-zäöüß][A-ZÄÖÜ][a-zäöüß]/, `question ${q.id}: "${text}"`);
+    }
+  }
+});
+
+test('the corrected spacing on question 14 survives a data rebuild', () => {
+  const q = QUESTIONS.find((x) => x.id === 14)!;
+  assert.ok(q.options.includes('meine Meinung im Internet äußern kann.'));
+  assert.ok(q.options.includes('Nazi-, Hamas- oder Islamischer Staat-Symbole öffentlich tragen darf.'));
+});
+
 test('picture questions reference files that exist in public/', () => {
   for (const q of QUESTIONS) {
     const refs = [...(q.image ? [q.image] : []), ...(q.optionImages ?? [])];
