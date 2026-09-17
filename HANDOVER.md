@@ -3,6 +3,9 @@
 State of this branch as of 17 September 2026, written for whoever picks the
 work up next. Everything described here is committed and pushed.
 
+**Start at section 1** — it is a live task with decisions already made, not
+background reading.
+
 - **Branch:** `claude/einbuergerungstest-app-25gcw6`
 - **Commits:** `cb2f7ee` (the app), `a969974` (answer tracking and recommendations)
 - **Working tree:** clean, in sync with origin
@@ -11,51 +14,72 @@ work up next. Everything described here is committed and pushed.
 
 ---
 
-## 1. The one open item
+## 1. The task: replace the data source with the official BAMF catalogue
 
-**The question data has never been checked against the official BAMF
-catalogue.** This is the only outstanding task, and the user cares about it.
+`src/data/questions.json` is currently generated from the npm package
+`@cemusta/burgertest`, an unvetted third party. **The user wants the official
+BAMF catalogue used instead, and the npm package removed as a dependency.**
 
-Everything in `src/data/questions.json` came from the npm package
-`@cemusta/burgertest` (MIT), not from BAMF directly. This environment's egress
-policy allows only package registries and Anthropic APIs, so `www.bamf.de` is
-refused at CONNECT (403) — by `curl` and by the `WebFetch` tool alike. The
-official source was therefore never reached.
+That work could not be done in the session that wrote this note: its egress
+policy allowed only package registries and Anthropic APIs, so `www.bamf.de`
+was refused at CONNECT (403) by `curl` and by the `WebFetch` tool alike. **The
+user has since opened egress in the session reading this.** Verify that first:
 
-What the data *does* evidence, which is why it is probably current but not
-certainly so:
+```bash
+curl -sS -o /dev/null -w "%{http_code}\n" --max-time 15 https://www.bamf.de/
+```
 
-- 13 questions on Jewish life, Israel and antisemitism (#111, #118, #149,
-  #184, #288 among them), the block added by the June 2024 citizenship-law
-  reform — so it is not a pre-2024 catalogue
-- "Wie viele Mitgliedstaaten hat die EU heute?" → 27 (post-Brexit)
-- "Wie viele Einwohner hat Deutschland?" → 84 Millionen (the newer figure)
-- Structure is exactly official: 300 general + 16 × 10 state = 460
+Sources:
 
-What is thin: the upstream package is version `0.1.0` with no README, no
-changelog and nothing stating which edition of the catalogue it captured. The
-answer spot-checks that were done covered roughly a dozen questions, not 460.
+- [Gesamtfragenkatalog](https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Einbuergerung/gesamtfragenkatalog-lebenindeutschland.html?nn=282388) — the PDF, which carries a *Stand* date
+- [Interaktiver Fragenkatalog](https://www.bamf.de/SharedDocs/Links/DE/O/oet-bamf-interaktiv_einbuergerungstest_fragenkatalog.html?nn=282388)
 
-### How to close it
+### Decisions the user has already made
 
-Either route works; the second needs no policy change.
+- **German questions and answers come from BAMF.** That is the authoritative
+  content; nothing else may be the source of truth for it.
+- **English translations are written by us**, since BAMF publishes the
+  catalogue in German only. All 460 questions plus their four options each.
+- **Do not label the translations as unofficial.** The user asked for this
+  explicitly. The existing "Erklärung (EN)" marker is a *language* marker, not
+  a disclaimer, and can stay.
 
-1. **Egress opened.** The user was told to change the environment's network
-   policy in claude.ai/code to allow `www.bamf.de`, and that a new session is
-   needed for it to take effect. Sources:
-   - [Gesamtfragenkatalog](https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Einbuergerung/gesamtfragenkatalog-lebenindeutschland.html?nn=282388) (the PDF carries a *Stand* date)
-   - [Interaktiver Fragenkatalog](https://www.bamf.de/SharedDocs/Links/DE/O/oet-bamf-interaktiv_einbuergerungstest_fragenkatalog.html?nn=282388)
-2. **Local PDF.** The user drops the Gesamtfragenkatalog PDF into the repo and
-   it is parsed from disk. No network needed at all.
+### Plan
 
-Then: diff all 460 question texts and correct answers against
-`src/data/questions.json`, report every divergence, and fold the corrections
-plus the catalogue's *Stand* date into `scripts/build-questions.mjs` so the
-check is repeatable.
+1. Fetch the PDF. **Read its actual structure before writing any parser** — no
+   parser was written in advance precisely because the layout had never been
+   seen, and one written blind is likely wasted work. Record the *Stand* date.
+2. Extract question number, text, the four options and the marked correct
+   answer. `pdfjs-dist` from npm is fine here: it is a build tool, not a
+   content source.
+3. Diff against the current `src/data/questions.json` and **report every
+   divergence to the user before overwriting anything.** If the two agree, that
+   is itself the answer to the question the user has been asking — say so
+   plainly. If they differ, the BAMF text wins.
+4. Write the English translations from the authoritative German text. Do this
+   *after* step 3, so nothing is translated from text that then changes.
+5. Rework `scripts/build-questions.mjs` to build from the PDF plus the
+   translation file, and remove `@cemusta/burgertest` from `devDependencies`.
+6. Surface the *Stand* date in the app (the footer already carries the source
+   note) and in the README.
 
-**A PDF parser was deliberately not written in advance.** The document's
-internal layout has never been seen, so a parser written blind is likely
-wasted work. Look at the file first, then write it once.
+### Open point for the user
+
+The per-question explanations (`en.context`, shown under each answer in
+practice and review) also come from the npm package, and BAMF publishes no
+equivalent. Dropping the package removes them too. The user was not asked
+about these specifically — only about translations. **Ask before deciding.**
+The options are to write fresh explanations for all 460, or to drop the
+feature; silently losing it would be a regression, and silently keeping the
+package would contradict the instruction to remove it.
+
+### Images
+
+The 100 catalogue images (coats of arms, flags, ballot papers) currently come
+from the npm package too, already downscaled from 35 MB of PNG to 2.8 MB of
+WebP in `public/images/`. If they can be extracted from the official PDF at
+usable quality, do that; if not, raise it with the user rather than quietly
+keeping the package for images alone.
 
 ---
 
@@ -131,8 +155,12 @@ than pretending otherwise.
 ## 4. The data pipeline
 
 `npm run data` rebuilds `src/data/questions.json` and `public/images/` from
-`@cemusta/burgertest`. The generated files are committed, so a plain build
-never needs the script. It corrects three upstream defects:
+`@cemusta/burgertest`. **This is what section 1 replaces.** The generated files
+are committed, so a plain build never needs the script.
+
+The normalisation and validation in this script stay useful whatever the
+source: keep them when rewiring the input. It corrects three upstream defects
+that may or may not exist in the official PDF — check each against it:
 
 1. Questions 431–440 were labelled `"Sachsen"` by a substring match; they are
    the Sachsen-Anhalt block. Left alone, Sachsen had 20 questions and
@@ -169,9 +197,10 @@ reasonable change — ask first, it widens the toolchain.
 
 ## 6. Loose ends, in rough priority order
 
-1. **Verify against BAMF** — section 1. Everything else is optional.
-2. **Confirm the topic boundaries** against the official Themenbereiche while
-   doing so.
+1. **Switch to the official BAMF source** — section 1. This is the live task;
+   everything below is optional.
+2. **Confirm the topic boundaries** against the official Themenbereich
+   headings in the PDF, which was impossible without access to it.
 3. **Bundle size.** 469 kB raw / 134 kB gzipped, mostly the inlined 296 kB of
    question JSON. Fine for a study app that then works offline; worth lazy
    loading only if the first paint ever becomes a complaint.
