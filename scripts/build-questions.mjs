@@ -1,38 +1,54 @@
 /**
- * Builds src/data/questions.json and public/images/* from the upstream
- * BAMF question catalogue shipped in @cemusta/burgertest (MIT).
+ * Builds src/data/questions.json from the official BAMF catalogue.
  *
- * Run with `npm run data` after bumping that dependency.
+ * Sources, in order of authority:
+ *
+ * 1. The BAMF "Gesamtfragenkatalog" PDF — the German question and answer text.
+ *    Downloaded from bamf.de (cached under .cache/) and parsed by
+ *    scripts/parse-catalogue.mjs. This is the only source of truth for German.
+ * 2. data/answers.json — the correct-answer key. The PDF does not mark correct
+ *    answers anywhere, so the key is carried here; see that file's own notes
+ *    for where it comes from and how it was checked.
+ * 3. data/translations.json — the English text, written for this app, since
+ *    BAMF publishes the catalogue in German only.
+ *
+ * Images are not generated here. public/images/ is committed, and a question's
+ * pictures are matched by filename: qN.webp illustrates question N, and
+ * qN_1..qN_4.webp illustrate its four options.
+ *
+ * Run with `npm run data`. Pass --pdf <path> to build from a local file and
+ * --offline to require the cached download.
  */
-import { mkdir, readFile, writeFile, rm, readdir } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir, access } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
-import sharp from 'sharp';
+import { parseCatalogue, STATES } from './parse-catalogue.mjs';
 
 const ROOT = path.join(import.meta.dirname, '..');
-// The package blocks subpath resolution via "exports", so reach for the files directly.
-const SRC = path.join(ROOT, 'node_modules', '@cemusta', 'burgertest', 'data');
+const CACHE = path.join(ROOT, '.cache', 'gesamtfragenkatalog.pdf');
 const OUT_DATA = path.join(ROOT, 'src', 'data', 'questions.json');
-const OUT_IMG = path.join(ROOT, 'public', 'images');
+const IMAGES = path.join(ROOT, 'public', 'images');
+
+const CATALOGUE_URL =
+  'https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Einbuergerung/gesamtfragenkatalog-lebenindeutschland.pdf?__blob=publicationFile&v=23';
 
 /**
- * Upstream labels questions 431-440 as "Sachsen" because it matches the state
- * name as a substring; they are the Sachsen-Anhalt block. The catalogue orders
- * the 16 state blocks alphabetically, 10 questions each, starting at 301.
+ * The edition this data was built and translated against. BAMF revises the
+ * catalogue and reuses the same URL, so a different Stand date means questions
+ * may have been added, dropped or reworded: the translations and the answer key
+ * both need reviewing before it can be accepted. Failing here is the point.
  */
-const STATES = [
-  'Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg',
-  'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen',
-  'Rheinland-Pfalz', 'Saarland', 'Sachsen', 'Sachsen-Anhalt',
-  'Schleswig-Holstein', 'Thüringen',
-];
+const EXPECTED_STAND = '07.05.2025';
 
 const stateForId = (id) => STATES[Math.floor((id - 301) / 10)];
 
 /**
- * The catalogue groups the 300 general questions into three Themenbereiche.
- * The boundaries below were read off the catalogue's own ordering: 150 is the
- * last justice question and 151 opens the Nazi/DDR block; 220 is the last
- * remembrance question and 221 opens the Europe/society block.
+ * The 300 general questions are split into three topics for the practice modes.
+ *
+ * These boundaries are ours, read off where the catalogue's subject matter
+ * visibly changes. The PDF carries no Themenbereich headings at all — its only
+ * structure is "Teil I / Allgemeine Fragen" and "Teil II / Fragen für das
+ * Bundesland X" — so there is nothing official to check them against.
  */
 const TOPICS = [
   { id: 'politik', from: 1, to: 150 },
@@ -42,96 +58,108 @@ const TOPICS = [
 
 const topicForId = (id) => TOPICS.find((t) => id >= t.from && id <= t.to)?.id ?? 'bundesland';
 
-/** A couple of upstream entries carry their own question number in the text. */
-const stripNumberPrefix = (text, id) =>
-  text.replace(new RegExp(`^\\s*${id}\\.\\s+`), '').trim();
-
 /**
- * Words that lost their spaces upstream. Each fix is applied only where the
- * broken text is still present, so the build keeps working once the source is
- * corrected; `npm run data` reports any fix that has become unnecessary.
+ * Questions 184 and 206 carry their own catalogue number in the question text
+ * in the official PDF. Stripping it is a correction to BAMF's own file, so it
+ * is applied by number and the build fails below if the prefix ever survives.
  */
-const TEXT_FIXES = [
-  { id: 14, from: 'meine Meinung imInternetäußern kann.', to: 'meine Meinung im Internet äußern kann.' },
-  {
-    id: 14,
-    from: 'Nazi-, Hamas- oder Islamischer Staat-Symbole öffentlichtragen darf.',
-    to: 'Nazi-, Hamas- oder Islamischer Staat-Symbole öffentlich tragen darf.',
-  },
-];
+const stripNumberPrefix = (text, id) => text.replace(new RegExp(`^\\s*${id}\\.\\s+`), '').trim();
 
-function applyTextFixes(questions) {
-  const unused = [];
-  for (const fix of TEXT_FIXES) {
-    const q = questions.find((x) => x.id === fix.id);
-    const index = q ? q.options.indexOf(fix.from) : -1;
-    if (index === -1) unused.push(fix);
-    else q.options[index] = fix.to;
+async function loadPdf() {
+  const args = process.argv.slice(2);
+  const explicit = args.indexOf('--pdf');
+  if (explicit >= 0) return readFile(args[explicit + 1]);
+
+  try {
+    const cached = await readFile(CACHE);
+    console.log(`catalogue: ${CACHE} (cached, ${(cached.length / 1e6).toFixed(1)} MB)`);
+    return cached;
+  } catch {
+    if (args.includes('--offline')) throw new Error(`--offline given but ${CACHE} is missing`);
   }
-  console.log(`text fixes: ${TEXT_FIXES.length - unused.length} applied, ${unused.length} no longer needed`);
-  for (const fix of unused) console.log(`  - question ${fix.id}: upstream no longer has "${fix.from}"`);
+
+  console.log(`catalogue: downloading ${CATALOGUE_URL}`);
+  const response = await fetch(CATALOGUE_URL);
+  if (!response.ok) throw new Error(`download failed: ${response.status} ${response.statusText}`);
+  const body = Buffer.from(await response.arrayBuffer());
+  await mkdir(path.dirname(CACHE), { recursive: true });
+  await writeFile(CACHE, body);
+  console.log(`catalogue: ${(body.length / 1e6).toFixed(1)} MB, sha256 ${createHash('sha256').update(body).digest('hex')}`);
+  return body;
 }
 
-async function optimiseImages(refs) {
-  await rm(OUT_IMG, { recursive: true, force: true });
-  await mkdir(OUT_IMG, { recursive: true });
+/** Maps question id to its pictures, from what is actually committed. */
+async function imagesById() {
+  const files = new Set(await readdir(IMAGES));
   const map = new Map();
-  let before = 0;
-  let after = 0;
-  for (const ref of refs) {
-    const from = path.join(SRC, ref);
-    const name = path.basename(ref, path.extname(ref)) + '.webp';
-    const to = path.join(OUT_IMG, name);
-    const input = await readFile(from);
-    const out = await sharp(input)
-      .resize({ width: 800, height: 800, fit: 'inside', withoutEnlargement: true })
-      .webp({ quality: 82 })
-      .toBuffer();
-    await writeFile(to, out);
-    before += input.length;
-    after += out.length;
-    map.set(ref, `images/${name}`);
+  for (const file of files) {
+    const single = /^q(\d+)\.webp$/.exec(file);
+    if (single) {
+      const id = Number(single[1]);
+      map.set(id, { ...map.get(id), image: `images/${file}` });
+      continue;
+    }
+    const option = /^q(\d+)_([1-4])\.webp$/.exec(file);
+    if (!option) throw new Error(`unexpected file in public/images: ${file}`);
+    const id = Number(option[1]);
+    const entry = map.get(id) ?? {};
+    entry.optionImages = entry.optionImages ?? [];
+    entry.optionImages[Number(option[2]) - 1] = `images/${file}`;
+    map.set(id, entry);
   }
-  const mb = (n) => (n / 1024 / 1024).toFixed(1) + ' MB';
-  console.log(`images: ${map.size} files, ${mb(before)} -> ${mb(after)}`);
   return map;
 }
 
-const raw = JSON.parse(await readFile(path.join(SRC, 'questions.json'), 'utf8'));
-if (raw.length !== 460) throw new Error(`expected 460 questions, got ${raw.length}`);
+const pdf = await loadPdf();
+const { stand, questions: catalogue } = await parseCatalogue(new Uint8Array(pdf));
+console.log(`catalogue: Stand ${stand}, ${catalogue.length} questions`);
+if (stand !== EXPECTED_STAND) {
+  throw new Error(
+    `catalogue is Stand ${stand}, this build targets ${EXPECTED_STAND}. ` +
+    'Re-check data/answers.json and data/translations.json against the new edition, ' +
+    'then update EXPECTED_STAND.',
+  );
+}
+if (catalogue.length !== 460) throw new Error(`expected 460 questions, got ${catalogue.length}`);
 
-const imageRefs = [...new Set(raw.flatMap((q) => (Array.isArray(q.image) ? q.image : q.image ? [q.image] : [])))];
-const imageMap = await optimiseImages(imageRefs);
+const answers = JSON.parse(await readFile(path.join(ROOT, 'data', 'answers.json'), 'utf8'));
+const translations = JSON.parse(await readFile(path.join(ROOT, 'data', 'translations.json'), 'utf8'));
+const pictures = await imagesById();
 
-const questions = raw.map((q) => {
-  const images = (Array.isArray(q.image) ? q.image : q.image ? [q.image] : []).map((r) => imageMap.get(r));
-  const isState = q.type === 'state';
+const questions = catalogue.map((source, index) => {
+  const id = index + 1;
+  const isState = source.part === 'II';
+  const answer = answers.answers[id];
+  const en = translations.translations[id];
+  if (answer === undefined) throw new Error(`question ${id} has no answer in data/answers.json`);
+  if (!en) throw new Error(`question ${id} has no entry in data/translations.json`);
+
   const out = {
-    id: q.id,
-    state: isState ? stateForId(q.id) : null,
-    topic: topicForId(q.id),
-    text: stripNumberPrefix(q.text, q.id),
-    options: ['a', 'b', 'c', 'd'].map((k) => q.options[k]),
-    answer: ['a', 'b', 'c', 'd'].indexOf(q.correctAnswer),
-    en: {
-      text: stripNumberPrefix(q.translations.en.text, q.id),
-      options: ['a', 'b', 'c', 'd'].map((k) => q.translations.en.options[k]),
-      context: q.translations.en.context ?? null,
-    },
+    id,
+    state: isState ? stateForId(id) : null,
+    topic: topicForId(id),
+    text: stripNumberPrefix(source.text, id),
+    options: source.options,
+    answer,
+    en: { text: en.text, options: en.options, context: en.context ?? null },
   };
-  // A single image illustrates the question; four images illustrate the options.
-  if (images.length === 1) out.image = images[0];
-  else if (images.length > 1) out.optionImages = images;
-  if (q.imageText) out.imageCredit = q.imageText;
+  const picture = pictures.get(id);
+  if (picture?.image) out.image = picture.image;
+  if (picture?.optionImages) out.optionImages = picture.optionImages;
+  if (source.credit) out.imageCredit = source.credit;
   return out;
 });
 
-applyTextFixes(questions);
-
 for (const q of questions) {
-  if (q.answer < 0) throw new Error(`question ${q.id} has no correct answer`);
+  if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) {
+    throw new Error(`question ${q.id} has no correct answer`);
+  }
   if (q.options.length !== 4 || q.options.some((o) => !o)) throw new Error(`question ${q.id} has bad options`);
-  if (q.optionImages && q.optionImages.length !== 4) throw new Error(`question ${q.id} has ${q.optionImages.length} option images`);
+  if (q.en.options.length !== 4 || q.en.options.some((o) => !o)) throw new Error(`question ${q.id} has bad English options`);
+  if (!q.en.text) throw new Error(`question ${q.id} has no English text`);
+  if (q.optionImages && q.optionImages.length !== 4) {
+    throw new Error(`question ${q.id} has ${q.optionImages.length} option images`);
+  }
   if (/^\s*\d+\.\s/.test(q.text)) throw new Error(`question ${q.id} still carries a number prefix`);
   // Catches words that ran together, the way "imInternetäußern" did.
   for (const text of [q.text, ...q.options]) {
@@ -140,19 +168,23 @@ for (const q of questions) {
   }
 }
 
+const state = questions.filter((q) => q.state).length;
+const perState = {};
+for (const q of questions.filter((q) => q.state)) perState[q.state] = (perState[q.state] ?? 0) + 1;
+const wrong = Object.entries(perState).filter(([, n]) => n !== 10);
+if (Object.keys(perState).length !== 16 || wrong.length || state !== 160) {
+  throw new Error(`expected 16 states x 10 questions, got ${JSON.stringify(perState)}`);
+}
+
 const perTopic = {};
 for (const q of questions) perTopic[q.topic] = (perTopic[q.topic] ?? 0) + 1;
 console.log('topics:', JSON.stringify(perTopic));
 
-const perState = {};
-for (const q of questions.filter((q) => q.state)) perState[q.state] = (perState[q.state] ?? 0) + 1;
-const wrong = Object.entries(perState).filter(([, n]) => n !== 10);
-if (Object.keys(perState).length !== 16 || wrong.length) {
-  throw new Error(`expected 16 states x 10 questions, got ${JSON.stringify(perState)}`);
-}
+const withPictures = questions.filter((q) => q.image || q.optionImages).length;
+const used = questions.reduce((n, q) => n + (q.image ? 1 : 0) + (q.optionImages?.length ?? 0), 0);
+console.log(`images: ${used} files on ${withPictures} questions, ${(await readdir(IMAGES)).length - used} unused`);
 
 await mkdir(path.dirname(OUT_DATA), { recursive: true });
-await writeFile(OUT_DATA, JSON.stringify(questions));
-const kb = (Buffer.byteLength(JSON.stringify(questions)) / 1024).toFixed(0);
-console.log(`questions: ${questions.length} (${kb} kB), ${Object.keys(perState).length} states`);
-console.log(`orphan images: ${(await readdir(OUT_IMG)).length - imageMap.size}`);
+const json = JSON.stringify(questions);
+await writeFile(OUT_DATA, json);
+console.log(`questions: ${questions.length} (${(Buffer.byteLength(json) / 1024).toFixed(0)} kB), 16 states`);

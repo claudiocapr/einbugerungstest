@@ -86,29 +86,44 @@ GitHub Pages / Netlify / Vercel veröffentlicht werden.
 
 ## Fragenkatalog
 
-Die Fragen stammen aus dem amtlichen Gesamtfragenkatalog des Bundesamts für
-Migration und Flüchtlinge (BAMF): 300 allgemeine Fragen und je 10 Fragen für
-jedes der 16 Bundesländer.
+Die Fragen stammen aus dem amtlichen **Gesamtfragenkatalog** des Bundesamts für
+Migration und Flüchtlinge (BAMF), **Stand 07.05.2025**: 300 allgemeine Fragen
+und je 10 Fragen für jedes der 16 Bundesländer.
 
-Aufbereitet werden sie aus dem Paket
-[`@cemusta/burgertest`](https://www.npmjs.com/package/@cemusta/burgertest) (MIT),
-das den Katalog samt englischer Übersetzungen und Bildern enthält.
-`scripts/build-questions.mjs` erzeugt daraus `src/data/questions.json` und die
-Bilder unter `public/images/`:
+`scripts/build-questions.mjs` lädt das
+[PDF von bamf.de](https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Einbuergerung/gesamtfragenkatalog-lebenindeutschland.html?nn=282388),
+liest es mit `scripts/parse-catalogue.mjs` aus und erzeugt daraus
+`src/data/questions.json`:
 
 ```bash
-npm run data
+npm run data              # lädt den Katalog (Cache unter .cache/)
+npm run data -- --offline # nur aus dem Cache bauen
 ```
 
-Das Skript normalisiert die Daten, korrigiert die Bundesland-Zuordnung der
-Fragen 431–440 (Sachsen-Anhalt, in der Quelle als „Sachsen" geführt), entfernt
-Fragenummern aus einzelnen Fragetexten, setzt in Frage 14 zwei verlorene
-Leerzeichen wieder ein und rechnet die Bilder von 35 MB PNG auf rund 2,8 MB
-WebP herunter. Es bricht ab, wenn der Katalog nicht mehr aus 460 Fragen mit je
-16 × 10 Landesfragen besteht oder wenn wieder Wörter zusammenlaufen.
+Der deutsche Wortlaut kommt ausschließlich aus dem PDF. Zwei Dinge stehen
+nicht darin und liegen deshalb als eigene, gepflegte Dateien im Repo:
 
-Die erzeugten Dateien sind eingecheckt, ein Build benötigt das Skript also
-nicht.
+| Datei | Inhalt | Warum |
+|---|---|---|
+| `data/answers.json` | die 460 richtigen Antworten | Das PDF markiert keine Lösungen: alle 1800 Kästchen sind dasselbe leere Glyph. |
+| `data/translations.json` | englischer Text und Erklärungen | Das BAMF veröffentlicht den Katalog nur auf Deutsch. |
+
+Beide Dateien tragen ihre Herkunft als Kommentarfeld in sich. Zum
+Antwortschlüssel gehört auch, wie er geprüft wurde – unter anderem gegen den
+[interaktiven Fragenkatalog](https://oet.bamf.de/ords/oetut/f?p=514) des BAMF.
+
+Die Bilder unter `public/images/` sind eingecheckt und werden nicht mehr
+erzeugt; eine Frage bekommt ihre Bilder über den Dateinamen (`q55.webp` für die
+Frage selbst, `q21_1.webp` bis `q21_4.webp` für ihre vier Antworten).
+
+Das Skript bricht ab, wenn der Katalog nicht mehr aus 460 Fragen mit je 16 × 10
+Landesfragen besteht, wenn eine Antwort oder Übersetzung fehlt, wenn Wörter
+zusammenlaufen – oder wenn das PDF ein anderes *Stand*-Datum trägt als das, für
+das die Übersetzungen geschrieben wurden. Der Abbruch ist Absicht: eine neue
+Katalogfassung muss geprüft werden, bevor sie übernommen wird.
+
+Die erzeugte `src/data/questions.json` ist eingecheckt, ein Build benötigt das
+Skript also nicht.
 
 > **Ohne Gewähr.** Verbindlich ist allein der aktuelle Fragenkatalog des BAMF.
 

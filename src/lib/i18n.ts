@@ -133,8 +133,8 @@ const T = {
   practised: { de: 'Geübt', en: 'Practised' },
 
   dataNote: {
-    de: 'Fragen: amtlicher Gesamtfragenkatalog des BAMF. Ohne Gewähr.',
-    en: 'Questions: official BAMF catalogue. No guarantee of accuracy.',
+    de: 'Fragen: amtlicher Gesamtfragenkatalog des BAMF, Stand 07.05.2025. Ohne Gewähr.',
+    en: 'Questions: official BAMF catalogue, as of 07.05.2025. No guarantee of accuracy.',
   },
 } satisfies Record<string, Entry>;
 

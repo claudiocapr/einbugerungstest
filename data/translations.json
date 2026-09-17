@@ -1,0 +1,4605 @@
+{
+ "note": "English text for the 460 catalogue questions, written for this app. BAMF publishes the Gesamtfragenkatalog in German only, so the German in src/data/questions.json is the authoritative text and everything here is a translation of it. context is a short explanation of the correct answer, shown under the answer in practice and review; BAMF publishes no equivalent, so these are written here too.",
+ "translations": {
+  "1": {
+   "text": "In Germany, people are allowed to say something openly against the government because …",
+   "options": [
+    "freedom of religion applies here.",
+    "people pay taxes.",
+    "people have the right to vote.",
+    "freedom of expression applies here."
+   ],
+   "context": "Freedom of expression (Article 5 of the Basic Law) lets anyone voice criticism of those in power without fear of punishment. Being able to contradict the government is exactly what separates a democracy from a dictatorship."
+  },
+  "2": {
+   "text": "In Germany, parents can decide until their child is 14 whether it takes part at school in …",
+   "options": [
+    "history lessons.",
+    "religious education.",
+    "civics lessons.",
+    "language lessons."
+   ],
+   "context": "Religious education is the only school subject the Basic Law singles out: under Article 7, parents decide whether their child takes part, and from 14 the child decides for itself."
+  },
+  "3": {
+   "text": "Germany is a state governed by the rule of law. What does that mean?",
+   "options": [
+    "All residents and the state itself must obey the law.",
+    "The state does not have to obey the law.",
+    "Only Germans have to follow the law.",
+    "The courts make the laws."
+   ],
+   "context": "In a Rechtsstaat the law binds everyone, the state included. Officials, police and ministers are as subject to the law as any resident, and courts can be asked to enforce that."
+  },
+  "4": {
+   "text": "Which right is one of the basic rights in Germany?",
+   "options": [
+    "gun ownership",
+    "the law of the jungle",
+    "freedom of expression",
+    "taking the law into your own hands"
+   ],
+   "context": "Freedom of expression is one of the basic rights in Articles 1 to 19 of the Basic Law. Owning weapons or settling scores yourself are not rights at all."
+  },
+  "5": {
+   "text": "Elections in Germany are free. What does that mean?",
+   "options": [
+    "You may accept money for voting for a particular candidate.",
+    "Only people who have never been in prison are allowed to vote.",
+    "Voters may be neither influenced nor forced to cast a particular vote, and must suffer no disadvantage from voting.",
+    "Everyone entitled to vote must vote."
+   ],
+   "context": "Free means nobody may pressure, bribe or coerce you over your vote, and you may not be penalised for how you voted. It does not mean voting is compulsory, nor does a criminal record generally remove the right to vote."
+  },
+  "6": {
+   "text": "What is the German constitution called?",
+   "options": [
+    "People's Law",
+    "Federal Law",
+    "German Law",
+    "Basic Law"
+   ],
+   "context": "The German constitution is called the Grundgesetz, or Basic Law. The name was chosen in 1949 as a deliberately provisional one, because the founders hoped for a joint constitution once Germany was reunited."
+  },
+  "7": {
+   "text": "Which right is one of the basic rights guaranteed by the German constitution? The right to …",
+   "options": [
+    "freedom of faith and conscience",
+    "entertainment",
+    "work",
+    "housing"
+   ],
+   "context": "Freedom of faith and conscience is guaranteed by Article 4. Entertainment, work and housing are things the state may support, but they are not basic rights you can claim in court."
+  },
+  "8": {
+   "text": "What is not in Germany's Basic Law?",
+   "options": [
+    "Human dignity is inviolable.",
+    "Everyone should have the same amount of money.",
+    "Everyone may express their opinion.",
+    "Everyone is equal before the law."
+   ],
+   "context": "The Basic Law guarantees dignity, free expression and equality before the law, but it never promises equal wealth. It sets the rules of the game, not the outcome."
+  },
+  "9": {
+   "text": "Which basic right applies in Germany only to foreign nationals? The basic right to …",
+   "options": [
+    "protection of the family",
+    "human dignity",
+    "asylum",
+    "freedom of expression"
+   ],
+   "context": "The right to asylum in Article 16a applies only to people who are not German citizens, which makes it the one basic right reserved for foreign nationals. Dignity and free expression apply to everybody."
+  },
+  "10": {
+   "text": "What is compatible with Germany's Basic Law?",
+   "options": [
+    "corporal punishment",
+    "torture",
+    "the death penalty",
+    "a fine"
+   ],
+   "context": "A fine is an ordinary criminal penalty and entirely compatible with the Basic Law. Corporal punishment, torture and the death penalty are all forbidden; Article 102 abolished capital punishment outright."
+  },
+  "11": {
+   "text": "What is the constitution of the Federal Republic of Germany called?",
+   "options": [
+    "Basic Law",
+    "Federal Constitution",
+    "Statute Book",
+    "Constitutional Treaty"
+   ],
+   "context": "It is the Grundgesetz, the Basic Law. It came into force on 23 May 1949 and, after reunification, became the constitution for the whole of Germany."
+  },
+  "12": {
+   "text": "A party in the German Bundestag wants to abolish freedom of the press. Is that possible?",
+   "options": [
+    "Yes, if more than half of the members of the Bundestag are in favour.",
+    "Yes, but two thirds of the members of the Bundestag must be in favour.",
+    "No, because freedom of the press is a basic right. It cannot be abolished.",
+    "No, because only the Bundesrat can abolish freedom of the press."
+   ],
+   "context": "Freedom of the press is part of the basic rights, and Article 79(3) puts the core of those rights beyond the reach of any majority. Not even a unanimous Bundestag could abolish it."
+  },
+  "13": {
+   "text": "In parliament, the term \"opposition\" stands for …",
+   "options": [
+    "the governing parties.",
+    "the parliamentary group with the most members.",
+    "all parties that cleared the 5% threshold at the last election.",
+    "all members who do not belong to the governing party or parties."
+   ],
+   "context": "The opposition is made up of all members who do not belong to the governing party or parties. Its job is to scrutinise the government and offer an alternative."
+  },
+  "14": {
+   "text": "Freedom of expression in Germany means that I …",
+   "options": [
+    "may insult passers-by in the street.",
+    "can express my opinion on the internet.",
+    "may display Nazi, Hamas or Islamic State symbols in public.",
+    "may only express my opinion as long as I do not contradict the government."
+   ],
+   "context": "Freedom of expression covers stating your opinion in public, including online. It does not protect insulting people or displaying the symbols of banned organisations."
+  },
+  "15": {
+   "text": "What does Germany's Basic Law prohibit?",
+   "options": [
+    "military service",
+    "forced labour",
+    "free choice of occupation",
+    "working abroad"
+   ],
+   "context": "Article 12 of the Basic Law forbids forced labour. Choosing your occupation freely and working abroad are precisely the freedoms it protects."
+  },
+  "16": {
+   "text": "When is freedom of expression restricted in Germany?",
+   "options": [
+    "when false claims about individuals are spread in public",
+    "when opinions are expressed about the federal government",
+    "in discussions about religions",
+    "in criticism of the state"
+   ],
+   "context": "Free expression ends where it damages other people's rights, for example by spreading untrue factual claims about them. Criticising the government, the state or religion is fully protected."
+  },
+  "17": {
+   "text": "German law prohibits …",
+   "options": [
+    "freedom of expression for residents.",
+    "petitions by citizens.",
+    "freedom of assembly for residents.",
+    "unequal treatment of citizens by the state."
+   ],
+   "context": "Article 3 obliges the state to treat people equally, so unequal treatment by the state is what the law forbids. Expression, petitions and assembly are rights the law guarantees, not bans."
+  },
+  "18": {
+   "text": "Which basic right is guaranteed in Article 1 of the Basic Law of the Federal Republic of Germany?",
+   "options": [
+    "the inviolability of human dignity",
+    "the right to life",
+    "freedom of religion",
+    "freedom of expression"
+   ],
+   "context": "Article 1 opens with the sentence \"Human dignity shall be inviolable.\" It is placed first deliberately, as the foundation on which every other basic right rests."
+  },
+  "19": {
+   "text": "What is meant by the right of \"freedom of movement\" in Germany?",
+   "options": [
+    "You may choose where you live.",
+    "You can change your occupation.",
+    "You may decide to follow a different religion.",
+    "You may go about in public only lightly dressed."
+   ],
+   "context": "Freizügigkeit is the right to move to and settle anywhere in Germany. It is about choosing where you live, not about what you wear or which job you take."
+  },
+  "20": {
+   "text": "A party in Germany pursues the aim of establishing a dictatorship. It is then …",
+   "options": [
+    "tolerant.",
+    "committed to the rule of law.",
+    "law-abiding.",
+    "unconstitutional."
+   ],
+   "context": "A party aiming to set up a dictatorship works against the free democratic basic order and is therefore unconstitutional. Only the Federal Constitutional Court may ban a party on those grounds."
+  },
+  "21": {
+   "text": "Which is the coat of arms of the Federal Republic of Germany?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The federal coat of arms is the black eagle on a golden shield. It has been in use since 1950 and goes back to the Weimar Republic's design."
+  },
+  "22": {
+   "text": "What form of state does Germany have?",
+   "options": [
+    "monarchy",
+    "dictatorship",
+    "republic",
+    "principality"
+   ],
+   "context": "Germany is a republic: its head of state is elected, not born into the office. Republic, democracy, federal state and welfare state are all described in Article 20."
+  },
+  "23": {
+   "text": "In Germany, most working people are …",
+   "options": [
+    "employed in small family businesses.",
+    "working voluntarily for a federal state.",
+    "self-employed with a company of their own.",
+    "employed by a company or a public authority."
+   ],
+   "context": "Most working people in Germany are employees of a company or a public authority rather than self-employed. Roughly nine in ten workers are in dependent employment."
+  },
+  "24": {
+   "text": "How many federal states does the Federal Republic of Germany have?",
+   "options": [
+    "14",
+    "15",
+    "16",
+    "17"
+   ],
+   "context": "Germany has 16 federal states. There were 11 in the West until 1990, when five eastern states joined and Berlin was reunited."
+  },
+  "25": {
+   "text": "Which is not a federal state of the Federal Republic of Germany?",
+   "options": [
+    "Alsace-Lorraine",
+    "North Rhine-Westphalia",
+    "Mecklenburg-Western Pomerania",
+    "Saxony-Anhalt"
+   ],
+   "context": "Alsace-Lorraine is a region of France, not a German federal state. The other three are all part of the 16."
+  },
+  "26": {
+   "text": "Germany is …",
+   "options": [
+    "a communist republic.",
+    "a democratic and social federal state.",
+    "a capitalist and social monarchy.",
+    "a social and socialist federal state."
+   ],
+   "context": "Article 20 describes Germany as a democratic and social federal state. Democratic because power comes from the people, social because the state provides for those in need."
+  },
+  "27": {
+   "text": "Germany is …",
+   "options": [
+    "a socialist state.",
+    "a federal state.",
+    "a dictatorship.",
+    "a monarchy."
+   ],
+   "context": "Germany is a federal state: power is shared between the federation and the 16 states, each with its own parliament and government."
+  },
+  "28": {
+   "text": "Who elects the members of the Bundestag in Germany?",
+   "options": [
+    "the military",
+    "business",
+    "the people entitled to vote",
+    "the civil service"
+   ],
+   "context": "The members of the Bundestag are elected by the people entitled to vote. All state authority emanates from the people, and elections are how that happens."
+  },
+  "29": {
+   "text": "Which animal is the heraldic animal of the Federal Republic of Germany?",
+   "options": [
+    "lion",
+    "eagle",
+    "bear",
+    "horse"
+   ],
+   "context": "The heraldic animal is the eagle. The Bundesadler appears on the coat of arms, on coins and in the plenary chamber of the Bundestag."
+  },
+  "30": {
+   "text": "What is not a feature of our democracy?",
+   "options": [
+    "regular elections",
+    "press censorship",
+    "freedom of expression",
+    "different parties"
+   ],
+   "context": "Press censorship is the opposite of democracy; Article 5 states plainly that censorship shall not take place. Regular elections, free expression and several parties are all essential features."
+  },
+  "31": {
+   "text": "In Germany, parties working together to form a government is called a …",
+   "options": [
+    "union.",
+    "coalition.",
+    "ministry.",
+    "parliamentary group."
+   ],
+   "context": "When parties work together to form a government, that is a coalition. German governments are usually coalitions, because one party rarely wins a majority on its own."
+  },
+  "32": {
+   "text": "What is not a branch of state power in Germany?",
+   "options": [
+    "legislation",
+    "government",
+    "the press",
+    "the administration of justice"
+   ],
+   "context": "The press is not a branch of state power. The three branches are the legislature, the executive and the judiciary; the press is often called the \"fourth estate\", but it is private and independent of the state."
+  },
+  "33": {
+   "text": "Which statement is correct? In Germany …",
+   "options": [
+    "the state and religious communities are separate from one another.",
+    "the religious communities form the state.",
+    "the state depends on the religious communities.",
+    "the state and religious communities form a single unit."
+   ],
+   "context": "In Germany the state and religious communities are separate. There is no state church, though churches do cooperate with the state in areas such as schools and welfare."
+  },
+  "34": {
+   "text": "What is Germany not?",
+   "options": [
+    "a democracy",
+    "a state governed by the rule of law",
+    "a monarchy",
+    "a welfare state"
+   ],
+   "context": "Germany is not a monarchy. It is a democracy, a state governed by the rule of law and a welfare state, all at once."
+  },
+  "35": {
+   "text": "How does the German state finance social insurance?",
+   "options": [
+    "church tax",
+    "social security contributions",
+    "donations",
+    "club membership fees"
+   ],
+   "context": "Social insurance is financed by contributions (Sozialabgaben) that employers and employees pay from wages. Church tax and donations fund quite different things."
+  },
+  "36": {
+   "text": "Which measure creates social security in Germany?",
+   "options": [
+    "health insurance",
+    "car insurance",
+    "buildings insurance",
+    "third-party liability insurance"
+   ],
+   "context": "Health insurance is one of the five branches of statutory social insurance and is what protects people financially when they fall ill. Car and buildings insurance are private cover for property."
+  },
+  "37": {
+   "text": "What are the heads of government of most federal states in Germany called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Senator",
+    "Minister-President"
+   ],
+   "context": "In most federal states the head of government is called Ministerpräsident. The three city states are the exception: Berlin has a Governing Mayor, Hamburg and Bremen a First Mayor and a President of the Senate."
+  },
+  "38": {
+   "text": "The Federal Republic of Germany is a democratic and social …",
+   "options": [
+    "association of states.",
+    "federal state.",
+    "confederation of states.",
+    "centralised state."
+   ],
+   "context": "Article 20 describes the Federal Republic as a democratic and social federal state. A confederation would be a looser association of independent states."
+  },
+  "39": {
+   "text": "What does every German federal state have?",
+   "options": [
+    "its own foreign minister",
+    "its own currency",
+    "its own army",
+    "its own government"
+   ],
+   "context": "Every federal state has its own government, its own parliament and its own constitution. None has its own army, currency or foreign minister."
+  },
+  "40": {
+   "text": "With which words does the German national anthem begin?",
+   "options": [
+    "Völker, hört die Signale … (Peoples, hear the signals …)",
+    "Einigkeit und Recht und Freiheit … (Unity and justice and freedom …)",
+    "Freude schöner Götterfunken … (Joy, beautiful spark of the gods …)",
+    "Deutschland einig Vaterland … (Germany, united fatherland …)"
+   ],
+   "context": "The anthem is the third verse of the Deutschlandlied, beginning \"Einigkeit und Recht und Freiheit\" — unity and justice and freedom. Only that third verse is the national anthem."
+  },
+  "41": {
+   "text": "Why is there more than one party in a democracy?",
+   "options": [
+    "because this is how the differing opinions of citizens are represented",
+    "so that bribery in politics is kept in check",
+    "to prevent political demonstrations",
+    "to stimulate economic competition"
+   ],
+   "context": "Several parties exist so that the different opinions among citizens can actually be represented. A single-party state cannot offer voters a genuine choice."
+  },
+  "42": {
+   "text": "Who passes a new law in Germany?",
+   "options": [
+    "the government",
+    "parliament",
+    "the courts",
+    "the police"
+   ],
+   "context": "Laws are passed by parliament — the Bundestag, with the Bundesrat taking part where the states are affected. The government may propose bills, but it cannot enact them."
+  },
+  "43": {
+   "text": "When can a party be banned in Germany?",
+   "options": [
+    "if its election campaign is too expensive",
+    "if it fights against the constitution",
+    "if it voices criticism of the head of state",
+    "if its programme proposes a new direction"
+   ],
+   "context": "A party may be banned only if it fights against the constitution, and only the Federal Constitutional Court can order it. Expensive campaigns or unpopular ideas are no grounds at all."
+  },
+  "44": {
+   "text": "Whom can citizens in Germany not elect directly?",
+   "options": [
+    "members of the European Parliament",
+    "the Federal President",
+    "members of a state parliament",
+    "members of the Bundestag"
+   ],
+   "context": "The Federal President is elected by the Federal Convention, not by the people. Members of the Bundestag, state parliaments and the European Parliament are all elected directly."
+  },
+  "45": {
+   "text": "Which type of insurance does long-term care insurance belong to?",
+   "options": [
+    "social insurance",
+    "accident insurance",
+    "household contents insurance",
+    "liability and fire insurance"
+   ],
+   "context": "Long-term care insurance is one of the five branches of statutory social insurance, alongside health, pension, unemployment and accident insurance."
+  },
+  "46": {
+   "text": "The German state has many tasks. Which one is among them?",
+   "options": [
+    "It builds roads and schools.",
+    "It sells food and clothing.",
+    "It supplies all residents with newspapers free of charge.",
+    "It produces cars and buses."
+   ],
+   "context": "Building roads and schools is a core task of the state. Producing cars or selling food is left to private business in a market economy."
+  },
+  "47": {
+   "text": "The German state has many tasks. Which one is not among them?",
+   "options": [
+    "It pays for holiday trips for all citizens.",
+    "It pays child benefit.",
+    "It supports museums.",
+    "It supports athletes."
+   ],
+   "context": "The state pays child benefit and supports museums and athletes, but it does not pay for citizens' holidays. That is simply not a public task."
+  },
+  "48": {
+   "text": "Which body is not one of Germany's constitutional bodies?",
+   "options": [
+    "the Bundesrat",
+    "the Federal President",
+    "the citizens' assembly",
+    "the government"
+   ],
+   "context": "The citizens' assembly is not a constitutional body. The five are the Bundestag, the Bundesrat, the Federal President, the federal government and the Federal Constitutional Court."
+  },
+  "49": {
+   "text": "Who determines school policy in Germany?",
+   "options": [
+    "the teachers",
+    "the federal states",
+    "the Ministry for Family Affairs",
+    "the universities"
+   ],
+   "context": "School policy is decided by the federal states, which is why curricula and school types differ from state to state. This is known as Kulturhoheit der Länder."
+  },
+  "50": {
+   "text": "The economic system in Germany is called …",
+   "options": [
+    "free central economy.",
+    "social market economy.",
+    "directed central economy.",
+    "planned economy."
+   ],
+   "context": "Germany's system is called the social market economy: supply and demand set prices, while the state provides a social safety net and rules for fair competition."
+  },
+  "51": {
+   "text": "It is not part of a democratic state governed by the rule of law that …",
+   "options": [
+    "people can speak critically about the government.",
+    "citizens may demonstrate peacefully.",
+    "people are arrested by a private police force without reason.",
+    "someone commits a crime and is arrested for it."
+   ],
+   "context": "Arrests without grounds by a private police force have no place in a state governed by the rule of law. Criticism, peaceful demonstrations and arrests following a crime are all perfectly normal."
+  },
+  "52": {
+   "text": "What does \"sovereignty of the people\" mean? All state authority emanates from …",
+   "options": [
+    "the people.",
+    "the Bundestag.",
+    "the Prussian king.",
+    "the Federal Constitutional Court."
+   ],
+   "context": "Article 20 says all state authority emanates from the people. Citizens exercise it through elections and votes, and through the organs of state they elect."
+  },
+  "53": {
+   "text": "What does \"state governed by the rule of law\" mean in Germany?",
+   "options": [
+    "The state is right.",
+    "There are only right-wing parties.",
+    "Citizens decide on laws.",
+    "The state must obey the law."
+   ],
+   "context": "Rechtsstaat means the state itself is bound by the law. It has nothing to do with right-wing politics — \"Recht\" here means law, not the political right."
+  },
+  "54": {
+   "text": "What is not a branch of state power in Germany?",
+   "options": [
+    "the legislature",
+    "the judiciary",
+    "the executive",
+    "the directive"
+   ],
+   "context": "There is no such branch as a \"Direktive\". The three branches of state power are the legislature, the executive and the judiciary."
+  },
+  "55": {
+   "text": "What does this picture show?",
+   "options": [
+    "the seat of the Bundestag in Berlin",
+    "the Federal Constitutional Court in Karlsruhe",
+    "the Bundesrat building in Berlin",
+    "the Federal Chancellery in Berlin"
+   ],
+   "context": "The picture shows the Reichstag building in Berlin, the seat of the Bundestag since 1999. Its glass dome, open to visitors, has become a symbol of transparent government."
+  },
+  "56": {
+   "text": "Which office belongs to municipal administration in Germany?",
+   "options": [
+    "the parish office",
+    "the public order office",
+    "the tax office",
+    "the Federal Foreign Office"
+   ],
+   "context": "The Ordnungsamt, or public order office, is part of municipal administration. The tax office belongs to the state and the Federal Foreign Office to the federation."
+  },
+  "57": {
+   "text": "Who is usually elected President of the German Bundestag?",
+   "options": [
+    "the oldest member of parliament",
+    "the Minister-President of the largest federal state",
+    "a former Federal Chancellor",
+    "a member of the largest parliamentary group"
+   ],
+   "context": "By long-standing convention the President of the Bundestag comes from the largest parliamentary group. The office ranks second in protocol after the Federal President."
+  },
+  "58": {
+   "text": "Who appoints the ministers of the federal government in Germany?",
+   "options": [
+    "the President of the Federal Constitutional Court",
+    "the Federal President",
+    "the President of the Bundesrat",
+    "the President of the Bundestag"
+   ],
+   "context": "Federal ministers are formally appointed by the Federal President, on the proposal of the Chancellor. The Chancellor chooses them; the President signs the appointment."
+  },
+  "59": {
+   "text": "How many years ago was there first a Jewish community in the territory of present-day Germany?",
+   "options": [
+    "about 300 years ago",
+    "about 700 years ago",
+    "about 1150 years ago",
+    "about 1700 years ago"
+   ],
+   "context": "A decree of Emperor Constantine from the year 321 mentions a Jewish community in Cologne, so Jewish life on German soil is around 1,700 years old."
+  },
+  "60": {
+   "text": "In Germany, the Bundestag and the Bundesrat belong to the …",
+   "options": [
+    "executive.",
+    "legislature.",
+    "directive.",
+    "judiciary."
+   ],
+   "context": "The Bundestag and the Bundesrat both take part in making laws, so both belong to the legislature. The judiciary is the courts, the executive the government and administration."
+  },
+  "61": {
+   "text": "What does \"sovereignty of the people\" mean?",
+   "options": [
+    "The king or queen rules over the people.",
+    "The Federal Constitutional Court stands above the constitution.",
+    "Interest groups exercise sovereignty together with the government.",
+    "State authority emanates from the people."
+   ],
+   "context": "Sovereignty of the people means state authority emanates from the people. It is the answer to the old idea that power belongs to a monarch by birth."
+  },
+  "62": {
+   "text": "When the parliament of a German federal state is elected, this is called a …",
+   "options": [
+    "local election",
+    "state parliament election",
+    "European election",
+    "Bundestag election"
+   ],
+   "context": "Electing the parliament of a federal state is a Landtagswahl. Local elections choose municipal councils; the Bundestag election chooses the federal parliament."
+  },
+  "63": {
+   "text": "What is not part of the executive in Germany?",
+   "options": [
+    "the police",
+    "the courts",
+    "the tax office",
+    "the ministries"
+   ],
+   "context": "The courts are the judiciary, not the executive. The executive is the government together with the administration that carries out the law, such as the police and the tax office."
+  },
+  "64": {
+   "text": "The Federal Republic of Germany today is divided into …",
+   "options": [
+    "four occupation zones.",
+    "an eastern state and a western state.",
+    "16 cantons.",
+    "federation, states and municipalities."
+   ],
+   "context": "Germany is organised in three tiers: the federation, the states and the municipalities. The four occupation zones and the division into two states are long gone."
+  },
+  "65": {
+   "text": "It is not one of the tasks of the German Bundestag to …",
+   "options": [
+    "draft laws.",
+    "scrutinise the federal government.",
+    "elect the Federal Chancellor.",
+    "form the federal cabinet."
+   ],
+   "context": "Forming the cabinet is the Chancellor's job, not the Bundestag's. The Bundestag drafts and passes laws, scrutinises the government and elects the Chancellor."
+  },
+  "66": {
+   "text": "Which cities have the largest Jewish communities in Germany?",
+   "options": [
+    "Berlin and Munich",
+    "Hamburg and Essen",
+    "Nuremberg and Stuttgart",
+    "Worms and Speyer"
+   ],
+   "context": "Berlin and Munich have the largest Jewish communities in Germany today. Worms and Speyer were great medieval centres, but their communities are small now."
+  },
+  "67": {
+   "text": "What is above all a task of the federal states in Germany?",
+   "options": [
+    "defence policy",
+    "foreign policy",
+    "economic policy",
+    "school policy"
+   ],
+   "context": "School policy is above all a matter for the federal states. Defence, foreign affairs and the main lines of economic policy belong to the federation."
+  },
+  "68": {
+   "text": "Why does the state supervise the school system in Germany?",
+   "options": [
+    "because there are only state schools in Germany",
+    "because all pupils must have a school-leaving qualification",
+    "because there are different schools in the federal states",
+    "because under the Basic Law it is its task"
+   ],
+   "context": "Article 7 of the Basic Law places the entire school system under state supervision. That is why the state sets standards even for private schools."
+  },
+  "69": {
+   "text": "The Federal Republic of Germany has a three-tier administrative structure. What is the lowest political tier called?",
+   "options": [
+    "city councils",
+    "district administrators",
+    "municipalities",
+    "district offices"
+   ],
+   "context": "The lowest tier is the municipality, the Gemeinde. Above it come the federal state and then the federation."
+  },
+  "70": {
+   "text": "German Federal President Gustav Heinemann hands Helmut Schmidt the certificate of appointment as German Federal Chancellor in 1974. What is one of the tasks of the German Federal President?",
+   "options": [
+    "They conduct the business of government.",
+    "They scrutinise the governing party.",
+    "They select the ministers.",
+    "They propose the Chancellor for election."
+   ],
+   "context": "The Federal President proposes a candidate for Chancellor to the Bundestag and then appoints the person elected, as in the photo. Running the government is the Chancellor's job, not the President's."
+  },
+  "71": {
+   "text": "Where does the German Federal Chancellor spend most time? Most often they are …",
+   "options": [
+    "in Bonn, because the Federal Chancellery and the Bundestag are there.",
+    "at Meseberg Palace, the federal government's guest house, to receive state guests.",
+    "at Bellevue Palace, the official residence of the Federal President, to receive state guests.",
+    "in Berlin, because the Federal Chancellery and the Bundestag are there."
+   ],
+   "context": "The Chancellor spends most time in Berlin, where both the Federal Chancellery and the Bundestag are. Meseberg and Bellevue are used only occasionally, and Bellevue is the President's residence."
+  },
+  "72": {
+   "text": "What is the name of Germany's current Federal Chancellor?",
+   "options": [
+    "Gerhard Schröder",
+    "Angela Merkel",
+    "Ursula von der Leyen",
+    "Friedrich Merz"
+   ],
+   "context": "Friedrich Merz has been Federal Chancellor since 2025. He is the tenth person to hold the office since 1949."
+  },
+  "73": {
+   "text": "The two largest parliamentary groups in the German Bundestag are currently …",
+   "options": [
+    "CDU/CSU and AfD.",
+    "Die Linke and Bündnis 90/Die Grünen.",
+    "Bündnis 90/Die Grünen and SPD.",
+    "Die Linke and CDU/CSU."
+   ],
+   "context": "After the 2025 federal election the two largest groups in the Bundestag are the CDU/CSU and the AfD. The largest group normally provides the President of the Bundestag."
+  },
+  "74": {
+   "text": "What is the parliament for the whole of Germany called?",
+   "options": [
+    "Federal Convention",
+    "People's Chamber",
+    "Bundestag",
+    "Federal Court of Justice"
+   ],
+   "context": "The parliament for the whole of Germany is the Bundestag. The Volkskammer was the GDR's parliament and no longer exists."
+  },
+  "75": {
+   "text": "What is the name of Germany's current head of state?",
+   "options": [
+    "Frank-Walter Steinmeier",
+    "Bärbel Bas",
+    "Bodo Ramelow",
+    "Joachim Gauck"
+   ],
+   "context": "Frank-Walter Steinmeier has been Federal President, and thus head of state, since 2017. He was re-elected for a second term in 2022."
+  },
+  "76": {
+   "text": "What does the abbreviation CDU stand for in Germany?",
+   "options": [
+    "Christliche Deutsche Union (Christian German Union)",
+    "Club Deutscher Unternehmer (Club of German Entrepreneurs)",
+    "Christlicher Deutscher Umweltschutz (Christian German Environmental Protection)",
+    "Christlich Demokratische Union (Christian Democratic Union)"
+   ],
+   "context": "CDU stands for Christlich Demokratische Union, the Christian Democratic Union. It has been one of the two big parties since 1949."
+  },
+  "77": {
+   "text": "What is the Bundeswehr?",
+   "options": [
+    "the German police",
+    "a German port",
+    "a German citizens' initiative",
+    "the German armed forces"
+   ],
+   "context": "The Bundeswehr is Germany's armed forces, founded in 1955. It is a parliamentary army: deployments abroad need the Bundestag's approval."
+  },
+  "78": {
+   "text": "What does the abbreviation SPD stand for?",
+   "options": [
+    "Sozialistische Partei Deutschlands (Socialist Party of Germany)",
+    "Sozialpolitische Partei Deutschlands (Social Policy Party of Germany)",
+    "Sozialdemokratische Partei Deutschlands (Social Democratic Party of Germany)",
+    "Sozialgerechte Partei Deutschlands (Socially Just Party of Germany)"
+   ],
+   "context": "SPD stands for Sozialdemokratische Partei Deutschlands, the Social Democratic Party. Founded in 1863, it is Germany's oldest party."
+  },
+  "79": {
+   "text": "What does the abbreviation FDP stand for in Germany?",
+   "options": [
+    "Friedliche Demonstrative Partei (Peaceful Demonstrative Party)",
+    "Freie Deutschland Partei (Free Germany Party)",
+    "Führende Demokratische Partei (Leading Democratic Party)",
+    "Freie Demokratische Partei (Free Democratic Party)"
+   ],
+   "context": "FDP stands for Freie Demokratische Partei, the Free Democratic Party, which stands in the liberal tradition."
+  },
+  "80": {
+   "text": "Which court in Germany is responsible for interpreting the Basic Law?",
+   "options": [
+    "the Higher Regional Court",
+    "the Local Court",
+    "the Federal Constitutional Court",
+    "the Administrative Court"
+   ],
+   "context": "The Federal Constitutional Court in Karlsruhe interprets the Basic Law. It can strike down laws and is the final authority on basic rights."
+  },
+  "81": {
+   "text": "Who elects the Federal Chancellor in Germany?",
+   "options": [
+    "the Bundesrat",
+    "the Federal Convention",
+    "the people",
+    "the Bundestag"
+   ],
+   "context": "The Chancellor is elected by the Bundestag, on the Federal President's proposal. Voters choose the Bundestag, and the Bundestag chooses the Chancellor."
+  },
+  "82": {
+   "text": "Who chairs the German federal cabinet?",
+   "options": [
+    "the President of the Bundestag",
+    "the Federal President",
+    "the President of the Bundesrat",
+    "the Federal Chancellor"
+   ],
+   "context": "The Chancellor chairs the federal cabinet and sets the general policy guidelines — the Richtlinienkompetenz of Article 65."
+  },
+  "83": {
+   "text": "Who elects the German Federal Chancellor?",
+   "options": [
+    "the people",
+    "the Federal Convention",
+    "the Bundestag",
+    "the federal government"
+   ],
+   "context": "It is the Bundestag that elects the Chancellor. The Federal Convention has only one job: electing the Federal President."
+  },
+  "84": {
+   "text": "What is the main task of the German Federal President? They …",
+   "options": [
+    "govern the country.",
+    "draft the laws.",
+    "represent the country.",
+    "monitor compliance with the laws."
+   ],
+   "context": "The Federal President represents the country at home and abroad. The office is largely ceremonial, standing above day-to-day party politics."
+  },
+  "85": {
+   "text": "Who makes up the German Bundesrat?",
+   "options": [
+    "the members of the Bundestag",
+    "the ministers of the federal government",
+    "the government representatives of the federal states",
+    "the party members"
+   ],
+   "context": "The Bundesrat is made up of members of the state governments, not of elected delegates. Through it the states take part in federal legislation."
+  },
+  "86": {
+   "text": "Who elects the Federal President in Germany?",
+   "options": [
+    "the Federal Convention",
+    "the Bundesrat",
+    "the federal parliament",
+    "the Federal Constitutional Court"
+   ],
+   "context": "The Federal President is elected by the Federal Convention, which consists of all members of the Bundestag plus an equal number of delegates chosen by the state parliaments."
+  },
+  "87": {
+   "text": "Who is the head of state of the Federal Republic of Germany?",
+   "options": [
+    "the Federal Chancellor",
+    "the Federal President",
+    "the President of the Bundesrat",
+    "the President of the Bundestag"
+   ],
+   "context": "The head of state is the Federal President. The Chancellor is head of government, which is a different role."
+  },
+  "88": {
+   "text": "The parliamentary opposition in the German Bundestag …",
+   "options": [
+    "scrutinises the government.",
+    "decides who becomes a federal minister.",
+    "determines who sits in the Bundesrat.",
+    "proposes the heads of government of the federal states."
+   ],
+   "context": "The opposition's central task is to scrutinise the government, question its decisions and offer alternatives. Appointing ministers is not its business."
+  },
+  "89": {
+   "text": "What is the association of members of one party in parliament called in Germany?",
+   "options": [
+    "association",
+    "council of elders",
+    "parliamentary group",
+    "opposition"
+   ],
+   "context": "Members of one party in parliament form a Fraktion, a parliamentary group. Group status brings rights such as committee seats and speaking time."
+  },
+  "90": {
+   "text": "The German federal states take part in federal legislation through …",
+   "options": [
+    "the Bundesrat.",
+    "the Federal Convention.",
+    "the Bundestag.",
+    "the federal government."
+   ],
+   "context": "The states take part in federal legislation through the Bundesrat. Many laws cannot come into force without its consent."
+  },
+  "91": {
+   "text": "In Germany, a change of government in a federal state can affect federal politics. Governing becomes …",
+   "options": [
+    "more difficult if this changes the majority in the Bundestag.",
+    "easier if this brings new parties into the Bundesrat.",
+    "more difficult if this changes the majority in the Bundesrat.",
+    "easier if it is a wealthy federal state."
+   ],
+   "context": "State governments send their representatives to the Bundesrat, so a change of government in one state can shift the majority there and make governing harder for the federal government."
+  },
+  "92": {
+   "text": "What does the abbreviation CSU stand for in Germany?",
+   "options": [
+    "Christlich Sichere Union (Christian Secure Union)",
+    "Christlich Süddeutsche Union (Christian South German Union)",
+    "Christlich Sozialer Unternehmerverband (Christian Social Employers' Association)",
+    "Christlich Soziale Union (Christian Social Union)"
+   ],
+   "context": "CSU stands for Christlich Soziale Union, the Christian Social Union. It stands only in Bavaria, where the CDU does not compete."
+  },
+  "93": {
+   "text": "The more \"second votes\" a party receives in a Bundestag election, the …",
+   "options": [
+    "fewer first votes it can have.",
+    "more of the party's direct candidates enter parliament.",
+    "greater the risk of having to form a coalition.",
+    "more seats the party gets in parliament."
+   ],
+   "context": "The second vote decides how many seats a party gets in the Bundestag, which makes it the more important of the two votes."
+  },
+  "94": {
+   "text": "From what age may you take part in the election of the German Bundestag?",
+   "options": [
+    "16",
+    "18",
+    "21",
+    "23"
+   ],
+   "context": "You may vote in Bundestag elections from the age of 18. Some states allow 16-year-olds to vote locally, but not federally."
+  },
+  "95": {
+   "text": "What applies to most children in Germany?",
+   "options": [
+    "compulsory voting",
+    "compulsory schooling",
+    "a duty of confidentiality",
+    "compulsory religion"
+   ],
+   "context": "School attendance is compulsory for most children in Germany, usually for nine or ten years. Voting is a right, not a duty."
+  },
+  "96": {
+   "text": "How can someone who denies the Holocaust be punished?",
+   "options": [
+    "reduction of social benefits",
+    "up to 100 hours of community service",
+    "not at all, Holocaust denial is permitted",
+    "with a prison sentence of up to five years or a fine"
+   ],
+   "context": "Denying the Holocaust is a criminal offence under section 130 of the Criminal Code, punishable by up to five years in prison or a fine."
+  },
+  "97": {
+   "text": "What do you pay automatically in Germany if you are in permanent employment?",
+   "options": [
+    "social insurance",
+    "social assistance",
+    "child benefit",
+    "housing benefit"
+   ],
+   "context": "Anyone in permanent employment automatically pays social insurance contributions, deducted from wages along with income tax."
+  },
+  "98": {
+   "text": "If members of the German Bundestag change their parliamentary group, …",
+   "options": [
+    "they may no longer take part in sittings of parliament.",
+    "the government can lose its majority.",
+    "the Federal President must give their consent beforehand.",
+    "the voters of those members may vote again."
+   ],
+   "context": "Members keep their seats if they switch groups, so the government can lose its majority. Members are bound only by their conscience, not by party instructions."
+  },
+  "99": {
+   "text": "Who pays for social insurance in Germany?",
+   "options": [
+    "employers and employees",
+    "only employees",
+    "all citizens",
+    "only employers"
+   ],
+   "context": "Social insurance is paid jointly by employers and employees, who each carry roughly half the contributions."
+  },
+  "100": {
+   "text": "What is not part of statutory social insurance?",
+   "options": [
+    "life insurance",
+    "the statutory pension insurance",
+    "unemployment insurance",
+    "long-term care insurance"
+   ],
+   "context": "Life insurance is private cover, not part of statutory social insurance. The statutory branches are health, pension, unemployment, long-term care and accident insurance."
+  },
+  "101": {
+   "text": "Trade unions are interest groups representing …",
+   "options": [
+    "young people.",
+    "employees.",
+    "pensioners.",
+    "employers."
+   ],
+   "context": "Trade unions represent employees. Employers have their own organisations, and the two sides negotiate collective agreements with each other."
+  },
+  "102": {
+   "text": "What can you be honoured with in the Federal Republic of Germany for outstanding achievement in political, economic, cultural, intellectual or social life? With the …",
+   "options": [
+    "Federal Cross of Merit",
+    "Federal Eagle",
+    "Patriotic Order of Merit",
+    "honorary title \"Hero of the German Democratic Republic\""
+   ],
+   "context": "The Bundesverdienstkreuz, the Federal Cross of Merit, is the highest general honour the Federal Republic awards. It is given for outstanding service to the country."
+  },
+  "103": {
+   "text": "What is referred to in Germany as a \"traffic light coalition\"? The cooperation …",
+   "options": [
+    "of the Bundestag groups of the CDU and the CSU",
+    "of the SPD, the FDP and Bündnis 90/Die Grünen in a government",
+    "of the CSU, Die LINKE and Bündnis 90/Die Grünen in a government",
+    "of the Bundestag groups of the CDU and the SPD"
+   ],
+   "context": "A \"traffic light\" coalition is one of SPD (red), FDP (yellow) and the Greens — the colours of a traffic light. Germany had such a government from 2021 to 2024."
+  },
+  "104": {
+   "text": "A woman in Germany loses her job. What may not be the reason for this dismissal?",
+   "options": [
+    "The woman has been ill and unable to work for a long time.",
+    "The woman was often late for work.",
+    "The woman deals with private matters during working hours.",
+    "The woman is having a baby and her boss knows this."
+   ],
+   "context": "Dismissing a woman because she is pregnant is forbidden by the Maternity Protection Act. Poor timekeeping or private business in work time can be legitimate grounds."
+  },
+  "105": {
+   "text": "What is one task of election helpers in Germany?",
+   "options": [
+    "They help elderly people cast their vote in the polling booth.",
+    "They write the polling cards before the election.",
+    "They pass interim results on to the media.",
+    "They count the votes after the election closes."
+   ],
+   "context": "Election helpers count the votes once polling closes. They must not influence voters or leak interim results."
+  },
+  "106": {
+   "text": "In Germany, volunteer election helpers assist with elections. What is one task of election helpers?",
+   "options": [
+    "They help children and elderly people to vote.",
+    "They write cards and letters stating the polling station.",
+    "They pass interim results on to journalists.",
+    "They count the votes after the election closes."
+   ],
+   "context": "Volunteer election helpers run the polling station and count the votes afterwards. Their work is what makes the count public and verifiable."
+  },
+  "107": {
+   "text": "For how many years is the Bundestag elected in Germany?",
+   "options": [
+    "2 years",
+    "4 years",
+    "6 years",
+    "8 years"
+   ],
+   "context": "The Bundestag is elected for four years. An early election is possible but rare."
+  },
+  "108": {
+   "text": "In a Bundestag election in Germany, anyone may vote who …",
+   "options": [
+    "lives in the Federal Republic of Germany and wants to vote.",
+    "is a citizen of the Federal Republic of Germany and is at least 18 years old.",
+    "has lived in the Federal Republic of Germany for at least 3 years.",
+    "is a citizen of the Federal Republic of Germany and is at least 21 years old."
+   ],
+   "context": "You may vote in a Bundestag election if you are a German citizen and at least 18 years old. Residence alone is not enough."
+  },
+  "109": {
+   "text": "How often are Bundestag elections normally held in Germany?",
+   "options": [
+    "every three years",
+    "every four years",
+    "every five years",
+    "every six years"
+   ],
+   "context": "Bundestag elections are normally held every four years, matching the parliament's term."
+  },
+  "110": {
+   "text": "For how many years is the Bundestag elected in Germany?",
+   "options": [
+    "2 years",
+    "3 years",
+    "4 years",
+    "5 years"
+   ],
+   "context": "The Bundestag's term is four years, after which it must face the voters again."
+  },
+  "111": {
+   "text": "Which actions relating to the State of Israel are prohibited in Germany?",
+   "options": [
+    "publicly criticising Israel's policies",
+    "flying an Israeli flag on private property",
+    "a discussion about Israel's policies",
+    "publicly calling for the destruction of Israel"
+   ],
+   "context": "Publicly calling for the destruction of Israel is a criminal offence in Germany. Criticising Israeli government policy, by contrast, is covered by freedom of expression."
+  },
+  "112": {
+   "text": "Elections in Germany are …",
+   "options": [
+    "special.",
+    "secret.",
+    "occupation-based.",
+    "dependent on gender."
+   ],
+   "context": "Elections in Germany are secret: nobody may find out how you voted. That is why polling booths and sealed ballot boxes exist."
+  },
+  "113": {
+   "text": "Elections in Germany are won by the party that …",
+   "options": [
+    "receives the most votes.",
+    "the majority of men voted for.",
+    "received the most votes among workers.",
+    "received the most first votes for its candidate for Chancellor."
+   ],
+   "context": "The party with the most votes wins the election. Every vote counts the same, regardless of the voter's sex or occupation."
+  },
+  "114": {
+   "text": "Taking part in democratic elections in Germany is …",
+   "options": [
+    "a duty.",
+    "a right.",
+    "compulsory.",
+    "a burden."
+   ],
+   "context": "Voting is a right, not a duty. There is no compulsory voting in Germany, and nobody may be penalised for staying at home."
+  },
+  "115": {
+   "text": "What does \"active right to vote\" mean in Germany?",
+   "options": [
+    "You can be elected.",
+    "You have to go and vote.",
+    "You can vote.",
+    "You have to attend the counting of the votes."
+   ],
+   "context": "The active right to vote is the right to cast a vote. The right to stand for election is the passive right to vote."
+  },
+  "116": {
+   "text": "If you are allowed to vote in a Bundestag election in Germany, this is called …",
+   "options": [
+    "an active election campaign.",
+    "an active electoral procedure.",
+    "active canvassing.",
+    "the active right to vote."
+   ],
+   "context": "Being allowed to vote is the active right to vote, which you have as a German citizen from the age of 18."
+  },
+  "117": {
+   "text": "What is the minimum percentage of second votes a party must receive to be elected to the German Bundestag?",
+   "options": [
+    "3%",
+    "4%",
+    "5%",
+    "6%"
+   ],
+   "context": "A party needs at least 5% of the second votes to enter the Bundestag, unless it wins enough constituency seats directly."
+  },
+  "118": {
+   "text": "Who may become a member of the roughly 40 Jewish Maccabi sports clubs?",
+   "options": [
+    "only Germans",
+    "only Israelis",
+    "only religious people",
+    "everyone"
+   ],
+   "context": "The Maccabi sports clubs are Jewish in tradition but open to everyone, whatever their religion or nationality."
+  },
+  "119": {
+   "text": "Elections in Germany are free. What does that mean?",
+   "options": [
+    "All convicted offenders are not allowed to vote.",
+    "If I want to go and vote, my employer must give me time off.",
+    "Every person can decide without coercion whether they want to vote and whom they want to vote for.",
+    "I can freely decide where I want to go and vote."
+   ],
+   "context": "Free elections mean each person decides without coercion whether to vote at all and whom to vote for."
+  },
+  "120": {
+   "text": "The electoral system in Germany is …",
+   "options": [
+    "a census suffrage.",
+    "a three-class franchise.",
+    "a majority and proportional representation system.",
+    "a general male suffrage."
+   ],
+   "context": "Germany combines both systems: constituency seats are decided by simple majority, while the overall distribution of seats follows proportional representation."
+  },
+  "121": {
+   "text": "A party wants to enter the German Bundestag. But it must have a minimum share of the votes. This is called …",
+   "options": [
+    "the 5% threshold.",
+    "the admission limit.",
+    "the base value.",
+    "the guideline."
+   ],
+   "context": "The minimum share of votes needed is called the 5% threshold, the Fünfprozenthürde. It is meant to keep parliament workable."
+  },
+  "122": {
+   "text": "Which principles govern elections in Germany? Elections in Germany are …",
+   "options": [
+    "free, equal, secret.",
+    "open, secure, free.",
+    "closed, equal, secure.",
+    "secure, open, voluntary."
+   ],
+   "context": "The 5% threshold is the minimum share of the votes a party must reach to enter parliament."
+  },
+  "123": {
+   "text": "What is the \"5% threshold\" in Germany?",
+   "options": [
+    "a voting rule in the Bundestag for small parties",
+    "an attendance check in the Bundestag for votes",
+    "the minimum share of votes needed to enter parliament",
+    "an attendance check in the Bundesrat for votes"
+   ],
+   "context": "The 5% threshold is not a rule about voting inside parliament — it decides who gets into parliament in the first place."
+  },
+  "124": {
+   "text": "The Bundestag election in Germany is the election of …",
+   "options": [
+    "the Federal Chancellor.",
+    "the parliaments of the federal states.",
+    "the parliament for Germany.",
+    "the Federal President."
+   ],
+   "context": "The Bundestag election elects the parliament for Germany. The Chancellor is then chosen by that parliament, not directly by voters."
+  },
+  "125": {
+   "text": "In a democracy, one function of regular elections is …",
+   "options": [
+    "to force citizens to cast their vote.",
+    "to make a change of government possible according to the will of the majority of voters.",
+    "to keep the country's existing laws in place.",
+    "to give more power to the poor."
+   ],
+   "context": "Regular elections let the majority change the government peacefully. That possibility of a change of power is the heart of democracy."
+  },
+  "126": {
+   "text": "What do citizens entitled to vote receive in Germany before an election?",
+   "options": [
+    "a polling card from the municipality",
+    "permission to vote from the Federal President",
+    "a notification from the Federal Convention",
+    "a notification from the parish office"
+   ],
+   "context": "Before an election, voters receive a polling card from their municipality telling them where and when to vote."
+  },
+  "127": {
+   "text": "Why is there a 5% threshold in the electoral law of the Federal Republic of Germany? It exists because …",
+   "options": [
+    "the programmes of many small parties have a lot in common.",
+    "citizens can lose their bearings when there are many small parties.",
+    "many small parties make forming a government more difficult.",
+    "the small parties do not have enough money to pay the politicians."
+   ],
+   "context": "The threshold exists because a parliament split among many small parties makes forming a stable government difficult. The Weimar Republic's experience is the historical reason."
+  },
+  "128": {
+   "text": "Members of parliament elected by the citizens are called …",
+   "options": [
+    "deputies.",
+    "chancellors.",
+    "ambassadors.",
+    "minister-presidents."
+   ],
+   "context": "Members of parliament elected by citizens are called Abgeordnete, deputies. They represent the whole people, not just their own voters."
+  },
+  "129": {
+   "text": "In Germany, the body elected by the people is …",
+   "options": [
+    "the Federal Chancellor.",
+    "the Minister-President of a federal state.",
+    "the Bundestag.",
+    "the Federal President."
+   ],
+   "context": "Of these, only the Bundestag is elected directly by the people. The Chancellor, the President and the state premiers are all elected by other bodies."
+  },
+  "130": {
+   "text": "Which ballot paper would be valid in a Bundestag election? Based on the Federal Electoral Regulations (BWO), Annex 26",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "A valid ballot has exactly one cross in each column — one first vote and one second vote. More than one mark in a column makes that vote invalid."
+  },
+  "131": {
+   "text": "In Germany, a mayor is …",
+   "options": [
+    "the head of a school.",
+    "the head of a bank.",
+    "the head of a municipality.",
+    "the chair of a party."
+   ],
+   "context": "A Bürgermeister is the head of a municipality. In most states the post is filled by direct election."
+  },
+  "132": {
+   "text": "Many people in Germany do voluntary work in their free time. What does that mean?",
+   "options": [
+    "They work as soldiers.",
+    "They work voluntarily and unpaid in clubs and associations.",
+    "They work in the federal government.",
+    "They work in a hospital and earn money doing so."
+   ],
+   "context": "Voluntary work, Ehrenamt, means giving your time unpaid to clubs, associations and charities. Millions of people in Germany do it."
+  },
+  "133": {
+   "text": "What is permitted in Bundestag and state parliament elections in Germany?",
+   "options": [
+    "A husband also votes for his wife.",
+    "You can cast your vote by postal ballot.",
+    "You can cast your vote by telephone on election day.",
+    "Children aged 14 and over may vote."
+   ],
+   "context": "Postal voting is allowed in Bundestag and state elections and needs no special reason. Voting by phone, or on someone else's behalf, is not permitted."
+  },
+  "134": {
+   "text": "There are plans to scrap the bus route you always take to work. What can you do to keep the bus route?",
+   "options": [
+    "I take part in a citizens' initiative to keep the bus route, or start an initiative myself.",
+    "I join a sports club and train for cycling.",
+    "I contact the tax office, because as a taxpayer I have a right to the bus route.",
+    "I write a letter to the municipal forestry office."
+   ],
+   "context": "Starting or joining a citizens' initiative is the normal way to press for a local decision to be changed. It is an everyday use of the freedom of assembly."
+  },
+  "135": {
+   "text": "Whom do the trade unions represent in Germany?",
+   "options": [
+    "large companies",
+    "small companies",
+    "self-employed people",
+    "employees"
+   ],
+   "context": "Trade unions represent employees in dealings with employers, above all in negotiating pay and working conditions."
+  },
+  "136": {
+   "text": "In Germany you go to the labour court in the case of …",
+   "options": [
+    "an incorrect service charge statement.",
+    "unjustified dismissal by your boss.",
+    "problems with the neighbours.",
+    "difficulties after a road accident."
+   ],
+   "context": "The labour court handles disputes between employees and employers, including unfair dismissal. Neighbours and traffic accidents belong elsewhere."
+  },
+  "137": {
+   "text": "Which court is responsible for conflicts in working life in Germany?",
+   "options": [
+    "the family court",
+    "the criminal court",
+    "the labour court",
+    "the local court"
+   ],
+   "context": "Conflicts in working life go to the Arbeitsgericht, the labour court. The first instance is free of court fees."
+  },
+  "138": {
+   "text": "What can I do in Germany if my employer has dismissed me unlawfully?",
+   "options": [
+    "keep working and be friendly to the boss",
+    "bring debt recovery proceedings against the employer",
+    "file an action for unfair dismissal",
+    "report the employer to the police"
+   ],
+   "context": "You can bring an action for unfair dismissal, a Kündigungsschutzklage. It must be filed within three weeks of receiving the notice."
+  },
+  "139": {
+   "text": "When does a court trial take place in Germany? When someone …",
+   "options": [
+    "converts to another religion.",
+    "has committed a criminal offence and is charged.",
+    "holds a different opinion from the government's.",
+    "has parked their car wrongly and it is towed away."
+   ],
+   "context": "A criminal trial follows when someone is charged with an offence. Changing religion or having a car towed does not lead to a trial."
+  },
+  "140": {
+   "text": "What does a lay judge do in Germany? They …",
+   "options": [
+    "decide on guilt and sentence together with the judges.",
+    "give citizens legal advice.",
+    "issue official documents.",
+    "defend the accused."
+   ],
+   "context": "Lay judges, Schöffen, sit alongside professional judges and decide with them on guilt and sentence. They are ordinary citizens, not lawyers."
+  },
+  "141": {
+   "text": "Who advises people on legal questions in Germany and represents them in court?",
+   "options": [
+    "a lawyer",
+    "a judge",
+    "a lay judge",
+    "a public prosecutor"
+   ],
+   "context": "A lawyer, Rechtsanwalt, advises people on legal questions and represents them in court. Judges decide cases; prosecutors bring charges."
+  },
+  "142": {
+   "text": "What is the main task of a judge in Germany? A judge …",
+   "options": [
+    "represents citizens in court.",
+    "works at a court and delivers judgments.",
+    "changes laws.",
+    "looks after young people in court."
+   ],
+   "context": "A judge works at a court and delivers judgments. Judges are independent and bound only by the law."
+  },
+  "143": {
+   "text": "A judge in Germany belongs to the …",
+   "options": [
+    "judiciary.",
+    "executive.",
+    "operative.",
+    "legislature."
+   ],
+   "context": "Judges belong to the judiciary, the Judikative — the branch of state power that applies the law to individual cases."
+  },
+  "144": {
+   "text": "In Germany, a judge belongs to the …",
+   "options": [
+    "executive power.",
+    "judicial power.",
+    "planning power.",
+    "legislative power."
+   ],
+   "context": "The judiciary is the rechtsprechende Gewalt, the judicial power. The executive carries out the law; the legislature makes it."
+  },
+  "145": {
+   "text": "In Germany, state power is divided. Which branch of state power does a judge work for? For the …",
+   "options": [
+    "judiciary",
+    "executive",
+    "press",
+    "legislature"
+   ],
+   "context": "A judge works for the judiciary. The separation of powers keeps courts independent of government and parliament."
+  },
+  "146": {
+   "text": "What is a set of proceedings before a court called in Germany?",
+   "options": [
+    "programme",
+    "procedure",
+    "protocol",
+    "trial"
+   ],
+   "context": "Court proceedings are called a Prozess. Criminal, civil and labour cases all follow their own procedural rules."
+  },
+  "147": {
+   "text": "What is a judge's work in Germany?",
+   "options": [
+    "governing Germany",
+    "administering justice",
+    "drawing up plans",
+    "enacting laws"
+   ],
+   "context": "A judge's work is to administer justice — Recht sprechen. Making laws is parliament's job."
+  },
+  "148": {
+   "text": "What is one task of the police in Germany?",
+   "options": [
+    "to defend the country",
+    "to eavesdrop on citizens",
+    "to pass the laws",
+    "to monitor compliance with the laws"
+   ],
+   "context": "The police monitor compliance with the law, prevent danger and investigate offences. Defending the country is the Bundeswehr's task."
+  },
+  "149": {
+   "text": "What is an example of antisemitic behaviour?",
+   "options": [
+    "attending a Jewish festival",
+    "criticising the Israeli government",
+    "denying the Holocaust",
+    "playing football against Jews."
+   ],
+   "context": "Denying the Holocaust is antisemitic and a criminal offence. Criticising the Israeli government or attending a Jewish festival is not antisemitic."
+  },
+  "150": {
+   "text": "A lay judge at a court in Germany is …",
+   "options": [
+    "the deputy of the head of the town.",
+    "a volunteer judge.",
+    "a member of a municipal council.",
+    "a person who has studied law."
+   ],
+   "context": "A Schöffe is a volunteer judge, an ordinary citizen who serves for a fixed term. No legal training is required."
+  },
+  "151": {
+   "text": "Who built the Wall in Berlin?",
+   "options": [
+    "Great Britain",
+    "the GDR",
+    "the Federal Republic of Germany",
+    "the USA"
+   ],
+   "context": "The GDR built the Berlin Wall in 1961 to stop its citizens leaving for the West. At least 140 people died at the Wall."
+  },
+  "152": {
+   "text": "When were the National Socialists under Adolf Hitler in power in Germany?",
+   "options": [
+    "1918 to 1923",
+    "1932 to 1950",
+    "1933 to 1945",
+    "1945 to 1989"
+   ],
+   "context": "The National Socialists were in power from 1933 to 1945, from Hitler's appointment as Chancellor to the end of the war."
+  },
+  "153": {
+   "text": "What happened on 8 May 1945?",
+   "options": [
+    "the death of Adolf Hitler",
+    "the start of the building of the Berlin Wall",
+    "the election of Konrad Adenauer as Federal Chancellor",
+    "the end of the Second World War in Europe"
+   ],
+   "context": "8 May 1945 is the day the Second World War ended in Europe, following Germany's unconditional surrender. It is remembered as the day of liberation."
+  },
+  "154": {
+   "text": "When did the Second World War end?",
+   "options": [
+    "1933",
+    "1945",
+    "1949",
+    "1961"
+   ],
+   "context": "The Second World War ended in 1945 — in Europe in May, and in Asia in September."
+  },
+  "155": {
+   "text": "When were the National Socialists in power in Germany?",
+   "options": [
+    "1888 to 1918",
+    "1921 to 1934",
+    "1933 to 1945",
+    "1949 to 1963"
+   ],
+   "context": "The Nazi dictatorship lasted twelve years, from 1933 to 1945."
+  },
+  "156": {
+   "text": "In which year did Hitler become Reich Chancellor?",
+   "options": [
+    "1923",
+    "1927",
+    "1933",
+    "1936"
+   ],
+   "context": "Hitler was appointed Reich Chancellor on 30 January 1933. Within months the regime had dismantled democracy."
+  },
+  "157": {
+   "text": "In 1933 the National Socialists under Adolf Hitler established in Germany …",
+   "options": [
+    "a dictatorship.",
+    "a democratic state.",
+    "a monarchy.",
+    "a principality."
+   ],
+   "context": "In 1933 the National Socialists established a dictatorship. Parties were banned, parliament disempowered and opponents persecuted."
+  },
+  "158": {
+   "text": "The \"Third Reich\" was a …",
+   "options": [
+    "dictatorship.",
+    "democracy.",
+    "monarchy.",
+    "council republic."
+   ],
+   "context": "The \"Third Reich\" was a dictatorship with one party, no free elections and no independent courts."
+  },
+  "159": {
+   "text": "What did not exist in Germany during the period of National Socialism?",
+   "options": [
+    "free elections",
+    "press censorship",
+    "arbitrary arrests",
+    "persecution of Jews"
+   ],
+   "context": "There were no free elections under National Socialism. Censorship, arbitrary arrests and the persecution of Jews were all part of the regime."
+  },
+  "160": {
+   "text": "Which war lasted from 1939 to 1945?",
+   "options": [
+    "the First World War",
+    "the Second World War",
+    "the Vietnam War",
+    "the Gulf War"
+   ],
+   "context": "The Second World War lasted from 1939 to 1945. It began with the German attack on Poland on 1 September 1939."
+  },
+  "161": {
+   "text": "What characterised the Nazi state? A policy …",
+   "options": [
+    "of state racism",
+    "of freedom of expression",
+    "of general freedom of religion",
+    "of developing democracy"
+   ],
+   "context": "The Nazi state was built on state racism: people were ranked by supposed race, and this led to persecution and to the murder of six million Jews."
+  },
+  "162": {
+   "text": "Claus Schenk Graf von Stauffenberg became known for …",
+   "options": [
+    "a gold medal at the 1936 Olympic Games.",
+    "the construction of the Reichstag building.",
+    "building up the Wehrmacht.",
+    "the assassination attempt on Hitler on 20 July 1944."
+   ],
+   "context": "Stauffenberg led the attempt to assassinate Hitler on 20 July 1944. He was executed the same night and is remembered as a symbol of German resistance."
+  },
+  "163": {
+   "text": "In which year did the National Socialists destroy synagogues and Jewish businesses in Germany?",
+   "options": [
+    "1925",
+    "1930",
+    "1938",
+    "1945"
+   ],
+   "context": "In November 1938 the National Socialists destroyed synagogues and Jewish businesses across Germany in the pogrom known as the November pogroms."
+  },
+  "164": {
+   "text": "What happened on 9 November 1938 in Germany?",
+   "options": [
+    "The Second World War begins with the attack on Poland.",
+    "The National Socialists lose an election and dissolve the Reichstag.",
+    "Jewish businesses and synagogues are destroyed by National Socialists and their supporters.",
+    "Hitler becomes Reich President and has all parties banned."
+   ],
+   "context": "On 9 November 1938, synagogues and Jewish shops were burned and looted throughout Germany. The date marks the shift from exclusion to open violence."
+  },
+  "165": {
+   "text": "What was the name of the first Federal Chancellor of the Federal Republic of Germany?",
+   "options": [
+    "Konrad Adenauer",
+    "Kurt Georg Kiesinger",
+    "Helmut Schmidt",
+    "Willy Brandt"
+   ],
+   "context": "Konrad Adenauer was the first Federal Chancellor, in office from 1949 to 1963."
+  },
+  "166": {
+   "text": "At which demonstrations in Germany did people chant \"We are the people\"?",
+   "options": [
+    "at the workers' uprising of 1953 in the GDR",
+    "at the demonstrations of 1968 in the Federal Republic of Germany",
+    "at the anti-nuclear demonstrations of 1985 in the Federal Republic of Germany",
+    "at the Monday demonstrations of 1989 in the GDR"
+   ],
+   "context": "\"Wir sind das Volk\" was chanted at the Monday demonstrations in the GDR in 1989. The peaceful protests helped bring down the regime."
+  },
+  "167": {
+   "text": "Which countries were referred to in Germany as the \"Allied occupying powers\" after the Second World War?",
+   "options": [
+    "Soviet Union, Great Britain, Poland, Sweden",
+    "France, Soviet Union, Italy, Japan",
+    "USA, Soviet Union, Spain, Portugal",
+    "USA, Soviet Union, Great Britain, France"
+   ],
+   "context": "The four Allied occupying powers were the USA, the Soviet Union, Great Britain and France. Each administered one zone."
+  },
+  "168": {
+   "text": "Which country was not an \"Allied occupying power\" in Germany?",
+   "options": [
+    "USA",
+    "Soviet Union",
+    "France",
+    "Japan"
+   ],
+   "context": "Japan was not an occupying power in Germany — it was on the other side of the war and was itself occupied afterwards."
+  },
+  "169": {
+   "text": "When was the Federal Republic of Germany founded?",
+   "options": [
+    "1939",
+    "1945",
+    "1949",
+    "1951"
+   ],
+   "context": "The Federal Republic of Germany was founded in 1949, when the Basic Law came into force on 23 May."
+  },
+  "170": {
+   "text": "What existed in Germany during the period of National Socialism?",
+   "options": [
+    "the banning of parties",
+    "the right to free development of one's personality",
+    "freedom of the press",
+    "the protection of human dignity"
+   ],
+   "context": "Under National Socialism parties were banned; from July 1933 only the NSDAP remained. Press freedom and human dignity were abolished, not protected."
+  },
+  "171": {
+   "text": "Social market economy means that the economy …",
+   "options": [
+    "regulates itself solely by supply and demand.",
+    "is planned and directed by the state, and supply and demand are not taken into account.",
+    "follows demand abroad.",
+    "follows supply and demand, but the state provides for social balance."
+   ],
+   "context": "In a social market economy prices follow supply and demand, but the state provides a social balance through insurance, benefits and employment law."
+  },
+  "172": {
+   "text": "In which occupation zone was the GDR founded? In the …",
+   "options": [
+    "American occupation zone",
+    "French occupation zone",
+    "British occupation zone",
+    "Soviet occupation zone"
+   ],
+   "context": "The GDR was founded in the Soviet occupation zone in October 1949, a few months after the Federal Republic."
+  },
+  "173": {
+   "text": "The Federal Republic of Germany is a founding member …",
+   "options": [
+    "of the North Atlantic Treaty Organisation (NATO).",
+    "of the United Nations (UN).",
+    "of the European Union (EU).",
+    "of the Warsaw Pact."
+   ],
+   "context": "Germany was one of the founding members of the European Union. It joined NATO in 1955 and the United Nations in 1973."
+  },
+  "174": {
+   "text": "When was the GDR founded?",
+   "options": [
+    "1947",
+    "1949",
+    "1953",
+    "1956"
+   ],
+   "context": "The GDR was founded in 1949 and existed until German reunification in 1990."
+  },
+  "175": {
+   "text": "How many occupation zones were there in Germany after the Second World War?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "Germany was divided into four occupation zones after the war, one for each of the Allied powers."
+  },
+  "176": {
+   "text": "How were Germany's occupation zones distributed after 1945?",
+   "options": [
+    "1=Great Britain, 2=Soviet Union, 3=France, 4=USA",
+    "1=Soviet Union, 2=Great Britain, 3=USA, 4=France",
+    "1=Great Britain, 2=Soviet Union, 3=USA, 4=France",
+    "1=Great Britain, 2=USA, 3=Soviet Union, 4=France"
+   ],
+   "context": "The British zone was in the north-west, the Soviet zone in the east, the American zone in the south and the French zone in the south-west."
+  },
+  "177": {
+   "text": "Which German city was divided into four sectors after the Second World War?",
+   "options": [
+    "Munich",
+    "Berlin",
+    "Dresden",
+    "Frankfurt (Oder)"
+   ],
+   "context": "Berlin was divided into four sectors, one for each occupying power, even though it lay inside the Soviet zone."
+  },
+  "178": {
+   "text": "From June 1948 to May 1949 the citizens of West Berlin were supplied by an airlift. What circumstance was responsible for this?",
+   "options": [
+    "For France, supplying the West Berlin population by aircraft was cheaper.",
+    "The American soldiers were afraid of raids during overland transport.",
+    "For Great Britain, supplying the city by airlift was quicker.",
+    "The Soviet Union cut off all traffic by land."
+   ],
+   "context": "The Soviet Union blocked all land routes to West Berlin, so the Western Allies supplied the city by air for almost a year."
+  },
+  "179": {
+   "text": "How did the Second World War in Europe officially end?",
+   "options": [
+    "with the death of Adolf Hitler",
+    "with the unconditional surrender of Germany",
+    "with the withdrawal of the Germans from the occupied territories",
+    "through a revolution in Germany"
+   ],
+   "context": "The war in Europe ended officially with Germany's unconditional surrender in May 1945."
+  },
+  "180": {
+   "text": "The first Federal Chancellor of the Federal Republic of Germany was …",
+   "options": [
+    "Ludwig Erhard.",
+    "Willy Brandt.",
+    "Konrad Adenauer.",
+    "Gerhard Schröder."
+   ],
+   "context": "Konrad Adenauer was the first Federal Chancellor and shaped the young republic's western orientation."
+  },
+  "181": {
+   "text": "What did Willy Brandt want to express by kneeling in the former Jewish ghetto in Warsaw in 1970?",
+   "options": [
+    "He submitted himself to the former Allies.",
+    "He asked Poland and the Polish Jews for forgiveness.",
+    "He showed his humility before the Warsaw Pact.",
+    "He said a prayer at the Tomb of the Unknown Soldier."
+   ],
+   "context": "By kneeling at the memorial in the Warsaw ghetto in 1970, Willy Brandt asked Poland and Polish Jews for forgiveness for German crimes. The gesture became world-famous."
+  },
+  "182": {
+   "text": "What is the Jewish house of prayer called?",
+   "options": [
+    "basilica",
+    "mosque",
+    "synagogue",
+    "church"
+   ],
+   "context": "The Jewish house of prayer is the synagogue. A mosque is Muslim, a church and a basilica Christian."
+  },
+  "183": {
+   "text": "When was the \"economic miracle\" in the Federal Republic of Germany?",
+   "options": [
+    "the 1940s",
+    "the 1950s",
+    "the 1970s",
+    "the 1980s"
+   ],
+   "context": "The \"economic miracle\" was the rapid post-war recovery of the 1950s, when the West German economy grew quickly and unemployment nearly vanished."
+  },
+  "184": {
+   "text": "On what legal basis was the State of Israel founded?",
+   "options": [
+    "a United Nations resolution",
+    "a decision of the Zionist Congress",
+    "a proposal by the German federal government",
+    "a proposal by the USSR"
+   ],
+   "context": "The State of Israel was founded on the basis of a United Nations resolution, the partition plan of November 1947. Israel declared independence in May 1948."
+  },
+  "185": {
+   "text": "What did the term \"Iron Curtain\" stand for? For the sealing off …",
+   "options": [
+    "of the Warsaw Pact from the West",
+    "of northern Germany from southern Germany",
+    "of Nazi Germany from the Allies",
+    "of Europe from the USA"
+   ],
+   "context": "The \"Iron Curtain\" described the sealing off of the Warsaw Pact states from the West during the Cold War."
+  },
+  "186": {
+   "text": "In 1953 there was an uprising in the GDR which was commemorated for a long time by a public holiday in the Federal Republic of Germany. When was it?",
+   "options": [
+    "1 May",
+    "17 June",
+    "20 July",
+    "9 November"
+   ],
+   "context": "The uprising of 17 June 1953 in the GDR was commemorated in West Germany as a public holiday until 1990."
+  },
+  "187": {
+   "text": "Which German state had a black-red-gold flag with a hammer, a pair of compasses and a ring of grain?",
+   "options": [
+    "Prussia",
+    "the Federal Republic of Germany",
+    "the \"Third Reich\"",
+    "the GDR"
+   ],
+   "context": "The GDR's flag was black-red-gold with a hammer, a pair of compasses and a ring of grain in the middle, added in 1959."
+  },
+  "188": {
+   "text": "In which year was the Wall built in Berlin?",
+   "options": [
+    "1953",
+    "1956",
+    "1959",
+    "1961"
+   ],
+   "context": "The Wall was built in 1961, sealing off West Berlin almost overnight on 13 August."
+  },
+  "189": {
+   "text": "When did the GDR build the Wall in Berlin?",
+   "options": [
+    "1919",
+    "1933",
+    "1961",
+    "1990"
+   ],
+   "context": "The GDR began building the Berlin Wall on 13 August 1961."
+  },
+  "190": {
+   "text": "What does the abbreviation DDR stand for?",
+   "options": [
+    "Dritter Deutscher Rundfunk (Third German Broadcasting)",
+    "Die Deutsche Republik (The German Republic)",
+    "Dritte Deutsche Republik (Third German Republic)",
+    "Deutsche Demokratische Republik (German Democratic Republic)"
+   ],
+   "context": "DDR stands for Deutsche Demokratische Republik, the German Democratic Republic — the East German state from 1949 to 1990."
+  },
+  "191": {
+   "text": "When was the Wall in Berlin opened to everyone?",
+   "options": [
+    "1987",
+    "1989",
+    "1992",
+    "1995"
+   ],
+   "context": "The Wall was opened on 9 November 1989, after weeks of peaceful protest in the GDR."
+  },
+  "192": {
+   "text": "Which of today's German federal states formerly belonged to the territory of the GDR?",
+   "options": [
+    "Brandenburg",
+    "Bavaria",
+    "Saarland",
+    "Hesse"
+   ],
+   "context": "Brandenburg was part of the GDR. Bavaria, Saarland and Hesse were always in the West."
+  },
+  "193": {
+   "text": "From 1961 to 1989, Berlin was …",
+   "options": [
+    "without a mayor.",
+    "a state of its own.",
+    "divided by a wall.",
+    "reachable only by plane."
+   ],
+   "context": "From 1961 to 1989 Berlin was divided by the Wall, which separated families and friends for 28 years."
+  },
+  "194": {
+   "text": "On 3 October, Germany celebrates the Day of German …",
+   "options": [
+    "Unity.",
+    "Nation.",
+    "Federal States.",
+    "Cities."
+   ],
+   "context": "3 October is the Day of German Unity, the national holiday. It marks the day in 1990 when the GDR acceded to the Federal Republic."
+  },
+  "195": {
+   "text": "Which of today's German federal states formerly belonged to the territory of the GDR?",
+   "options": [
+    "Hesse",
+    "Saxony-Anhalt",
+    "North Rhine-Westphalia",
+    "Saarland"
+   ],
+   "context": "Saxony-Anhalt was one of the five states re-established on GDR territory in 1990."
+  },
+  "196": {
+   "text": "Why is the period in autumn 1989 in the GDR called \"Die Wende\" (the turning point)? During this time the GDR changed politically …",
+   "options": [
+    "from a dictatorship to a democracy.",
+    "from a liberal market economy to socialism.",
+    "from a monarchy to social democracy.",
+    "from a religious state to a communist state."
+   ],
+   "context": "\"Die Wende\" describes the change from dictatorship to democracy in the GDR in autumn 1989, driven by peaceful mass protest."
+  },
+  "197": {
+   "text": "Which of today's German federal states formerly belonged to the territory of the GDR?",
+   "options": [
+    "Thuringia",
+    "Hesse",
+    "Bavaria",
+    "Bremen"
+   ],
+   "context": "Thuringia belonged to the GDR and became a federal state again in 1990."
+  },
+  "198": {
+   "text": "Which of today's German federal states formerly belonged to the territory of the GDR?",
+   "options": [
+    "Bavaria",
+    "Lower Saxony",
+    "Saxony",
+    "Baden-Württemberg"
+   ],
+   "context": "Saxony was part of the GDR and is today one of the five eastern federal states."
+  },
+  "199": {
+   "text": "In the GDR, the abbreviation \"Stasi\" referred to …",
+   "options": [
+    "parliament.",
+    "the Ministry for State Security.",
+    "a governing party.",
+    "the Ministry of Education."
+   ],
+   "context": "\"Stasi\" was short for Ministerium für Staatssicherheit, the GDR's Ministry for State Security."
+  },
+  "200": {
+   "text": "Which of today's German federal states formerly belonged to the territory of the GDR?",
+   "options": [
+    "Hesse",
+    "Schleswig-Holstein",
+    "Mecklenburg-Western Pomerania",
+    "Saarland"
+   ],
+   "context": "Mecklenburg-Western Pomerania lay in the GDR, on the Baltic coast."
+  },
+  "201": {
+   "text": "Which of the following lists contains only federal states that belonged to the territory of the former GDR?",
+   "options": [
+    "Lower Saxony, North Rhine-Westphalia, Hesse, Schleswig-Holstein, Brandenburg",
+    "Mecklenburg-Western Pomerania, Brandenburg, Saxony, Saxony-Anhalt, Thuringia",
+    "Bavaria, Baden-Württemberg, Rhineland-Palatinate, Thuringia, Saxony",
+    "Saxony, Thuringia, Hesse, Lower Saxony, Brandenburg"
+   ],
+   "context": "The five states on former GDR territory are Mecklenburg-Western Pomerania, Brandenburg, Saxony, Saxony-Anhalt and Thuringia."
+  },
+  "202": {
+   "text": "Which side did the GDR belong to in the \"Cold War\"?",
+   "options": [
+    "the Western powers",
+    "the Warsaw Pact",
+    "NATO",
+    "the non-aligned states"
+   ],
+   "context": "In the Cold War the GDR belonged to the Eastern bloc and to the Warsaw Pact, led by the Soviet Union."
+  },
+  "203": {
+   "text": "What was the GDR's economic system called?",
+   "options": [
+    "market economy",
+    "planned economy",
+    "supply and demand",
+    "capitalism"
+   ],
+   "context": "The GDR had a planned economy: the state decided what was produced, in what quantity and at what price."
+  },
+  "204": {
+   "text": "How did the Federal Republic of Germany and the GDR become one state?",
+   "options": [
+    "The Federal Republic occupied the GDR.",
+    "Today's five eastern federal states acceded to the Federal Republic of Germany.",
+    "The western federal states acceded to the GDR.",
+    "The GDR occupied the Federal Republic of Germany."
+   ],
+   "context": "The five eastern states acceded to the Federal Republic in 1990 under Article 23 of the Basic Law. Unification was an accession, not a conquest."
+  },
+  "205": {
+   "text": "With the accession of the GDR to the Federal Republic of Germany, the new federal states now also belong …",
+   "options": [
+    "to the European Union.",
+    "to the Warsaw Pact.",
+    "to OPEC.",
+    "to the European Defence Community."
+   ],
+   "context": "With reunification the new federal states also became part of what is now the European Union, without a separate accession procedure."
+  },
+  "206": {
+   "text": "What do the so-called \"Stolpersteine\" (stumbling stones) in Germany commemorate?",
+   "options": [
+    "famous German politicians",
+    "the victims of National Socialism",
+    "people killed in road accidents",
+    "well-known Jewish musicians"
+   ],
+   "context": "Stolpersteine are small brass plaques set into pavements outside the last freely chosen homes of people persecuted and murdered under National Socialism."
+  },
+  "207": {
+   "text": "Which military alliance was the GDR a member of?",
+   "options": [
+    "NATO",
+    "the Confederation of the Rhine",
+    "the Warsaw Pact",
+    "the European Alliance"
+   ],
+   "context": "The GDR was a member of the Warsaw Pact, the military alliance of the Eastern bloc."
+  },
+  "208": {
+   "text": "What was the \"Stasi\"?",
+   "options": [
+    "the secret service in the \"Third Reich\"",
+    "a famous German memorial",
+    "the secret service of the GDR",
+    "a German sports club during the Second World War"
+   ],
+   "context": "The Stasi was the GDR's secret service. It kept files on millions of people and relied on a vast network of informers."
+  },
+  "209": {
+   "text": "Which was the coat of arms of the German Democratic Republic?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The GDR's coat of arms showed a hammer and a pair of compasses within a ring of grain, standing for workers, intelligentsia and farmers."
+  },
+  "210": {
+   "text": "What happened on 17 June 1953 in the GDR?",
+   "options": [
+    "the ceremonial accession to the Warsaw Pact",
+    "nationwide strikes and a popular uprising",
+    "the 1st party congress of the SED",
+    "Fidel Castro's first visit"
+   ],
+   "context": "On 17 June 1953 strikes and a popular uprising spread across the GDR. Soviet tanks put it down."
+  },
+  "211": {
+   "text": "Which politician is associated with the \"Eastern Treaties\"?",
+   "options": [
+    "Helmut Kohl",
+    "Willy Brandt",
+    "Mikhail Gorbachev",
+    "Ludwig Erhard"
+   ],
+   "context": "Willy Brandt's government negotiated the Eastern Treaties of the early 1970s, which sought reconciliation with the Soviet Union, Poland and the GDR."
+  },
+  "212": {
+   "text": "What is Germany's full name?",
+   "options": [
+    "Federal State of Germany",
+    "Federal States of Germany",
+    "Federal Republic of Germany",
+    "Federal District of Germany"
+   ],
+   "context": "The country's full name is Bundesrepublik Deutschland, the Federal Republic of Germany."
+  },
+  "213": {
+   "text": "How many inhabitants does Germany have?",
+   "options": [
+    "70 million",
+    "78 million",
+    "84 million",
+    "90 million"
+   ],
+   "context": "Germany has around 84 million inhabitants, making it the most populous country in the European Union."
+  },
+  "214": {
+   "text": "What colours does the German flag have?",
+   "options": [
+    "black-red-gold",
+    "red-white-black",
+    "black-red-green",
+    "black-yellow-red"
+   ],
+   "context": "The German flag is black, red and gold. The colours go back to the 19th-century movement for a free and united Germany."
+  },
+  "215": {
+   "text": "Who is referred to as the \"Chancellor of German Unity\"?",
+   "options": [
+    "Gerhard Schröder",
+    "Helmut Kohl",
+    "Konrad Adenauer",
+    "Helmut Schmidt"
+   ],
+   "context": "Helmut Kohl is called the \"Chancellor of German Unity\" because reunification was achieved during his time in office in 1990."
+  },
+  "216": {
+   "text": "Which symbol can be seen in the plenary chamber of the German Bundestag?",
+   "options": [
+    "the Federal Eagle",
+    "the flag of the city of Berlin",
+    "the Reich Eagle",
+    "the Imperial Crown"
+   ],
+   "context": "The plenary chamber of the Bundestag is dominated by the Bundesadler, the federal eagle, known informally as the \"fat hen\"."
+  },
+  "217": {
+   "text": "During which period did the German Democratic Republic (GDR) exist?",
+   "options": [
+    "1919 to 1927",
+    "1933 to 1945",
+    "1945 to 1961",
+    "1949 to 1990"
+   ],
+   "context": "The GDR existed from 1949 to 1990, just over forty years."
+  },
+  "218": {
+   "text": "How many federal states joined the Federal Republic of Germany on reunification in 1990?",
+   "options": [
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "context": "Five federal states joined the Federal Republic in 1990, bringing the total from 11 to 16."
+  },
+  "219": {
+   "text": "The Federal Republic of Germany has had its present borders since …",
+   "options": [
+    "1933",
+    "1949",
+    "1971",
+    "1990"
+   ],
+   "context": "Germany has had its present borders since reunification in 1990, confirmed by the Two Plus Four Treaty."
+  },
+  "220": {
+   "text": "27 January is an official day of remembrance in Germany. What does this day commemorate?",
+   "options": [
+    "the end of the Second World War",
+    "the adoption of the Basic Law",
+    "the reunification of Germany",
+    "the victims of National Socialism (the day the Auschwitz extermination camp was liberated)"
+   ],
+   "context": "27 January is the day Auschwitz was liberated in 1945. It is Germany's official day of remembrance for the victims of National Socialism."
+  },
+  "221": {
+   "text": "Germany is a member of the Schengen Agreement. What does that mean?",
+   "options": [
+    "Germans can travel to many countries in Europe without passport checks.",
+    "Anyone can enter Germany without identity checks.",
+    "Germans can travel to any country without passport checks.",
+    "Germans can pay with the euro in any country."
+   ],
+   "context": "Schengen means Germans can travel to many European countries without passport checks at the border. It does not abolish identity checks altogether."
+  },
+  "222": {
+   "text": "Which country is a neighbour of Germany?",
+   "options": [
+    "Hungary",
+    "Portugal",
+    "Spain",
+    "Switzerland"
+   ],
+   "context": "Switzerland borders Germany in the south. Germany has nine neighbours in all — more than any other EU country."
+  },
+  "223": {
+   "text": "Which country is a neighbour of Germany?",
+   "options": [
+    "Romania",
+    "Bulgaria",
+    "Poland",
+    "Greece"
+   ],
+   "context": "Poland is Germany's eastern neighbour, along the Oder and Neisse rivers."
+  },
+  "224": {
+   "text": "What does the abbreviation EU stand for?",
+   "options": [
+    "European Undertakings",
+    "European Union",
+    "Unified Union",
+    "Euro Union"
+   ],
+   "context": "EU stands for European Union, the association of 27 European states."
+  },
+  "225": {
+   "text": "In which other country is there a large German-speaking population?",
+   "options": [
+    "Czechia",
+    "Norway",
+    "Spain",
+    "Austria"
+   ],
+   "context": "Austria is German-speaking. German is also an official language in Switzerland, Liechtenstein, Luxembourg and Belgium."
+  },
+  "226": {
+   "text": "Which is the flag of the European Union?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The EU flag is a circle of twelve golden stars on a blue ground. The twelve stands for completeness, not for the number of member states."
+  },
+  "227": {
+   "text": "Which country is a neighbour of Germany?",
+   "options": [
+    "Finland",
+    "Denmark",
+    "Norway",
+    "Sweden"
+   ],
+   "context": "Denmark is Germany's only northern neighbour, bordering Schleswig-Holstein."
+  },
+  "228": {
+   "text": "What is the accession of the GDR to the Federal Republic of Germany in 1990 generally called?",
+   "options": [
+    "NATO's eastward enlargement",
+    "the EU's eastward enlargement",
+    "German reunification",
+    "the European Community"
+   ],
+   "context": "The accession of the GDR in 1990 is generally called German reunification, die deutsche Wiedervereinigung."
+  },
+  "229": {
+   "text": "Which country is a neighbour of Germany?",
+   "options": [
+    "Spain",
+    "Bulgaria",
+    "Norway",
+    "Luxembourg"
+   ],
+   "context": "Luxembourg borders Germany in the west, next to Rhineland-Palatinate and Saarland."
+  },
+  "230": {
+   "text": "The European Parliament is elected regularly, namely every …",
+   "options": [
+    "5 years.",
+    "6 years.",
+    "7 years.",
+    "8 years."
+   ],
+   "context": "The European Parliament is elected every five years. Every EU citizen may vote, and may do so in their country of residence."
+  },
+  "231": {
+   "text": "What does the term \"European integration\" mean?",
+   "options": [
+    "It refers to American immigrants in Europe.",
+    "The term means a halt to immigration into Europe.",
+    "It refers to European emigrants in the USA.",
+    "The term means the joining together of European states to form the EU."
+   ],
+   "context": "European integration means European states joining together ever more closely, a process that led to today's EU."
+  },
+  "232": {
+   "text": "Who is elected in the European election?",
+   "options": [
+    "the European Commission",
+    "the countries allowed to join the EU",
+    "the members of the European Parliament",
+    "the European constitution"
+   ],
+   "context": "The European election chooses the members of the European Parliament. The Commission is not elected by voters directly."
+  },
+  "233": {
+   "text": "Which country is a neighbour of Germany?",
+   "options": [
+    "Czechia",
+    "Bulgaria",
+    "Greece",
+    "Portugal"
+   ],
+   "context": "Czechia borders Germany in the south-east, along Bavaria and Saxony."
+  },
+  "234": {
+   "text": "Where is one seat of the European Parliament?",
+   "options": [
+    "London",
+    "Paris",
+    "Berlin",
+    "Strasbourg"
+   ],
+   "context": "Strasbourg is a seat of the European Parliament, which holds its plenary sessions there."
+  },
+  "235": {
+   "text": "The then French President François Mitterrand and the then German Federal Chancellor Helmut Kohl commemorate together in Verdun the dead of both world wars. Which aim of the European Union is made clear at this meeting?",
+   "options": [
+    "friendship between England and Germany",
+    "freedom to travel to all EU countries",
+    "peace and security in the countries of the EU",
+    "uniform public holidays in the countries of the EU"
+   ],
+   "context": "Mitterrand and Kohl commemorating the dead of both world wars together at Verdun stands for the EU's central aim: lasting peace and security among its members."
+  },
+  "236": {
+   "text": "How many member states does the EU have today?",
+   "options": [
+    "21",
+    "23",
+    "25",
+    "27"
+   ],
+   "context": "The EU has 27 member states, following the United Kingdom's departure in 2020."
+  },
+  "237": {
+   "text": "In 2007 the 50th anniversary of the \"Treaties of Rome\" was celebrated. What were the treaties about?",
+   "options": [
+    "Germany's accession to NATO",
+    "the founding of the European Economic Community (EEC)",
+    "Germany's obligation to pay reparations",
+    "fixing the Oder-Neisse line as the eastern border"
+   ],
+   "context": "The Treaties of Rome of 1957 founded the European Economic Community, the forerunner of today's EU."
+  },
+  "238": {
+   "text": "In which places does the European Parliament work?",
+   "options": [
+    "Paris, London and The Hague",
+    "Strasbourg, Luxembourg and Brussels",
+    "Rome, Bern and Vienna",
+    "Bonn, Zurich and Milan"
+   ],
+   "context": "The European Parliament works in Strasbourg, Luxembourg and Brussels: plenary sessions in Strasbourg, committees in Brussels, administration in Luxembourg."
+  },
+  "239": {
+   "text": "Through which treaties did the Federal Republic of Germany join with other states to form the European Economic Community?",
+   "options": [
+    "through the \"Treaties of Hamburg\"",
+    "through the \"Treaties of Rome\"",
+    "through the \"Treaties of Paris\"",
+    "through the \"Treaties of London\""
+   ],
+   "context": "The Federal Republic joined the European Economic Community through the Treaties of Rome in 1957, as one of the six founding members."
+  },
+  "240": {
+   "text": "Since when has cash been paid in euros in Germany?",
+   "options": [
+    "1995",
+    "1998",
+    "2002",
+    "2005"
+   ],
+   "context": "Euro notes and coins have been in use in Germany since 1 January 2002. The euro had existed as book money since 1999."
+  },
+  "241": {
+   "text": "Ms Seger is having a baby. What does she have to do to receive parental allowance?",
+   "options": [
+    "She has to write to her health insurance fund.",
+    "She has to submit an application to the parental allowance office.",
+    "She does not have to do anything, because she receives parental allowance automatically.",
+    "She has to ask the employment office for permission."
+   ],
+   "context": "Parental allowance must be applied for at the Elterngeldstelle. It is not paid automatically."
+  },
+  "242": {
+   "text": "Who decides whether a child in Germany goes to kindergarten?",
+   "options": [
+    "the state",
+    "the federal states",
+    "the parents/legal guardians",
+    "the schools"
+   ],
+   "context": "Parents or legal guardians decide whether their child goes to kindergarten. There is an entitlement to a place from the age of one, but no obligation."
+  },
+  "243": {
+   "text": "Maik and Sybille want to hold a demonstration in the street with friends where they live in Germany. What do they have to do beforehand?",
+   "options": [
+    "They have to register the demonstration.",
+    "They do not have to do anything. In Germany you may demonstrate anywhere at any time.",
+    "They cannot do anything, because demonstrations are generally banned in Germany.",
+    "Maik and Sybille have to found a new association, because only associations may demonstrate."
+   ],
+   "context": "A demonstration in public must be registered with the authorities beforehand, normally 48 hours in advance. Registration is a notification, not a request for permission."
+  },
+  "244": {
+   "text": "Which school-leaving qualification do you normally need to begin a degree at a university in Germany?",
+   "options": [
+    "the Abitur",
+    "a diploma",
+    "power of procuration",
+    "a journeyman's examination"
+   ],
+   "context": "The Abitur is normally required to begin a degree at a university. There are other routes for people with vocational qualifications."
+  },
+  "245": {
+   "text": "Who may not live together as a couple in Germany?",
+   "options": [
+    "Hans (20 years old) and Marie (19 years old)",
+    "Tom (20 years old) and Klaus (45 years old)",
+    "Sofie (35 years old) and Lisa (40 years old)",
+    "Anne (13 years old) and Tim (25 years old)"
+   ],
+   "context": "A 13-year-old may not live with an adult as a partner; children are protected by law. The other pairs are all adults and free to choose."
+  },
+  "246": {
+   "text": "At what age do you come of age in Germany?",
+   "options": [
+    "16",
+    "18",
+    "19",
+    "21"
+   ],
+   "context": "You come of age in Germany at 18. From then on you can sign contracts, vote and decide for yourself where to live."
+  },
+  "247": {
+   "text": "A woman is pregnant. She is specially protected by law shortly before and after the birth of her child. What is this protection called?",
+   "options": [
+    "parental leave",
+    "maternity protection",
+    "antenatal preparation",
+    "confinement"
+   ],
+   "context": "The protection is called Mutterschutz. It usually runs from six weeks before birth to eight weeks after, with a ban on dismissal."
+  },
+  "248": {
+   "text": "In Germany, bringing up children is above all the task …",
+   "options": [
+    "of the state.",
+    "of the parents.",
+    "of the grandparents.",
+    "of the schools."
+   ],
+   "context": "Article 6 of the Basic Law makes bringing up children the natural right and primary duty of parents. The state only supervises."
+  },
+  "249": {
+   "text": "Who is mainly responsible for bringing up children in Germany?",
+   "options": [
+    "the state",
+    "the parents",
+    "the relatives",
+    "the schools"
+   ],
+   "context": "Parents are mainly responsible for bringing up their children. The state steps in only if the child's welfare is at risk."
+  },
+  "250": {
+   "text": "In Germany you have the best chance of a well-paid job if you …",
+   "options": [
+    "are Catholic.",
+    "are well qualified.",
+    "are a woman.",
+    "are a member of a party."
+   ],
+   "context": "Good qualifications give the best chance of a well-paid job. Religion, sex or party membership must not decide who is hired."
+  },
+  "251": {
+   "text": "If you hit a child in Germany, …",
+   "options": [
+    "it is nobody's business.",
+    "it is only the family's business.",
+    "you cannot be punished for it.",
+    "you can be punished for it."
+   ],
+   "context": "Children have a legal right to a non-violent upbringing, so hitting a child is punishable in Germany."
+  },
+  "252": {
+   "text": "In Germany …",
+   "options": [
+    "you may be married to only one partner at a time.",
+    "you can have several spouses at the same time.",
+    "you may not marry again if you have been married once.",
+    "a woman may not marry again if her husband has died."
+   ],
+   "context": "Only one marriage at a time is allowed. Remarriage after divorce or the death of a spouse is entirely possible."
+  },
+  "253": {
+   "text": "Where do you have to register if you move house in Germany?",
+   "options": [
+    "at the residents' registration office",
+    "at the registry office",
+    "at the public order office",
+    "at the trade licensing office"
+   ],
+   "context": "When you move house you must register at the Einwohnermeldeamt, normally within two weeks."
+  },
+  "254": {
+   "text": "In Germany, married couples may divorce. Usually they have to observe the \"year of separation\". What does that mean?",
+   "options": [
+    "The divorce proceedings last a year.",
+    "The spouses are married for a year, then divorce is possible.",
+    "The right of access to the children applies for a year.",
+    "The spouses live their own separate lives for at least a year. After that, divorce is possible."
+   ],
+   "context": "The year of separation means the spouses live separate lives for at least a year before the divorce can go through. It is meant to make sure the decision is final."
+  },
+  "255": {
+   "text": "For problems bringing up children, parents in Germany can get help from the …",
+   "options": [
+    "public order office.",
+    "school authority.",
+    "youth welfare office.",
+    "public health department."
+   ],
+   "context": "The Jugendamt, the youth welfare office, advises and supports parents with problems bringing up their children."
+  },
+  "256": {
+   "text": "A married couple want to open a restaurant in Germany. What do they absolutely need for this?",
+   "options": [
+    "permission from the police",
+    "approval from a party",
+    "approval from the residents' registration office",
+    "a restaurant licence from the competent authority"
+   ],
+   "context": "Running a restaurant requires a Gaststättenerlaubnis from the competent authority, especially where alcohol is served."
+  },
+  "257": {
+   "text": "An adult woman wants to catch up on her Abitur in Germany. She can do this at …",
+   "options": [
+    "a university.",
+    "an evening grammar school.",
+    "a Hauptschule.",
+    "a private university."
+   ],
+   "context": "An Abendgymnasium, an evening grammar school, lets adults work towards the Abitur alongside a job."
+  },
+  "258": {
+   "text": "What is the youth welfare office in Germany allowed to do?",
+   "options": [
+    "It decides which school the child attends.",
+    "It can take a child who is being beaten or going hungry out of the family.",
+    "It pays the child benefit to the parents.",
+    "It checks whether the child attends a kindergarten."
+   ],
+   "context": "The youth welfare office may take a child out of the family if the child is being beaten or neglected. It is a last resort and a court is involved."
+  },
+  "259": {
+   "text": "The careers information centre (BIZ) at the Federal Employment Agency in Germany helps with …",
+   "options": [
+    "calculating pensions.",
+    "finding an apprenticeship.",
+    "the tax return.",
+    "health insurance."
+   ],
+   "context": "The Berufsinformationszentrum helps with career choices and finding an apprenticeship. It is part of the Federal Employment Agency."
+  },
+  "260": {
+   "text": "In Germany, a child at school has …",
+   "options": [
+    "a right to unlimited free time.",
+    "free choice of all subjects.",
+    "an entitlement to school fees.",
+    "a duty to attend."
+   ],
+   "context": "School attendance is compulsory, so a child has a duty to attend. Education in state schools is free of charge."
+  },
+  "261": {
+   "text": "A man wants to catch up on his Abitur in Germany at the age of 30. Where can he do this? At …",
+   "options": [
+    "a university.",
+    "an evening grammar school.",
+    "a Hauptschule.",
+    "a private university."
+   ],
+   "context": "An evening grammar school is the usual route for adults who want to take the Abitur later in life."
+  },
+  "262": {
+   "text": "What does the principle of equal treatment mean in Germany?",
+   "options": [
+    "No one may be disadvantaged because of a disability, for example.",
+    "You may disadvantage other people if there are sufficient personal reasons for it.",
+    "No one may sue people if they have been disadvantaged.",
+    "It is the law for everyone to donate money to disadvantaged groups every year."
+   ],
+   "context": "Equal treatment means nobody may be disadvantaged because of things like disability, origin, sex, religion or age. The General Equal Treatment Act sets this out."
+  },
+  "263": {
+   "text": "In Germany, young people are criminally responsible from the age of 14. This means: young people who are 14 or older and break criminal laws …",
+   "options": [
+    "are punished.",
+    "are treated like adults.",
+    "share the punishment with their parents.",
+    "are not punished."
+   ],
+   "context": "From 14 young people are criminally responsible and can be punished, though under juvenile law, which stresses education over retribution."
+  },
+  "264": {
+   "text": "At which festival do people in Germany wear colourful costumes and masks?",
+   "options": [
+    "on Rose Monday",
+    "on May Day",
+    "at the Oktoberfest",
+    "at Whitsun"
+   ],
+   "context": "At carnival, and especially on Rose Monday, people wear colourful costumes and masks. The celebrations are biggest in the Rhineland."
+  },
+  "265": {
+   "text": "Where do you have to go first in Germany if you want to get married?",
+   "options": [
+    "to the residents' registration office",
+    "to the public order office",
+    "to the employment agency",
+    "to the registry office"
+   ],
+   "context": "To marry you go first to the Standesamt, the registry office. Only a civil marriage is legally valid in Germany."
+  },
+  "266": {
+   "text": "When do the statutory quiet hours at night begin in Germany?",
+   "options": [
+    "when the sun goes down",
+    "when the neighbours go to bed",
+    "at 12 a.m., midnight",
+    "at 10 p.m."
+   ],
+   "context": "Statutory quiet hours run from 10 p.m. to 6 a.m. Noise that disturbs the neighbours is not allowed during that time."
+  },
+  "267": {
+   "text": "A young woman in Germany, 22 years old, lives with her boyfriend. The woman's parents do not like this, because they do not approve of the boyfriend. What can the parents do?",
+   "options": [
+    "They have to respect the decision of their adult daughter.",
+    "They have the right to bring the daughter back to the parental home.",
+    "They can go to the police and report the daughter.",
+    "They look for another man for the daughter."
+   ],
+   "context": "At 22 the daughter is an adult and decides for herself whom she lives with. Her parents have to respect that."
+  },
+  "268": {
+   "text": "A young woman wants to take her driving test. She is afraid of the test because her mother tongue is not German. What is correct?",
+   "options": [
+    "She has to live in Germany for at least ten years before she can take the driving test.",
+    "If she does not speak German, she may not have a driving licence.",
+    "She has to take the driving test in a country where her language is spoken.",
+    "She may be able to take the theory test in her mother tongue. There are more than ten languages to choose from."
+   ],
+   "context": "The theory test can be taken in a number of languages besides German, so limited German need not be an obstacle."
+  },
+  "269": {
+   "text": "In Germany, children from the age of three until they first start school are entitled to …",
+   "options": [
+    "monthly pocket money.",
+    "a place in a sports club.",
+    "a kindergarten place.",
+    "a holiday pass."
+   ],
+   "context": "From the age of three until they start school, children are entitled to a kindergarten place. Since 2013 the entitlement starts at one."
+  },
+  "270": {
+   "text": "The Volkshochschule (adult education centre) in Germany is an institution …",
+   "options": [
+    "for religious education.",
+    "only for young people.",
+    "for further education.",
+    "only for pensioners."
+   ],
+   "context": "The Volkshochschule is an adult education centre, offering affordable courses in languages, computing and much else to anyone."
+  },
+  "271": {
+   "text": "What is a Christmas custom in Germany?",
+   "options": [
+    "hiding coloured eggs",
+    "decorating a fir tree",
+    "dressing up with masks and costumes",
+    "putting pumpkins outside the door"
+   ],
+   "context": "Decorating a fir tree is the classic German Christmas custom. The tradition spread from Germany around the world."
+  },
+  "272": {
+   "text": "Which way of life is not permitted in Germany?",
+   "options": [
+    "A man and a woman are divorced and live with new partners.",
+    "Two women live together.",
+    "A single father lives with his two children.",
+    "A man is married to two women at the same time."
+   ],
+   "context": "Being married to two people at once is not allowed in Germany. Divorce, same-sex partnership and single parenthood are all perfectly lawful."
+  },
+  "273": {
+   "text": "For problems bringing up children in Germany, you go …",
+   "options": [
+    "to the doctor.",
+    "to the public health department.",
+    "to the residents' registration office.",
+    "to the youth welfare office."
+   ],
+   "context": "With problems bringing up children you go to the Jugendamt, which advises parents free of charge."
+  },
+  "274": {
+   "text": "In Germany you have deliberately opened a letter addressed to another person. What have you disregarded?",
+   "options": [
+    "the right to remain silent",
+    "the privacy of correspondence",
+    "the duty of confidentiality",
+    "freedom of expression"
+   ],
+   "context": "Opening someone else's post deliberately breaches the privacy of correspondence, protected by Article 10 of the Basic Law."
+  },
+  "275": {
+   "text": "What do you need for a divorce in Germany?",
+   "options": [
+    "the consent of the parents",
+    "a certificate from a doctor",
+    "the consent of the children",
+    "the support of a lawyer"
+   ],
+   "context": "A divorce goes through the family court, and you need a lawyer to file the petition. Neither the parents nor the children have to consent."
+  },
+  "276": {
+   "text": "What should you do if you are treated badly by your contact person at a German public authority?",
+   "options": [
+    "I cannot do anything.",
+    "I have to put up with this treatment.",
+    "I threaten the person.",
+    "I can complain to the head of the authority."
+   ],
+   "context": "If an official treats you badly you can complain to the head of the authority. Public authorities are answerable for how they treat people."
+  },
+  "277": {
+   "text": "A woman who has a two-year-old child applies for a job in Germany. What is an example of discrimination? She does not get the job solely because she …",
+   "options": [
+    "does not speak English.",
+    "has salary expectations that are too high.",
+    "has no experience in this occupation.",
+    "is a mother."
+   ],
+   "context": "Turning a woman down solely because she is a mother is discrimination. Language skills or lack of experience would be job-related reasons."
+  },
+  "278": {
+   "text": "A man in a wheelchair has applied for a job as an accountant. What is an example of discrimination? He does not get the job solely because he …",
+   "options": [
+    "uses a wheelchair.",
+    "has no experience.",
+    "has salary expectations that are too high.",
+    "does not speak English."
+   ],
+   "context": "Refusing someone a desk job solely because he uses a wheelchair is discrimination on grounds of disability, which the General Equal Treatment Act forbids."
+  },
+  "279": {
+   "text": "Most blocks of rented flats in Germany have house rules. What do such house rules contain? They state …",
+   "options": [
+    "rules for using public transport.",
+    "all the tenants in the building.",
+    "rules that all residents have to observe.",
+    "the address of the nearest public order office."
+   ],
+   "context": "House rules set out what all residents of the building have to observe — quiet hours, use of shared rooms, cleaning duties and so on."
+  },
+  "280": {
+   "text": "If you want to challenge an incorrect tax assessment in Germany, you have to …",
+   "options": [
+    "do nothing.",
+    "throw the assessment away.",
+    "lodge an objection.",
+    "wait until another assessment arrives."
+   ],
+   "context": "Against an incorrect tax assessment you lodge an objection, an Einspruch, normally within one month of receiving it."
+  },
+  "281": {
+   "text": "Two friends want to go to a public swimming pool in Germany. Both have dark skin and are therefore not let in. Which right is violated in this situation? The right to …",
+   "options": [
+    "freedom of expression",
+    "equal treatment",
+    "freedom of assembly",
+    "freedom of movement"
+   ],
+   "context": "Refusing entry because of skin colour violates the right to equal treatment. Racial discrimination is forbidden by the Basic Law and by the Equal Treatment Act."
+  },
+  "282": {
+   "text": "Which honorary office must German citizens take on if they are asked to do so?",
+   "options": [
+    "club coach",
+    "election helper",
+    "library supervisor",
+    "teacher"
+   ],
+   "context": "German citizens can be required to serve as election helpers. It is one of the few honorary offices you cannot simply decline."
+  },
+  "283": {
+   "text": "What do you do if you receive an incorrect bill from a German public authority?",
+   "options": [
+    "I leave the bill lying around.",
+    "I lodge an objection with the authority.",
+    "I send the bill back to the authority.",
+    "I take the bill to the tax office."
+   ],
+   "context": "If a bill from an authority is wrong you lodge a formal objection, a Widerspruch, with that authority."
+  },
+  "284": {
+   "text": "What you need to be able to do for work will change very quickly in future. What can you do?",
+   "options": [
+    "It does not matter what you learn.",
+    "Adults have to go on learning even after their training.",
+    "Children learn everything at school that matters in a job. After school you do not have to go on learning.",
+    "Everyone has to stop working earlier because everything is changing."
+   ],
+   "context": "Because the skills jobs need change quickly, adults have to go on learning after their training. This is called lebenslanges Lernen, lifelong learning."
+  },
+  "285": {
+   "text": "Ms Frost works as a permanent employee in an office. What does she not have to pay out of her salary?",
+   "options": [
+    "income tax",
+    "unemployment insurance contributions",
+    "pension and health insurance contributions",
+    "value added tax"
+   ],
+   "context": "Value added tax is paid on purchases, not deducted from wages. Income tax and social insurance contributions are."
+  },
+  "286": {
+   "text": "Which body in a company helps employees with problems with their employer?",
+   "options": [
+    "the works council",
+    "the company auditor",
+    "the company group",
+    "the company management"
+   ],
+   "context": "The works council, the Betriebsrat, represents employees in dealings with the employer and is elected by the workforce."
+  },
+  "287": {
+   "text": "You want to end your employment with a company in Germany. What do you have to observe?",
+   "options": [
+    "the salary payments",
+    "the working hours",
+    "the notice period",
+    "the compulsory insurance"
+   ],
+   "context": "When you resign you have to observe the notice period, the Kündigungsfrist, set out in your contract or by law."
+  },
+  "288": {
+   "text": "What is the basis of Germany's special responsibility for Israel?",
+   "options": [
+    "membership of the European Union (EU)",
+    "the National Socialist crimes against Jews",
+    "the Basic Law of the Federal Republic of Germany",
+    "the Christian tradition"
+   ],
+   "context": "Germany's special responsibility for Israel arises from the National Socialist crimes against Jews, above all the murder of six million people in the Holocaust."
+  },
+  "289": {
+   "text": "A man with dark skin applies for a job as a waiter in a restaurant in Germany. What is an example of discrimination? He does not get the job solely because …",
+   "options": [
+    "his German is not good enough.",
+    "his salary expectations are too high.",
+    "he has dark skin.",
+    "he has no experience in the job."
+   ],
+   "context": "Refusing someone a job solely because of dark skin is racial discrimination and forbidden."
+  },
+  "290": {
+   "text": "You have bought a television in Germany. At home you unpack the television, but it does not work. The television is broken. What can you do?",
+   "options": [
+    "file a criminal complaint",
+    "make a complaint about the television",
+    "exchange the device without asking",
+    "extend the warranty"
+   ],
+   "context": "A broken new appliance can be returned as faulty — you make a complaint, a Reklamation, and can ask for repair or replacement."
+  },
+  "291": {
+   "text": "Why do you have to state on your tax return in Germany whether you belong to a church or not? Because …",
+   "options": [
+    "there is a church tax that is linked to income tax and wage tax.",
+    "this is important for statistics in Germany.",
+    "you have to pay more tax if you do not belong to a church.",
+    "the church is responsible for the tax return."
+   ],
+   "context": "Church tax is collected together with income tax, so the tax return has to record whether you belong to a church that levies it."
+  },
+  "292": {
+   "text": "People in Germany live by the principle of religious tolerance. What does that mean?",
+   "options": [
+    "No mosques may be built.",
+    "All people believe in God.",
+    "Everyone can believe what they want.",
+    "The state decides which god people believe in."
+   ],
+   "context": "Religious tolerance means everyone may believe what they wish, or nothing at all. The state does not prescribe a faith."
+  },
+  "293": {
+   "text": "What is an Easter custom in Germany?",
+   "options": [
+    "putting pumpkins outside the door",
+    "decorating a fir tree",
+    "painting eggs",
+    "firing rockets into the air"
+   ],
+   "context": "Painting eggs, and hiding them for children to find, is the classic German Easter custom."
+  },
+  "294": {
+   "text": "Whitsun is a …",
+   "options": [
+    "Christian holiday.",
+    "German day of remembrance.",
+    "international day of mourning.",
+    "Bavarian custom."
+   ],
+   "context": "Whitsun, Pfingsten, is a Christian holiday celebrated fifty days after Easter. Whit Monday is a public holiday in Germany."
+  },
+  "295": {
+   "text": "Which religion has shaped European and German culture?",
+   "options": [
+    "Hinduism",
+    "Christianity",
+    "Buddhism",
+    "Islam"
+   ],
+   "context": "Christianity has shaped European and German culture most strongly, visible in holidays, churches, art and music."
+  },
+  "296": {
+   "text": "In Germany, the last four weeks before Christmas are called …",
+   "options": [
+    "the Day of Repentance and Prayer.",
+    "the harvest festival.",
+    "Advent.",
+    "All Saints' Day."
+   ],
+   "context": "The four weeks before Christmas are Advent. Many families light one candle on an Advent wreath each Sunday."
+  },
+  "297": {
+   "text": "Which country have most migrants to Germany come from?",
+   "options": [
+    "Italy",
+    "Poland",
+    "Morocco",
+    "Turkey"
+   ],
+   "context": "More migrants have come to Germany from Turkey than from anywhere else, beginning with the recruitment agreement of 1961."
+  },
+  "298": {
+   "text": "The migrants living in the GDR came above all from …",
+   "options": [
+    "Vietnam, Poland, Mozambique.",
+    "France, Romania, Somalia.",
+    "Chile, Hungary, Zimbabwe.",
+    "North Korea, Mexico, Egypt."
+   ],
+   "context": "Migrants in the GDR came mainly from other socialist states, above all Vietnam, Poland and Mozambique, usually as contract workers."
+  },
+  "299": {
+   "text": "Foreign workers recruited by the Federal Republic of Germany in the 1950s and 1960s were called …",
+   "options": [
+    "illegal workers.",
+    "guest workers.",
+    "temporary workers.",
+    "shift workers."
+   ],
+   "context": "Workers recruited abroad in the 1950s and 1960s were called Gastarbeiter, guest workers. Many stayed and made Germany their home."
+  },
+  "300": {
+   "text": "Which country did the first guest workers in the Federal Republic of Germany come from?",
+   "options": [
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Turkey"
+   ],
+   "context": "The first guest workers came from Italy, after the recruitment agreement of 1955. Agreements with Spain, Greece and Turkey followed."
+  },
+  "301": {
+   "text": "Which coat of arms belongs to the federal state of Baden-Württemberg?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Baden-Württemberg shows three black lions on a golden shield, the arms of the Staufer dynasty."
+  },
+  "302": {
+   "text": "Which is a rural district in Baden-Württemberg?",
+   "options": [
+    "Mecklenburgische Seenplatte",
+    "Neckar-Odenwald-Kreis",
+    "Nordfriesland",
+    "Altötting"
+   ],
+   "context": "The Neckar-Odenwald-Kreis is a district of Baden-Württemberg. The others belong to different federal states."
+  },
+  "303": {
+   "text": "For how many years is the state parliament in Baden-Württemberg elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Baden-Württemberg is elected for five years, as in almost every federal state."
+  },
+  "304": {
+   "text": "From what age may you vote in local elections in Baden-Württemberg?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Baden-Württemberg you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "305": {
+   "text": "What colours does the state flag of Baden-Württemberg have?",
+   "options": [
+    "blue-white-red",
+    "black-gold",
+    "white-blue",
+    "green-white-red"
+   ],
+   "context": "The state flag of Baden-Württemberg is black and gold."
+  },
+  "306": {
+   "text": "Where can you find information about political topics in Baden-Württemberg?",
+   "options": [
+    "at the municipal public order office",
+    "at the consumer advice centre",
+    "at the State Centre for Civic Education",
+    "at the churches"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Baden-Württemberg. Its work is free and independent of party politics."
+  },
+  "307": {
+   "text": "The state capital of Baden-Württemberg is …",
+   "options": [
+    "Heidelberg.",
+    "Stuttgart.",
+    "Karlsruhe.",
+    "Mannheim."
+   ],
+   "context": "Stuttgart is the state capital of Baden-Württemberg, and the seat of its parliament and government."
+  },
+  "308": {
+   "text": "Which federal state is Baden-Württemberg?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Baden-Württemberg lies in the south-west, bordering France and Switzerland."
+  },
+  "309": {
+   "text": "What is the head of government in Baden-Württemberg called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Baden-Württemberg is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "310": {
+   "text": "Which minister does Baden-Württemberg not have?",
+   "options": [
+    "Finance Minister",
+    "Justice Minister",
+    "Interior Minister",
+    "Foreign Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Baden-Württemberg does have ministers for justice, finance and the interior."
+  },
+  "311": {
+   "text": "Which coat of arms belongs to the Free State of Bavaria?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Bavaria shows the white-and-blue lozenges of the Wittelsbach dynasty beneath the people's crown."
+  },
+  "312": {
+   "text": "Which is a rural district in Bavaria?",
+   "options": [
+    "Prignitz",
+    "Rhein-Sieg-Kreis",
+    "Nordfriesland",
+    "Altötting"
+   ],
+   "context": "Altötting is a district of Bavaria. The others belong to different federal states."
+  },
+  "313": {
+   "text": "For how many years is the state parliament in Bavaria elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Bavaria is elected for five years, as in almost every federal state."
+  },
+  "314": {
+   "text": "From what age may you vote in local elections in Bavaria?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Bavaria the voting age in local elections is 18, the same as for the Bundestag. Some other states allow voting from 16."
+  },
+  "315": {
+   "text": "What colours does the state flag of Bavaria have?",
+   "options": [
+    "blue-white-red",
+    "white-blue",
+    "green-white-red",
+    "black-yellow"
+   ],
+   "context": "The state flag of Bavaria is white and blue."
+  },
+  "316": {
+   "text": "Where can you find information about political topics in Bavaria?",
+   "options": [
+    "at the municipal public order office",
+    "at the State Centre for Civic Education",
+    "at the consumer advice centre",
+    "at the churches"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Bavaria. Its work is free and independent of party politics."
+  },
+  "317": {
+   "text": "The state capital of Bavaria is …",
+   "options": [
+    "Ingolstadt.",
+    "Regensburg.",
+    "Nuremberg.",
+    "Munich."
+   ],
+   "context": "Munich is the state capital of Bavaria, and the seat of its parliament and government."
+  },
+  "318": {
+   "text": "Which federal state is Bavaria?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Bavaria lies in the south-east, the largest state by area."
+  },
+  "319": {
+   "text": "What is the head of government in Bavaria called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Bavaria is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "320": {
+   "text": "Which minister does Bavaria not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Bavaria does have ministers for justice, finance and the interior."
+  },
+  "321": {
+   "text": "Which coat of arms belongs to the federal state of Berlin?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Berlin shows the black Berlin bear on a white shield."
+  },
+  "322": {
+   "text": "Which is a district of Berlin?",
+   "options": [
+    "Altona",
+    "Prignitz",
+    "Pankow",
+    "Mecklenburgische Seenplatte"
+   ],
+   "context": "Pankow is a borough of Berlin. The others belong to different federal states."
+  },
+  "323": {
+   "text": "For how many years is the state parliament in Berlin elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Berlin is elected for five years, as in almost every federal state."
+  },
+  "324": {
+   "text": "From what age may you vote in local elections in Berlin (election of the district assembly)?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Berlin you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "325": {
+   "text": "What colours does the state flag of Berlin have?",
+   "options": [
+    "blue-white-red",
+    "white-red",
+    "green-white-red",
+    "black-gold"
+   ],
+   "context": "The state flag of Berlin is white and red."
+  },
+  "326": {
+   "text": "Where can you find information about political topics in Berlin?",
+   "options": [
+    "at the municipal public order office",
+    "at the churches",
+    "at the consumer advice centre",
+    "at the State Centre for Civic Education"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Berlin. Its work is free and independent of party politics."
+  },
+  "327": {
+   "text": "Which federal state is a city state?",
+   "options": [
+    "Berlin",
+    "Saarland",
+    "Brandenburg",
+    "Hesse"
+   ],
+   "context": "Berlin is a city state: it is both a city and a federal state in its own right."
+  },
+  "328": {
+   "text": "Which federal state is Berlin?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Berlin lies in the east, a city state surrounded by Brandenburg."
+  },
+  "329": {
+   "text": "What is the head of government of the city state of Berlin called?",
+   "options": [
+    "Minister-President",
+    "Lord Mayor",
+    "President of the Senate",
+    "Governing Mayor"
+   ],
+   "context": "As a city state, Berlin calls its head of government Regierender Bürgermeister, not Ministerpräsident."
+  },
+  "330": {
+   "text": "Which senator does Berlin not have?",
+   "options": [
+    "Senator for Finance",
+    "Senator for the Interior",
+    "Senator for Foreign Relations",
+    "Senator for Justice"
+   ],
+   "context": "No federal state has a senator for foreign relations: foreign policy is a matter for the federation alone. Berlin does have senators for finance, the interior and justice."
+  },
+  "331": {
+   "text": "Which coat of arms belongs to the federal state of Brandenburg?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Brandenburg shows the red Brandenburg eagle on a white shield."
+  },
+  "332": {
+   "text": "Which is a rural district in Brandenburg?",
+   "options": [
+    "Prignitz",
+    "Rhein-Sieg-Kreis",
+    "Vogtlandkreis",
+    "Amberg-Sulzbach"
+   ],
+   "context": "The Prignitz is a district of Brandenburg. The others belong to different federal states."
+  },
+  "333": {
+   "text": "For how many years is the state parliament in Brandenburg elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Brandenburg is elected for five years, as in almost every federal state."
+  },
+  "334": {
+   "text": "From what age may you vote in local elections in Brandenburg?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Brandenburg you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "335": {
+   "text": "What colours does the state flag of Brandenburg have?",
+   "options": [
+    "blue-white-red",
+    "red-white",
+    "green-white-red",
+    "black-yellow"
+   ],
+   "context": "The state flag of Brandenburg is red and white."
+  },
+  "336": {
+   "text": "Where can you find information about political topics in Brandenburg?",
+   "options": [
+    "at the churches",
+    "at the municipal public order office",
+    "at the State Centre for Civic Education",
+    "at the consumer advice centre"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Brandenburg. Its work is free and independent of party politics."
+  },
+  "337": {
+   "text": "The state capital of Brandenburg is …",
+   "options": [
+    "Potsdam.",
+    "Cottbus.",
+    "Brandenburg.",
+    "Frankfurt (Oder)."
+   ],
+   "context": "Potsdam is the state capital of Brandenburg, and the seat of its parliament and government."
+  },
+  "338": {
+   "text": "Which federal state is Brandenburg?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Brandenburg lies in the east, the state that surrounds Berlin."
+  },
+  "339": {
+   "text": "What is the head of government in Brandenburg called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Brandenburg is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "340": {
+   "text": "Which minister does Brandenburg not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Brandenburg does have ministers for justice, finance and the interior."
+  },
+  "341": {
+   "text": "Which coat of arms belongs to the Free Hanseatic City of Bremen?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Bremen shows the silver key of Saint Peter on a red shield."
+  },
+  "342": {
+   "text": "Which is a district of Bremen?",
+   "options": [
+    "Altona",
+    "Hemelingen",
+    "Pankow",
+    "Babelsberg"
+   ],
+   "context": "Hemelingen is a city district of Bremen. The others belong to different federal states."
+  },
+  "343": {
+   "text": "For how many years is the state parliament in Bremen elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The Bremische Bürgerschaft is elected for four years — the shortest term of any state parliament in Germany, where five years is otherwise the rule."
+  },
+  "344": {
+   "text": "From what age may you vote in the elections to the Bürgerschaft (state parliament) in Bremen?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Bremen you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "345": {
+   "text": "What colours does the state flag of Bremen have?",
+   "options": [
+    "blue-white-red",
+    "red-white",
+    "green-white-red",
+    "black-gold"
+   ],
+   "context": "The state flag of Bremen is red and white."
+  },
+  "346": {
+   "text": "Where can you find information about political topics in Bremen?",
+   "options": [
+    "at the municipal public order office",
+    "at the State Centre for Civic Education",
+    "at the churches",
+    "at the consumer advice centre"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Bremen. Its work is free and independent of party politics."
+  },
+  "347": {
+   "text": "Which is a German city state?",
+   "options": [
+    "Bremen",
+    "Munich",
+    "Frankfurt",
+    "Erfurt"
+   ],
+   "context": "Bremen is a city state, made up of the cities of Bremen and Bremerhaven."
+  },
+  "348": {
+   "text": "Which federal state is Bremen?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Bremen lies in the north-west, the smallest federal state."
+  },
+  "349": {
+   "text": "What is the head of government of the city state of Bremen called?",
+   "options": [
+    "Minister-President",
+    "First Mayor",
+    "President of the Senate",
+    "Governing Mayor"
+   ],
+   "context": "As a city state, Bremen calls its head of government Präsident des Senates, not Ministerpräsident."
+  },
+  "350": {
+   "text": "Which senator does Bremen not have?",
+   "options": [
+    "Senator for Foreign Relations",
+    "Senator for Finance",
+    "Senator for Justice",
+    "Senator for the Interior"
+   ],
+   "context": "No federal state has a senator for foreign relations: foreign policy is a matter for the federation alone. Bremen does have senators for finance, the interior and justice."
+  },
+  "351": {
+   "text": "Which coat of arms belongs to the Free and Hanseatic City of Hamburg?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Hamburg shows the white castle on a red shield."
+  },
+  "352": {
+   "text": "Which is a district of Hamburg?",
+   "options": [
+    "Altona",
+    "Hemelingen",
+    "Pankow",
+    "Mecklenburgische Seenplatte"
+   ],
+   "context": "Altona is a borough of Hamburg. The others belong to different federal states."
+  },
+  "353": {
+   "text": "For how many years is the state parliament in Hamburg elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Hamburg is elected for five years, as in almost every federal state."
+  },
+  "354": {
+   "text": "From what age may you vote in local elections in Hamburg (election of the district assemblies)?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Hamburg you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "355": {
+   "text": "What colours does the state flag of Hamburg have?",
+   "options": [
+    "blue-white-red",
+    "white-red",
+    "green-white-red",
+    "black-yellow"
+   ],
+   "context": "The state flag of Hamburg is white and red."
+  },
+  "356": {
+   "text": "Where can you find information about political topics in Hamburg?",
+   "options": [
+    "at the municipal public order office",
+    "at the consumer advice centre",
+    "at the churches",
+    "at the State Centre for Civic Education"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Hamburg. Its work is free and independent of party politics."
+  },
+  "357": {
+   "text": "Which federal state is a city state?",
+   "options": [
+    "Hamburg",
+    "Saxony",
+    "Bavaria",
+    "Thuringia"
+   ],
+   "context": "Hamburg is a city state: the city and the federal state are one and the same."
+  },
+  "358": {
+   "text": "Which federal state is Hamburg?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Hamburg lies in the north, on the Elbe."
+  },
+  "359": {
+   "text": "What is the head of government of the city state of Hamburg called?",
+   "options": [
+    "Minister-President",
+    "First Mayor",
+    "Governing Senator",
+    "Lord Mayor"
+   ],
+   "context": "As a city state, Hamburg calls its head of government Erster Bürgermeister, not Ministerpräsident."
+  },
+  "360": {
+   "text": "Which senator does Hamburg not have?",
+   "options": [
+    "Senator for Justice",
+    "Senator for Foreign Relations",
+    "Senator for Finance",
+    "Senator for the Interior"
+   ],
+   "context": "No federal state has a senator for foreign relations: foreign policy is a matter for the federation alone. Hamburg does have senators for finance, the interior and justice."
+  },
+  "361": {
+   "text": "Which coat of arms belongs to the federal state of Hesse?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Hesse shows the red-and-white striped lion of Hesse."
+  },
+  "362": {
+   "text": "Which is a rural district in Hesse?",
+   "options": [
+    "Ammerland",
+    "Altötting",
+    "Prignitz",
+    "Main-Taunus-Kreis"
+   ],
+   "context": "The Main-Taunus-Kreis is a district of Hesse. The others belong to different federal states."
+  },
+  "363": {
+   "text": "For how many years is the state parliament in Hesse elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Hesse is elected for five years, as in almost every federal state."
+  },
+  "364": {
+   "text": "From what age may you vote in local elections in Hesse?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Hesse the voting age in local elections is 18, the same as for the Bundestag. Some other states allow voting from 16."
+  },
+  "365": {
+   "text": "What colours does the state flag of Hesse have?",
+   "options": [
+    "blue-white-red",
+    "red-white",
+    "black-gold",
+    "green-white-red"
+   ],
+   "context": "The state flag of Hesse is red and white."
+  },
+  "366": {
+   "text": "Where can you find information about political topics in Hesse?",
+   "options": [
+    "at the State Centre for Civic Education",
+    "at the consumer advice centre",
+    "at the municipal public order office",
+    "at the churches"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Hesse. Its work is free and independent of party politics."
+  },
+  "367": {
+   "text": "The state capital of Hesse is …",
+   "options": [
+    "Kassel.",
+    "Darmstadt.",
+    "Frankfurt.",
+    "Wiesbaden."
+   ],
+   "context": "Wiesbaden is the state capital of Hesse, and the seat of its parliament and government."
+  },
+  "368": {
+   "text": "Which federal state is Hesse?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Hesse lies in the middle of Germany, with Frankfurt as its largest city."
+  },
+  "369": {
+   "text": "What is the head of government in Hesse called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Hesse is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "370": {
+   "text": "Which minister does Hesse not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Hesse does have ministers for justice, finance and the interior."
+  },
+  "371": {
+   "text": "Which coat of arms belongs to the federal state of Mecklenburg-Western Pomerania?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Mecklenburg-Western Pomerania shows the crowned bull's head of Mecklenburg beside the red griffin of Pomerania."
+  },
+  "372": {
+   "text": "Which is a rural district in Mecklenburg-Western Pomerania?",
+   "options": [
+    "Prignitz",
+    "Mecklenburgische Seenplatte",
+    "Vogtlandkreis",
+    "Rhein-Sieg-Kreis"
+   ],
+   "context": "The Mecklenburgische Seenplatte is a district of Mecklenburg-Western Pomerania. The others belong to different federal states."
+  },
+  "373": {
+   "text": "For how many years is the state parliament in Mecklenburg-Western Pomerania elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Mecklenburg-Western Pomerania is elected for five years, as in almost every federal state."
+  },
+  "374": {
+   "text": "From what age may you vote in local elections in Mecklenburg-Western Pomerania?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Mecklenburg-Western Pomerania you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "375": {
+   "text": "What colours does the state flag of Mecklenburg-Western Pomerania have?",
+   "options": [
+    "black-red-gold",
+    "blue-white-yellow-red",
+    "green-white-red",
+    "black-yellow"
+   ],
+   "context": "The state flag of Mecklenburg-Western Pomerania is blue, white, yellow and red."
+  },
+  "376": {
+   "text": "Where can you find information about political topics in Mecklenburg-Western Pomerania?",
+   "options": [
+    "at the State Centre for Civic Education",
+    "at the churches",
+    "at the municipal public order office",
+    "at the consumer advice centre"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Mecklenburg-Western Pomerania. Its work is free and independent of party politics."
+  },
+  "377": {
+   "text": "The state capital of Mecklenburg-Western Pomerania is …",
+   "options": [
+    "Greifswald.",
+    "Schwerin.",
+    "Rostock.",
+    "Wismar."
+   ],
+   "context": "Schwerin is the state capital of Mecklenburg-Western Pomerania, and the seat of its parliament and government."
+  },
+  "378": {
+   "text": "Which federal state is Mecklenburg-Western Pomerania?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Mecklenburg-Western Pomerania lies in the north-east, on the Baltic coast."
+  },
+  "379": {
+   "text": "What is the head of government in Mecklenburg-Western Pomerania called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Mecklenburg-Western Pomerania is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "380": {
+   "text": "Which minister does Mecklenburg-Western Pomerania not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Mecklenburg-Western Pomerania does have ministers for justice, finance and the interior."
+  },
+  "381": {
+   "text": "Which coat of arms belongs to the federal state of Lower Saxony?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Lower Saxony shows the white Saxon horse on a red shield."
+  },
+  "382": {
+   "text": "Which is a rural district in Lower Saxony?",
+   "options": [
+    "Ammerland",
+    "Rhein-Sieg-Kreis",
+    "Nordfriesland",
+    "Vogtlandkreis"
+   ],
+   "context": "The Ammerland is a district of Lower Saxony. The others belong to different federal states."
+  },
+  "383": {
+   "text": "For how many years is the state parliament in Lower Saxony elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Lower Saxony is elected for five years, as in almost every federal state."
+  },
+  "384": {
+   "text": "From what age may you vote in local elections in Lower Saxony?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Lower Saxony you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "385": {
+   "text": "What colours does the state flag of Lower Saxony have?",
+   "options": [
+    "white-blue",
+    "black-red-gold",
+    "black-yellow",
+    "blue-white-red"
+   ],
+   "context": "The state flag of Lower Saxony is black, red and gold."
+  },
+  "386": {
+   "text": "Where can you find information about political topics in Lower Saxony?",
+   "options": [
+    "at the State Centre for Civic Education",
+    "at the municipal public order office",
+    "at the consumer advice centre",
+    "at the churches"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Lower Saxony. Its work is free and independent of party politics."
+  },
+  "387": {
+   "text": "The state capital of Lower Saxony is …",
+   "options": [
+    "Hanover.",
+    "Braunschweig.",
+    "Wolfsburg.",
+    "Osnabrück."
+   ],
+   "context": "Hanover is the state capital of Lower Saxony, and the seat of its parliament and government."
+  },
+  "388": {
+   "text": "Which federal state is Lower Saxony?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Lower Saxony lies in the north-west, the second largest state by area."
+  },
+  "389": {
+   "text": "What is the head of government in Lower Saxony called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Lower Saxony is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "390": {
+   "text": "Which minister does Lower Saxony not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Lower Saxony does have ministers for justice, finance and the interior."
+  },
+  "391": {
+   "text": "Which coat of arms belongs to the federal state of North Rhine-Westphalia?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of North Rhine-Westphalia shows the Rhine, the Westphalian horse and the rose of Lippe."
+  },
+  "392": {
+   "text": "Which is a rural district in North Rhine-Westphalia?",
+   "options": [
+    "Ammerland",
+    "Rhein-Sieg-Kreis",
+    "Nordfriesland",
+    "Vogtlandkreis"
+   ],
+   "context": "The Rhein-Sieg-Kreis is a district of North Rhine-Westphalia. The others belong to different federal states."
+  },
+  "393": {
+   "text": "For how many years is the state parliament in North Rhine-Westphalia elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of North Rhine-Westphalia is elected for five years, as in almost every federal state."
+  },
+  "394": {
+   "text": "From what age may you vote in local elections in North Rhine-Westphalia?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In North Rhine-Westphalia you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "395": {
+   "text": "What colours does the state flag of North Rhine-Westphalia have?",
+   "options": [
+    "red-white",
+    "green-white-red",
+    "black-gold",
+    "blue-white-red"
+   ],
+   "context": "The state flag of North Rhine-Westphalia is green, white and red."
+  },
+  "396": {
+   "text": "Where can you find information about political topics in North Rhine-Westphalia?",
+   "options": [
+    "at the churches",
+    "at the municipal public order office",
+    "at the consumer advice centre",
+    "at the State Centre for Civic Education"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in North Rhine-Westphalia. Its work is free and independent of party politics."
+  },
+  "397": {
+   "text": "The state capital of North Rhine-Westphalia is …",
+   "options": [
+    "Cologne.",
+    "Bonn.",
+    "Düsseldorf.",
+    "Dortmund."
+   ],
+   "context": "Düsseldorf is the state capital of North Rhine-Westphalia, and the seat of its parliament and government."
+  },
+  "398": {
+   "text": "Which federal state is North Rhine-Westphalia?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, North Rhine-Westphalia lies in the west, the most populous federal state."
+  },
+  "399": {
+   "text": "What is the head of government in North Rhine-Westphalia called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of North Rhine-Westphalia is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "400": {
+   "text": "Which minister does North Rhine-Westphalia not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. North Rhine-Westphalia does have ministers for justice, finance and the interior."
+  },
+  "401": {
+   "text": "Which coat of arms belongs to the federal state of Rhineland-Palatinate?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Rhineland-Palatinate shows the cross of Trier, the wheel of Mainz and the lion of the Palatinate."
+  },
+  "402": {
+   "text": "Which is a rural district in Rhineland-Palatinate?",
+   "options": [
+    "Westerwaldkreis",
+    "Altötting",
+    "Emsland",
+    "Prignitz"
+   ],
+   "context": "The Westerwaldkreis is a district of Rhineland-Palatinate. The others belong to different federal states."
+  },
+  "403": {
+   "text": "For how many years is the state parliament in Rhineland-Palatinate elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Rhineland-Palatinate is elected for five years, as in almost every federal state."
+  },
+  "404": {
+   "text": "From what age may you vote in local elections in Rhineland-Palatinate?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Rhineland-Palatinate the voting age in local elections is 18, the same as for the Bundestag. Some other states allow voting from 16."
+  },
+  "405": {
+   "text": "What colours does the state flag of Rhineland-Palatinate have?",
+   "options": [
+    "white-red",
+    "black-red-gold",
+    "black-yellow",
+    "green-white-red"
+   ],
+   "context": "The state flag of Rhineland-Palatinate is black, red and gold."
+  },
+  "406": {
+   "text": "Where can you find information about political topics in Rhineland-Palatinate?",
+   "options": [
+    "at the churches",
+    "at the consumer advice centre",
+    "at the municipal public order office",
+    "at the State Centre for Civic Education"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Rhineland-Palatinate. Its work is free and independent of party politics."
+  },
+  "407": {
+   "text": "The state capital of Rhineland-Palatinate is …",
+   "options": [
+    "Mainz.",
+    "Kaiserslautern.",
+    "Ludwigshafen.",
+    "Koblenz."
+   ],
+   "context": "Mainz is the state capital of Rhineland-Palatinate, and the seat of its parliament and government."
+  },
+  "408": {
+   "text": "Which federal state is Rhineland-Palatinate?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Rhineland-Palatinate lies in the west, on the Rhine and the Moselle."
+  },
+  "409": {
+   "text": "What is the head of government in Rhineland-Palatinate called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Rhineland-Palatinate is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "410": {
+   "text": "Which minister does Rhineland-Palatinate not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Rhineland-Palatinate does have ministers for justice, finance and the interior."
+  },
+  "411": {
+   "text": "Which coat of arms belongs to the federal state of Saarland?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Saarland shows four quarters for the historic territories that make up the state."
+  },
+  "412": {
+   "text": "Which is a rural district in Saarland?",
+   "options": [
+    "Mecklenburgische Seenplatte",
+    "Altötting",
+    "Neunkirchen",
+    "Rhein-Sieg-Kreis"
+   ],
+   "context": "Neunkirchen is a district of Saarland. The others belong to different federal states."
+  },
+  "413": {
+   "text": "For how many years is the state parliament of Saarland elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Saarland is elected for five years, as in almost every federal state."
+  },
+  "414": {
+   "text": "From what age may you vote in local elections in Saarland?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Saarland the voting age in local elections is 18, the same as for the Bundestag. Some other states allow voting from 16."
+  },
+  "415": {
+   "text": "What colours does the state flag of Saarland have?",
+   "options": [
+    "white-blue",
+    "black-red-gold",
+    "black-yellow",
+    "green-white-red"
+   ],
+   "context": "The state flag of Saarland is black, red and gold."
+  },
+  "416": {
+   "text": "Where can you find information about political topics in Saarland?",
+   "options": [
+    "at the churches",
+    "at the State Centre for Civic Education",
+    "at the consumer advice centre",
+    "at the municipal public order office"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Saarland. Its work is free and independent of party politics."
+  },
+  "417": {
+   "text": "The state capital of Saarland is …",
+   "options": [
+    "Neunkirchen.",
+    "Homburg.",
+    "Saarbrücken.",
+    "Völklingen."
+   ],
+   "context": "Saarbrücken is the state capital of Saarland, and the seat of its parliament and government."
+  },
+  "418": {
+   "text": "Which federal state is Saarland?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Saarland lies in the south-west, on the French border."
+  },
+  "419": {
+   "text": "What is the head of government of Saarland called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Saarland is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "420": {
+   "text": "Which minister does Saarland not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Saarland does have ministers for justice, finance and the interior."
+  },
+  "421": {
+   "text": "Which coat of arms belongs to the Free State of Saxony?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Saxony shows black and gold bars crossed by a green crancelin."
+  },
+  "422": {
+   "text": "Which is a rural district in Saxony?",
+   "options": [
+    "Vogtlandkreis",
+    "Altötting",
+    "Uckermark",
+    "Nordfriesland"
+   ],
+   "context": "The Vogtlandkreis is a district of Saxony. The others belong to different federal states."
+  },
+  "423": {
+   "text": "For how many years is the state parliament in Saxony elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Saxony is elected for five years, as in almost every federal state."
+  },
+  "424": {
+   "text": "From what age may you vote in local elections in Saxony?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Saxony the voting age in local elections is 18, the same as for the Bundestag. Some other states allow voting from 16."
+  },
+  "425": {
+   "text": "What colours does the state flag of Saxony have?",
+   "options": [
+    "blue-white-red",
+    "white-green",
+    "green-white-red",
+    "black-yellow"
+   ],
+   "context": "The state flag of Saxony is white and green."
+  },
+  "426": {
+   "text": "Where can you find information about political topics in Saxony?",
+   "options": [
+    "at the State Centre for Civic Education",
+    "at the municipal public order office",
+    "at the churches",
+    "at the consumer advice centre"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Saxony. Its work is free and independent of party politics."
+  },
+  "427": {
+   "text": "The state capital of Saxony is …",
+   "options": [
+    "Leipzig.",
+    "Dresden.",
+    "Chemnitz.",
+    "Zwickau."
+   ],
+   "context": "Dresden is the state capital of Saxony, and the seat of its parliament and government."
+  },
+  "428": {
+   "text": "Which federal state is Saxony?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Saxony lies in the east, bordering Poland and Czechia."
+  },
+  "429": {
+   "text": "What is the head of government in Saxony called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Saxony is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "430": {
+   "text": "Which minister does Saxony not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Saxony does have ministers for justice, finance and the interior."
+  },
+  "431": {
+   "text": "Which coat of arms belongs to the federal state of Saxony-Anhalt?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Saxony-Anhalt shows the Prussian eagle and the Ascanian bars with the green crancelin, above the bear of Magdeburg on its wall."
+  },
+  "432": {
+   "text": "Which is a rural district in Saxony-Anhalt?",
+   "options": [
+    "Ammerland",
+    "Altötting",
+    "Uckermark",
+    "Börde"
+   ],
+   "context": "The Börde is a district of Saxony-Anhalt. The others belong to different federal states."
+  },
+  "433": {
+   "text": "For how many years is the state parliament in Saxony-Anhalt elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Saxony-Anhalt is elected for five years, as in almost every federal state."
+  },
+  "434": {
+   "text": "From what age may you vote in local elections in Saxony-Anhalt?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Saxony-Anhalt you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "435": {
+   "text": "What colours does the state flag of Saxony-Anhalt have?",
+   "options": [
+    "blue-white-red",
+    "yellow-black",
+    "green-white-red",
+    "white-red"
+   ],
+   "context": "The state flag of Saxony-Anhalt is yellow and black."
+  },
+  "436": {
+   "text": "Where can you find information about political topics in Saxony-Anhalt?",
+   "options": [
+    "at the churches",
+    "at the State Centre for Civic Education",
+    "at the municipal public order office",
+    "at the consumer advice centre"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Saxony-Anhalt. Its work is free and independent of party politics."
+  },
+  "437": {
+   "text": "The state capital of Saxony-Anhalt is …",
+   "options": [
+    "Halle.",
+    "Dessau.",
+    "Magdeburg.",
+    "Wittenberg."
+   ],
+   "context": "Magdeburg is the state capital of Saxony-Anhalt, and the seat of its parliament and government."
+  },
+  "438": {
+   "text": "Which federal state is Saxony-Anhalt?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Saxony-Anhalt lies in the east, between Lower Saxony and Brandenburg."
+  },
+  "439": {
+   "text": "What is the head of government in Saxony-Anhalt called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Saxony-Anhalt is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "440": {
+   "text": "Which minister does Saxony-Anhalt not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Saxony-Anhalt does have ministers for justice, finance and the interior."
+  },
+  "441": {
+   "text": "Which coat of arms belongs to the federal state of Schleswig-Holstein?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Schleswig-Holstein shows the two lions of Schleswig beside the nettle leaf of Holstein."
+  },
+  "442": {
+   "text": "Which is a rural district in Schleswig-Holstein?",
+   "options": [
+    "Ammerland",
+    "Mecklenburgische Seenplatte",
+    "Nordfriesland",
+    "Rhein-Sieg-Kreis"
+   ],
+   "context": "Nordfriesland is a district of Schleswig-Holstein. The others belong to different federal states."
+  },
+  "443": {
+   "text": "For how many years is the state parliament in Schleswig-Holstein elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Schleswig-Holstein is elected for five years, as in almost every federal state."
+  },
+  "444": {
+   "text": "From what age may you vote in local elections in Schleswig-Holstein?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Schleswig-Holstein you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "445": {
+   "text": "What colours does the state flag of Schleswig-Holstein have?",
+   "options": [
+    "white-blue",
+    "blue-white-red",
+    "white-red",
+    "green-white-red"
+   ],
+   "context": "The state flag of Schleswig-Holstein is blue, white and red."
+  },
+  "446": {
+   "text": "Where can you find information about political topics in Schleswig-Holstein?",
+   "options": [
+    "at the consumer advice centre",
+    "at the municipal public order office",
+    "at the State Commissioner for Civic Education",
+    "at the churches"
+   ],
+   "context": "In Schleswig-Holstein the Landesbeauftragte für politische Bildung provides information on political topics. Every state has such a body, independent of party politics."
+  },
+  "447": {
+   "text": "The state capital of Schleswig-Holstein is …",
+   "options": [
+    "Husum.",
+    "Flensburg.",
+    "Lübeck.",
+    "Kiel."
+   ],
+   "context": "Kiel is the state capital of Schleswig-Holstein, and the seat of its parliament and government."
+  },
+  "448": {
+   "text": "Which federal state is Schleswig-Holstein?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Schleswig-Holstein lies the northernmost state, between the North Sea and the Baltic."
+  },
+  "449": {
+   "text": "What is the head of government in Schleswig-Holstein called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Schleswig-Holstein is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "450": {
+   "text": "Which minister does Schleswig-Holstein not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Schleswig-Holstein does have ministers for justice, finance and the interior."
+  },
+  "451": {
+   "text": "Which coat of arms belongs to the Free State of Thuringia?",
+   "options": [
+    "Picture 1",
+    "Picture 2",
+    "Picture 3",
+    "Picture 4"
+   ],
+   "context": "The coat of arms of Thuringia shows the lion with eight stars."
+  },
+  "452": {
+   "text": "Which is a rural district in Thuringia?",
+   "options": [
+    "Ammerland",
+    "Altötting",
+    "Nordfriesland",
+    "Wartburgkreis"
+   ],
+   "context": "The Wartburgkreis is a district of Thuringia. The others belong to different federal states."
+  },
+  "453": {
+   "text": "For how many years is the state parliament in Thuringia elected?",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "context": "The state parliament of Thuringia is elected for five years, as in almost every federal state."
+  },
+  "454": {
+   "text": "From what age may you vote in local elections in Thuringia?",
+   "options": [
+    "14",
+    "16",
+    "18",
+    "20"
+   ],
+   "context": "In Thuringia you may vote in local elections from 16. States set their own rules here, and several have lowered the age below 18."
+  },
+  "455": {
+   "text": "What colours does the state flag of Thuringia have?",
+   "options": [
+    "blue-white-red",
+    "white-red",
+    "green-white-red",
+    "black-gold"
+   ],
+   "context": "The state flag of Thuringia is white and red."
+  },
+  "456": {
+   "text": "Where can you find information about political topics in Thuringia?",
+   "options": [
+    "at the churches",
+    "at the consumer advice centre",
+    "at the State Centre for Civic Education",
+    "at the municipal public order office"
+   ],
+   "context": "The Landeszentrale für politische Bildung, the State Centre for Civic Education, informs people about political topics in Thuringia. Its work is free and independent of party politics."
+  },
+  "457": {
+   "text": "The state capital of Thuringia is …",
+   "options": [
+    "Eisenach.",
+    "Erfurt.",
+    "Gera.",
+    "Jena."
+   ],
+   "context": "Erfurt is the state capital of Thuringia, and the seat of its parliament and government."
+  },
+  "458": {
+   "text": "Which federal state is Thuringia?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "context": "On the map, Thuringia lies in the middle of Germany, often called its \"green heart\"."
+  },
+  "459": {
+   "text": "What is the head of government in Thuringia called?",
+   "options": [
+    "First Minister",
+    "Prime Minister",
+    "Mayor",
+    "Minister-President"
+   ],
+   "context": "The head of government of Thuringia is called Ministerpräsident. The title is the same in every state except the three city states."
+  },
+  "460": {
+   "text": "Which minister does Thuringia not have?",
+   "options": [
+    "Justice Minister",
+    "Foreign Minister",
+    "Finance Minister",
+    "Interior Minister"
+   ],
+   "context": "No federal state has a foreign minister — foreign policy is the federation's responsibility. Thuringia does have ministers for justice, finance and the interior."
+  }
+ }
+}
