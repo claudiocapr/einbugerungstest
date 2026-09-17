@@ -64,6 +64,18 @@ const T = {
   examHistory: { de: 'Prüfungsverlauf', en: 'Exam history' },
   noExams: { de: 'Noch keine Prüfung abgelegt.', en: 'No exam taken yet.' },
   resetProgress: { de: 'Fortschritt zurücksetzen', en: 'Reset progress' },
+  saveToFile: { de: 'Als Datei sichern', en: 'Save to a file' },
+  loadFromFile: { de: 'Aus Datei laden', en: 'Load from a file' },
+  fileNote: {
+    de: 'Die Datei landet in Ihren Downloads. Sie finden sie dort wieder, können sie auf ein anderes Gerät kopieren oder einfach löschen.',
+    en: 'The file lands in your downloads. You can find it there, copy it to another device, or simply delete it.',
+  },
+  importDone: { de: 'Fortschritt geladen.', en: 'Progress loaded.' },
+  importFailed: { de: 'Datei konnte nicht gelesen werden.', en: 'That file could not be read.' },
+  confirmImport: {
+    de: 'Der gespeicherte Fortschritt wird durch die Datei ersetzt. Fortfahren?',
+    en: 'Your saved progress will be replaced by the file. Continue?',
+  },
   confirmReset: {
     de: 'Wirklich den gesamten Lernfortschritt löschen?',
     en: 'Really delete all learning progress?',

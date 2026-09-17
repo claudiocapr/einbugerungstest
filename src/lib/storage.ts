@@ -103,5 +103,39 @@ export function resetProgress() {
 }
 
 export function exportStore(): string {
-  return JSON.stringify(current, null, 2);
+  return JSON.stringify({ app: 'einbuergerungstest', version: 1, savedAt: Date.now(), store: current }, null, 2);
+}
+
+/** The name the saved file gets, so it is easy to find again and to delete. */
+export function exportFilename(now = new Date()): string {
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `einbuergerungstest-fortschritt-${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}.json`;
+}
+
+/**
+ * Reads back a file written by `exportStore`. Anything unreadable is rejected
+ * without touching what is already saved, so a wrong file cannot wipe progress.
+ * Files written before the wrapper existed are accepted as a bare store too.
+ */
+export function importStore(text: string): boolean {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return false;
+  }
+  if (!parsed || typeof parsed !== 'object') return false;
+  const outer = parsed as { app?: unknown; store?: unknown };
+  const raw = (outer.app === 'einbuergerungstest' ? outer.store : parsed) as Partial<Store> | undefined;
+  if (!raw || typeof raw !== 'object') return false;
+  if (typeof raw.progress !== 'object' && !Array.isArray(raw.exams)) return false;
+
+  setStore(() => ({
+    ...EMPTY,
+    ...raw,
+    dailyGoal: Number(raw.dailyGoal) > 0 ? Number(raw.dailyGoal) : EMPTY.dailyGoal,
+    progress: migrateProgress(raw.progress),
+    exams: Array.isArray(raw.exams) ? raw.exams : [],
+  }));
+  return true;
 }

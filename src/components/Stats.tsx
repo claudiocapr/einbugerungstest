@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { Lang, State, StrengthLevel } from '../types.ts';
 import { t } from '../lib/i18n.ts';
 import { TOPICS, catalogueFor } from '../lib/questions.ts';
@@ -6,7 +6,9 @@ import { historyOf, strength, strengthLevel } from '../lib/srs.ts';
 import {
   LEVELS, answeredToday, ranked, recentActivity, streakDays, summarise, topicStrengths,
 } from '../lib/insights.ts';
-import { DAILY_GOAL_CHOICES, resetProgress, useStore } from '../lib/storage.ts';
+import {
+  DAILY_GOAL_CHOICES, exportFilename, exportStore, importStore, resetProgress, useStore,
+} from '../lib/storage.ts';
 import { isPass } from '../lib/exam.ts';
 import { AnswerDots, StrengthBadge, StrengthBar, levelClass, levelLabel } from './Strength.tsx';
 
@@ -188,7 +190,9 @@ export function Stats({ state, lang, onExit }: { state: State; lang: Lang; onExi
         </table>
       )}
 
-      <div style={{ marginTop: 28 }}>
+      <ProgressFile lang={lang} />
+
+      <div style={{ marginTop: 20 }}>
         <button
           type="button"
           className="btn small danger"
@@ -199,6 +203,65 @@ export function Stats({ state, lang, onExit }: { state: State; lang: Lang; onExi
           {t('resetProgress', lang)}
         </button>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Saving and restoring progress as an ordinary file. The app keeps its state in
+ * localStorage, which the person cannot see or hand to anyone; a file in the
+ * downloads folder is something they can find, copy to another device and
+ * delete themselves.
+ */
+function ProgressFile({ lang }: { lang: Lang }) {
+  const input = useRef<HTMLInputElement>(null);
+  const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+
+  const save = () => {
+    const blob = new Blob([exportStore()], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = exportFilename();
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    // Revoking straight away can cancel the download on some mobile browsers.
+    setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  };
+
+  const load = async (file: File) => {
+    const ok = importStore(await file.text());
+    setNote({ ok, text: t(ok ? 'importDone' : 'importFailed', lang) });
+  };
+
+  return (
+    <div style={{ marginTop: 28 }}>
+      <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
+        <button type="button" className="btn small" onClick={save}>
+          {t('saveToFile', lang)}
+        </button>
+        <button type="button" className="btn small" onClick={() => input.current?.click()}>
+          {t('loadFromFile', lang)}
+        </button>
+      </div>
+      <p className="small muted" style={{ marginTop: 8 }}>{t('fileNote', lang)}</p>
+      {note && (
+        <p className={`small ${note.ok ? 'good' : 'bad'}`} style={{ marginTop: 4 }}>{note.text}</p>
+      )}
+      <input
+        ref={input}
+        type="file"
+        accept="application/json,.json"
+        hidden
+        onChange={(event) => {
+          const file = event.target.files?.[0];
+          event.target.value = '';
+          if (!file) return;
+          if (!window.confirm(t('confirmImport', lang))) return;
+          void load(file);
+        }}
+      />
     </div>
   );
 }

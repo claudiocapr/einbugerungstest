@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { migrateProgress } from '../src/lib/storage.ts';
+import { exportFilename, exportStore, importStore, migrateProgress, setStore } from '../src/lib/storage.ts';
 import { strengthLevel } from '../src/lib/srs.ts';
 
 const NOW = 1_700_000_000_000;
@@ -54,4 +54,46 @@ test('a missing or malformed store is not an error', () => {
   assert.deepEqual(migrateProgress(undefined), {});
   assert.deepEqual(migrateProgress(null), {});
   assert.deepEqual(migrateProgress('nope'), {});
+});
+
+test('progress saved to a file can be read back', () => {
+  setStore(() => ({
+    state: 'Berlin' as const,
+    lang: 'de' as const,
+    theme: 'system' as const,
+    dailyGoal: 30,
+    progress: { 12: { box: 3, due: NOW, correct: 5, wrong: 1, lastSeen: NOW, history: [{ at: NOW, chosen: 2, ok: true }] } },
+    exams: [{ finishedAt: NOW, correct: 20, total: 33, answers: [] }],
+  }));
+  const saved = exportStore();
+
+  // Wipe, then restore from the file's contents.
+  setStore(() => ({ state: null, lang: 'en', theme: 'system', dailyGoal: 20, progress: {}, exams: [] }));
+  assert.equal(importStore(saved), true);
+
+  const back = JSON.parse(exportStore()).store;
+  assert.equal(back.state, 'Berlin');
+  assert.equal(back.dailyGoal, 30);
+  assert.equal(back.progress[12].correct, 5, 'per-question progress survives the round trip');
+  assert.equal(back.exams.length, 1, 'exam history survives the round trip');
+});
+
+test('an unreadable file leaves saved progress alone', () => {
+  setStore(() => ({
+    state: 'Berlin' as const,
+    lang: 'de' as const,
+    theme: 'system' as const,
+    dailyGoal: 30,
+    progress: { 12: { box: 3, due: NOW, correct: 5, wrong: 1, lastSeen: NOW, history: [] } },
+    exams: [],
+  }));
+
+  for (const bad of ['', 'not json', '[]', 'null', '{"app":"something-else"}']) {
+    assert.equal(importStore(bad), false, `${JSON.stringify(bad)} is rejected`);
+  }
+  assert.equal(JSON.parse(exportStore()).store.progress[12].correct, 5, 'nothing was overwritten');
+});
+
+test('the saved file is named so it can be found again', () => {
+  assert.equal(exportFilename(new Date(2026, 8, 17)), 'einbuergerungstest-fortschritt-2026-09-17.json');
 });
