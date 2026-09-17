@@ -96,11 +96,12 @@ export function QuestionView({ question, lang, chosen, revealed, onChoose, count
 }
 
 export function Verdict({ question, chosen, lang }: { question: Question; chosen: number | null; lang: Lang }) {
+  const unanswered = chosen === null;
   const right = chosen === question.answer;
   return (
-    <div className={`verdict ${right ? 'good' : 'bad'}`}>
+    <div className={`verdict ${unanswered ? '' : right ? 'good' : 'bad'}`}>
       <div className="head">
-        {right ? `✓ ${t('correct', lang)}` : `✗ ${t('wrong', lang)}`}
+        {unanswered ? t('unanswered', lang) : right ? `✓ ${t('correct', lang)}` : `✗ ${t('wrong', lang)}`}
         {!right && (
           <span style={{ fontWeight: 400 }}>
             {' — '}

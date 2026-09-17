@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ExamRecord, Lang, Question, State } from '../types.ts';
-import { QuestionView } from './QuestionView.tsx';
+import { QuestionView, Verdict } from './QuestionView.tsx';
 import { Confirm } from './Confirm.tsx';
 import { t } from '../lib/i18n.ts';
 import { EXAM_DURATION_MS, EXAM_PASS_MARK, EXAM_TOTAL, buildExam, formatClock, isPass } from '../lib/exam.ts';
@@ -207,6 +207,15 @@ function Result({
   const passed = isPass(correct);
 
   if (review) {
+    const wrong = questions.filter((q) => {
+      const given = answers[q.id] ?? null;
+      return given !== null && given !== q.answer;
+    }).length;
+    const unanswered = questions.filter((q) => (answers[q.id] ?? null) === null).length;
+
+    const jump = (id: number) =>
+      document.getElementById(`review-q-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
     return (
       <div>
         <div className="exambar">
@@ -214,11 +223,36 @@ function Result({
             ← {t('back', lang)}
           </button>
         </div>
-        <div className="stack">
+
+        <p className="small muted" style={{ margin: '10px 0 0' }}>
+          <span style={{ color: 'var(--good)' }}>{correct} {t('correct', lang).toLowerCase()}</span>
+          {' · '}
+          <span style={{ color: 'var(--bad)' }}>{wrong} {t('wrong', lang).toLowerCase()}</span>
+          {unanswered > 0 && <> · {unanswered} {t('unanswered', lang).toLowerCase()}</>}
+        </p>
+        <div className="grid-nav" role="navigation" style={{ marginTop: 10 }}>
+          {questions.map((q, i) => {
+            const given = answers[q.id] ?? null;
+            const right = given !== null && given === q.answer;
+            return (
+              <button
+                key={q.id}
+                type="button"
+                className={given === null ? '' : right ? 'right' : 'wrong'}
+                title={`${t('question', lang)} ${i + 1}`}
+                onClick={() => jump(q.id)}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="stack" style={{ marginTop: 16 }}>
           {questions.map((q, i) => {
             const given = answers[q.id] ?? null;
             return (
-              <div className="card" key={q.id}>
+              <div className="card" id={`review-q-${q.id}`} key={q.id}>
                 <QuestionView
                   question={q}
                   lang={lang}
@@ -227,12 +261,7 @@ function Result({
                   onChoose={() => {}}
                   counter={`${t('question', lang)} ${i + 1}`}
                 />
-                {given === null && <p className="small muted" style={{ marginTop: 10 }}>{t('unanswered', lang)}</p>}
-                {q.en.context && (
-                  <p className="small muted" style={{ marginTop: 10 }}>
-                    <strong>{t('explanation', lang)} (EN):</strong> {q.en.context}
-                  </p>
-                )}
+                <Verdict question={q} chosen={given} lang={lang} />
               </div>
             );
           })}
