@@ -106,9 +106,22 @@ base `https://www.telc.net/fileadmin/user_upload/Downloads_Verlag/`):
 
 ## Supabase design
 
-The user is creating a free Supabase project and connecting the **Supabase
-connector at claude.ai/customize/connectors**. Use the connector to create
-everything below; do not ask the user to click through the dashboard.
+**Status (6 Nov 2026): set up and verified.** Project `claudiocapr's
+Project`, ref `armhdiedsojtpcqknpjt`, region eu-central-1, reachable through
+the Supabase connector. Migration `telc_b1_progress_and_private_bucket`
+created `public.progress`, `public.telc_access` and the private bucket
+`telc` with the policies described below; the security advisor reports no
+issues. Sign-ups are disabled (`/auth/v1/settings` returns
+`disable_signup: true`). Exactly one user exists, the owner
+(claudioaprdev@gmail.com), created in the dashboard with a password the
+owner chose, and listed in `telc_access`. Still to do: upload telc's files
+(GitHub secret `SUPABASE_SERVICE_ROLE_KEY` not yet saved) and the app side.
+
+API URL `https://armhdiedsojtpcqknpjt.supabase.co`, publishable key
+`sb_publishable_Y4mxMTzg9zLHN7I_jZdJ7A_vR_S0Pv-`. Both are public by design
+and belong in app code; safety comes from RLS.
+
+The design:
 
 - **Auth:** email + password. **Disable sign-ups.** Create the owner's
   account by sending an invite to the owner's email, so the owner sets the
