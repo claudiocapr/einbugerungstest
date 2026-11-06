@@ -1,5 +1,8 @@
 # Handover
 
+> **Next task: read `PLAN-TELC-B1.md` first.** The app is being replaced by a
+> telc Deutsch B1 trainer; that file holds the agreed plan and decisions.
+
 State of this branch as of 17 September 2026, written for whoever picks the
 work up next. Everything described here is committed and pushed.
 
