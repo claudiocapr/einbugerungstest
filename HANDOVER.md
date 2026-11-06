@@ -1,7 +1,8 @@
 # Handover
 
-> **Next task: read `PLAN-TELC-B1.md` first.** The app is being replaced by a
-> telc Deutsch B1 trainer; that file holds the agreed plan and decisions.
+> **Historical.** This describes the Einbürgerungstest app that this repository
+> hosted until November 2026. It has been replaced by the telc B1 Trainer; see
+> `README.md`, `docs/ARCHITECTURE.md` and `PLAN-TELC-B1.md`.
 
 State of this branch as of 17 September 2026, written for whoever picks the
 work up next. Everything described here is committed and pushed.
