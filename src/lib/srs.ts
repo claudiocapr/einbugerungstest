@@ -1,4 +1,4 @@
-import type { Attempt, QuestionProgress, StrengthLevel } from '../types.ts';
+import type { Attempt, ItemProgress, StrengthLevel } from '../types.ts';
 
 /**
  * Leitner scheduling. A correct answer promotes the question one box and
@@ -15,7 +15,7 @@ export const HISTORY_LENGTH = 10;
 
 export const intervalForBox = (box: number) => INTERVALS[Math.min(Math.max(box, 0), MAX_BOX)];
 
-export const emptyProgress = (): QuestionProgress => ({
+export const emptyProgress = (): ItemProgress => ({
   box: 0,
   due: 0,
   correct: 0,
@@ -25,15 +25,15 @@ export const emptyProgress = (): QuestionProgress => ({
 });
 
 /** Older stores predate the history field, so never trust it to be there. */
-export const historyOf = (p: QuestionProgress | undefined): Attempt[] =>
+export const historyOf = (p: ItemProgress | undefined): Attempt[] =>
   Array.isArray(p?.history) ? p.history : [];
 
 export function grade(
-  prev: QuestionProgress | undefined,
+  prev: ItemProgress | undefined,
   correct: boolean,
   now = Date.now(),
   chosen = -1,
-): QuestionProgress {
+): ItemProgress {
   const p = prev ?? emptyProgress();
   const box = correct ? Math.min(p.box + 1, MAX_BOX) : 1;
   const attempt: Attempt = { at: now, chosen, ok: correct };
@@ -47,9 +47,9 @@ export function grade(
   };
 }
 
-export const isMastered = (p: QuestionProgress | undefined) => (p?.box ?? 0) >= MAX_BOX;
+export const isMastered = (p: ItemProgress | undefined) => (p?.box ?? 0) >= MAX_BOX;
 
-export const isDue = (p: QuestionProgress | undefined, now = Date.now()) =>
+export const isDue = (p: ItemProgress | undefined, now = Date.now()) =>
   p === undefined || p.box === 0 || p.due <= now;
 
 /**
@@ -61,7 +61,7 @@ export const isDue = (p: QuestionProgress | undefined, now = Date.now()) =>
  * overdue, so a question you have not seen in a long time stops counting as
  * fully known even though you never got it wrong.
  */
-export function strength(p: QuestionProgress | undefined, now = Date.now()): number {
+export function strength(p: ItemProgress | undefined, now = Date.now()): number {
   const history = historyOf(p);
   if (!p || history.length === 0) return 0;
 
@@ -92,14 +92,14 @@ const LEVEL_FLOORS: { level: StrengthLevel; min: number }[] = [
   { level: 'weak', min: 0 },
 ];
 
-export function strengthLevel(p: QuestionProgress | undefined, now = Date.now()): StrengthLevel {
+export function strengthLevel(p: ItemProgress | undefined, now = Date.now()): StrengthLevel {
   if (historyOf(p).length === 0) return 'new';
   const s = strength(p, now);
   return LEVEL_FLOORS.find((l) => s >= l.min)!.level;
 }
 
 /** Questions that need work: answered at least once and not yet solid. */
-export const isWeak = (p: QuestionProgress | undefined, now = Date.now()) => {
+export const isWeak = (p: ItemProgress | undefined, now = Date.now()) => {
   const level = strengthLevel(p, now);
   return level === 'weak' || level === 'shaky';
 };
@@ -108,7 +108,7 @@ export const isWeak = (p: QuestionProgress | undefined, now = Date.now()) => {
  * Practice order: never-seen questions first, then the weakest, then the most
  * overdue, so a session covers new ground before drilling what is scheduled.
  */
-export function practiceOrder(ids: number[], progress: Record<number, QuestionProgress>, now = Date.now()): number[] {
+export function practiceOrder(ids: string[], progress: Record<string, ItemProgress>, now = Date.now()): string[] {
   return ids
     .map((id) => {
       const p = progress[id];
@@ -119,11 +119,11 @@ export function practiceOrder(ids: number[], progress: Record<number, QuestionPr
         due: p?.due ?? 0,
       };
     })
-    .sort((a, b) => a.unseen - b.unseen || a.strength - b.strength || a.due - b.due || a.id - b.id)
+    .sort((a, b) => a.unseen - b.unseen || a.strength - b.strength || a.due - b.due || a.id.localeCompare(b.id))
     .map((x) => x.id);
 }
 
 /** Ids whose next repetition is due, weakest first. */
-export function dueOrder(ids: number[], progress: Record<number, QuestionProgress>, now = Date.now()): number[] {
+export function dueOrder(ids: string[], progress: Record<string, ItemProgress>, now = Date.now()): string[] {
   return practiceOrder(ids.filter((id) => progress[id] && isDue(progress[id], now)), progress, now);
 }

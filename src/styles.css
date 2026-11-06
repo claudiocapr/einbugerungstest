@@ -558,3 +558,7 @@ footer.foot {
   width: 100%;
 }
 .overlay-card p { margin: 0; font-size: 15px; line-height: 1.5; }
+
+/* Text tints for inline feedback. */
+.good { color: var(--good); }
+.bad { color: var(--bad); }

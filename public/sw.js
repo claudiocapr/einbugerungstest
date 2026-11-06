@@ -3,7 +3,7 @@
  * a given URL, so they are served cache-first. The page shell is fetched
  * network-first so a new deploy is picked up as soon as the user is online.
  */
-const CACHE = 'einbuergerungstest-v1';
+const CACHE = 'telc-b1-v1';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

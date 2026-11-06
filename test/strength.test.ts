@@ -1,14 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { MAX_BOX, grade, historyOf, isWeak, practiceOrder, strength, strengthLevel } from '../src/lib/srs.ts';
-import type { QuestionProgress } from '../src/types.ts';
+import type { ItemProgress } from '../src/types.ts';
 
 const NOW = 1_700_000_000_000;
 const DAY = 24 * 60 * 60 * 1000;
 
 /** Answers a question `results` in order, oldest first. */
 const play = (results: boolean[], now = NOW) => {
-  let p: QuestionProgress | undefined;
+  let p: ItemProgress | undefined;
   results.forEach((ok, i) => {
     p = grade(p, ok, now + i * 1000, ok ? 0 : 1);
   });
@@ -75,14 +75,14 @@ test('weak covers what needs work and excludes solid questions', () => {
 });
 
 test('practice serves unseen questions first, then the weakest', () => {
-  const progress: Record<number, QuestionProgress> = {
-    1: play(Array(6).fill(true), NOW),
-    2: play([false], NOW),
+  const progress: Record<string, ItemProgress> = {
+    a: play(Array(6).fill(true), NOW),
+    b: play([false], NOW),
   };
-  assert.deepEqual(practiceOrder([1, 2, 3], progress, NOW), [3, 2, 1]);
+  assert.deepEqual(practiceOrder(['a', 'b', 'c'], progress, NOW), ['c', 'b', 'a']);
 });
 
 test('ordering is stable for equal questions', () => {
-  const progress: Record<number, QuestionProgress> = {};
-  assert.deepEqual(practiceOrder([3, 1, 2], progress, NOW), [1, 2, 3]);
+  const progress: Record<string, ItemProgress> = {};
+  assert.deepEqual(practiceOrder(['c', 'a', 'b'], progress, NOW), ['a', 'b', 'c']);
 });

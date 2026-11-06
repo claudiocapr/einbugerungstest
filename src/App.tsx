@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Home } from './components/Home.tsx';
-import { Exam } from './components/Exam.tsx';
-import { Practice, type PracticeScope } from './components/Practice.tsx';
-import { Browse } from './components/Browse.tsx';
-import { Stats } from './components/Stats.tsx';
+import { Suspense, useEffect, useState } from 'react';
+import Home from './sections/home/index.tsx';
+import Boot from './sync/Boot.tsx';
+import { sectionById } from './sections/registry.ts';
 import { useStore } from './lib/storage.ts';
 import { t } from './lib/i18n.ts';
+import { track } from './lib/analytics.ts';
 
 const readRoute = () => window.location.hash.replace(/^#\/?/, '') || 'home';
 
@@ -32,32 +31,37 @@ export default function App() {
   const go = (next: string) => {
     window.location.hash = `#/${next}`;
     setRoute(next);
+    window.scrollTo(0, 0);
   };
 
-  const [head, tail] = route.split('/');
-  const state = store.state;
+  const [head, ...rest] = route.split('/');
   const lang = store.lang;
+  const section = head === 'home' ? undefined : sectionById(head);
 
-  // Every screen except the picker needs a Bundesland, so fall back to home.
-  const view = !state ? (
-    <Home lang={lang} onGo={go} />
-  ) : head === 'exam' ? (
-    <Exam state={state} lang={lang} onExit={() => go('home')} />
-  ) : head === 'practice' ? (
-    <Practice
-      state={state}
-      lang={lang}
-      scope={(tail as PracticeScope) || 'all'}
-      onScope={(s) => go(`practice/${s}`)}
-      onExit={() => go('home')}
-    />
-  ) : head === 'browse' ? (
-    <Browse state={state} lang={lang} onExit={() => go('home')} />
-  ) : head === 'stats' ? (
-    <Stats state={state} lang={lang} onExit={() => go('home')} />
-  ) : (
-    <Home lang={lang} onGo={go} />
-  );
+  useEffect(() => {
+    track('screen.view', { section: section?.id ?? 'home' });
+  }, [section?.id]);
+
+  let view;
+  if (head === 'home' || !head) {
+    view = <Home lang={lang} path={rest} go={go} />;
+  } else if (section) {
+    const Screen = section.component;
+    view = (
+      <Suspense fallback={<p className="muted" style={{ marginTop: 24 }}>{t('loading', lang)}</p>}>
+        <Screen lang={lang} path={rest} go={go} />
+      </Suspense>
+    );
+  } else {
+    view = (
+      <div className="card" style={{ marginTop: 24 }}>
+        <p>{t('notFound', lang)}</p>
+        <button type="button" className="btn" onClick={() => go('home')}>
+          ← {t('home', lang)}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -89,8 +93,13 @@ export default function App() {
           >
             {store.theme === 'dark' ? '🌙' : store.theme === 'light' ? '☀️' : '🌗'}
           </button>
+          <button type="button" className="btn small ghost" aria-label={t('account', lang)} onClick={() => go('konto')}>
+            👤
+          </button>
         </div>
       </header>
+
+      <Boot />
 
       <main className="shell">{view}</main>
 

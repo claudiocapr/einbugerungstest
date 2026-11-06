@@ -44,11 +44,11 @@ test('a question counts as weak once missed, until it is mastered again', () => 
 
 test('practice serves unseen questions before scheduled ones', () => {
   const progress = {
-    1: grade(undefined, true),
-    2: grade(grade(undefined, true), true),
+    'vocab:a': grade(undefined, true),
+    'vocab:b': grade(grade(undefined, true), true),
   };
-  const order = practiceOrder([1, 2, 3], progress);
-  assert.equal(order[0], 3, 'the unseen question should come first');
-  assert.equal(order[1], 1, 'the lower box should come before the higher one');
-  assert.equal(order[2], 2);
+  const order = practiceOrder(['vocab:a', 'vocab:b', 'vocab:c'], progress);
+  assert.equal(order[0], 'vocab:c', 'the unseen item should come first');
+  assert.equal(order[1], 'vocab:a', 'the lower box should come before the higher one');
+  assert.equal(order[2], 'vocab:b');
 });

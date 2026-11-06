@@ -1,15 +1,14 @@
 {
-  "name": "einbuergerungstest",
+  "name": "telc-b1-trainer",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Übungs-App für den Einbürgerungstest / Leben in Deutschland",
+  "description": "Übungs-App für telc Deutsch B1 (Zertifikat Deutsch)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "data": "node scripts/build-questions.mjs",
     "test": "node --test --experimental-strip-types test/*.test.ts"
   },
   "dependencies": {
@@ -20,7 +19,6 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "pdfjs-dist": "^4.10.38",
     "typescript": "^5.6.3",
     "vite": "^5.4.11"
   }

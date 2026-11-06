@@ -1,7 +1,7 @@
 {
-  "name": "Einbürgerungstest üben",
-  "short_name": "Einbürgerungstest",
-  "description": "Alle 460 amtlichen Fragen zum Einbürgerungstest üben.",
+  "name": "telc B1 Trainer",
+  "short_name": "telc B1",
+  "description": "Für telc Deutsch B1 üben: alle Prüfungsteile, Wortschatz und Modelltest.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
