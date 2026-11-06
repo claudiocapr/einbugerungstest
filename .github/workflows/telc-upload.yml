@@ -1,0 +1,50 @@
+name: Upload telc material
+
+# Manual only (Actions → "Upload telc material" → Run workflow).
+# Downloads telc's free B1 material from telc.net at run time, derives the
+# Übungstest 1 answer key from its PDF, and uploads everything to the PRIVATE
+# Supabase bucket "telc". Nothing copyrighted is ever committed: all files live
+# in $RUNNER_TEMP and vanish with the runner. Logs show only file names, sizes
+# and counts (the repository and its logs are public).
+#
+# Needs the repository secret SUPABASE_SERVICE_ROLE_KEY (Settings → Secrets and
+# variables → Actions). Optional secret SUPABASE_URL; defaults to the app's project.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run: download and check only, upload nothing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: telc-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # pdfjs-dist goes to a temp dir, not into the checkout.
+      - name: Install PDF reader
+        run: npm i --prefix "$RUNNER_TEMP/tools" --no-audit --no-fund pdfjs-dist@4.10.38
+      - name: Download, check and upload
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          PDFJS_DIR: ${{ runner.temp }}/tools
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            node scripts/telc/upload.mjs --dry-run
+          else
+            node scripts/telc/upload.mjs
+          fi
