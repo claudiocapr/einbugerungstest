@@ -60,19 +60,36 @@ let sequence = 0;
  * Speaks a script line by line, alternating voices for speakers "a" and "b"
  * when the device has more than one German voice. Calling `stop()` or starting
  * another sequence ends this one.
+ *
+ * iOS only allows speech that starts inside the tap that asked for it, so the
+ * first line is spoken synchronously when the voices are already listed; when
+ * they are not, a silent utterance unlocks speech before waiting for them.
  */
-export async function speakLines(lines: Line[], { rate = 0.95 }: SpeakOptions = {}): Promise<void> {
+export function speakLines(lines: Line[], { rate = 0.95 }: SpeakOptions = {}): Promise<void> {
   stop();
   const mine = ++sequence;
-  const voices = await voicesReady();
-  const pick = (voice: Line['voice']) =>
-    voice === 'b' ? (voices[1] ?? voices[0]) : voice === 'n' ? (voices[2] ?? voices[0]) : voices[0];
-  for (const line of lines) {
-    if (mine !== sequence) return;
-    await speak(line.text, { rate, voice: pick(line.voice) });
-    if (mine !== sequence) return;
-    await new Promise((r) => setTimeout(r, 250));
+  const s = synth();
+  if (!s) return Promise.resolve();
+  const listed = s.getVoices().length > 0;
+  if (!listed) {
+    try {
+      s.speak(new SpeechSynthesisUtterance(''));
+    } catch {
+      /* unlocking is best effort */
+    }
   }
+  return (async () => {
+    // No await before the first speak() when the voices are listed.
+    const voices = listed ? germanVoices() : await voicesReady();
+    const pick = (voice: Line['voice']) =>
+      voice === 'b' ? (voices[1] ?? voices[0]) : voice === 'n' ? (voices[2] ?? voices[0]) : voices[0];
+    for (const line of lines) {
+      if (mine !== sequence) return;
+      await speak(line.text, { rate, voice: pick(line.voice) });
+      if (mine !== sequence) return;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  })();
 }
 
 export function stop() {
