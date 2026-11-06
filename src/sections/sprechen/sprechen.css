@@ -1,0 +1,65 @@
+/* Mündlicher Ausdruck. Colours come from the shared CSS variables. */
+
+.sprechen .toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; }
+.sprechen .toggle input { width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+
+.task-card .points,
+.task-card .checklist { margin: 6px 0 12px; padding-left: 20px; display: grid; gap: 4px; }
+.task-card .checklist li::marker { content: '☐  '; }
+
+.opinion {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 0 10px 10px 0;
+}
+.opinion p { margin: 0 0 8px; line-height: 1.55; }
+.opinion footer { font-size: 13px; color: var(--muted); }
+
+.phrases ul { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.phrases li { display: grid; gap: 1px; }
+.phrases .de { font-weight: 560; }
+
+.dialogue { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.dialogue li {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  line-height: 1.5;
+}
+.dialogue li .who { flex: none; width: 92px; font-size: 12px; font-weight: 650; color: var(--muted); padding-top: 3px; }
+.dialogue li .text { flex: 1; min-width: 0; }
+.dialogue li .play { flex: none; padding: 2px 8px; }
+.dialogue li.voice-n .text { font-style: italic; }
+.dialogue li.mine { background: color-mix(in srgb, var(--accent) 12%, var(--surface-2)); }
+.dialogue li.current { outline: 2px solid var(--accent); }
+
+@media (max-width: 480px) {
+  .dialogue li { flex-wrap: wrap; }
+  .dialogue li .who { width: 100%; padding-top: 0; }
+}
+
+.takes { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.takes li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.takes audio { max-width: 100%; height: 36px; }
+
+.rec-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bad);
+  animation: sprechen-blink 1s steps(2, start) infinite;
+}
+@keyframes sprechen-blink { to { visibility: hidden; } }
+
+.criterion { border-top: 1px solid var(--border); padding-top: 12px; }
+.criterion .levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 8px; }
+.criterion .levels .option { padding: 8px 10px; }
+
+.ticks { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.score-small { font-size: 20px; font-weight: 700; }
