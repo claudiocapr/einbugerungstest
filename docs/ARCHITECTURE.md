@@ -15,7 +15,7 @@ Supabase for the signed-in owner. Only free services are used.
 | `src/content/<part>.ts` | Practice content; **export names are fixed** (the Modelltest imports them) | that part's author |
 | `src/lib/*` | Shared helpers (see below) | integrator (read-only for others) |
 | `src/components/*` | Shared components (`Confirm`, `Strength`) | integrator |
-| `src/sync/**`, `supabase/**` | Login, sync, analytics sink, migrations | backend |
+| `src/sync/**`, `supabase/**` | Login, sync, analytics sink, migrations (see `docs/BACKEND.md`) | backend |
 
 Section authors touch only their own folder and content file. A change needed in
 a shared file is reported back, not made directly.
