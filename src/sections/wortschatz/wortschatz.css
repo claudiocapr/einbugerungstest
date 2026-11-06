@@ -1,0 +1,155 @@
+/* Wortschatz section. Everything is prefixed ws- so it cannot leak into other screens. */
+
+.ws {
+  --ws-der: #2f7fd6;
+  --ws-die: #d6336c;
+  --ws-das: #2a9d5c;
+}
+
+.ws-back { margin-top: 14px; white-space: nowrap; flex: none; }
+.ws-scope { flex: 1; min-width: 0; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.exambar .ws-back { margin-top: 0; }
+
+/* der / die / das colour code */
+.ws-art {
+  display: inline-block;
+  min-width: 2.6em;
+  text-align: center;
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.12em 0.5em;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  vertical-align: 0.18em;
+  line-height: 1.3;
+}
+.ws-list .ws-art, .ws-missed .ws-art, .verdict .ws-art { font-size: 12px; vertical-align: 1px; }
+.ws-art-der { color: var(--ws-der); background: color-mix(in srgb, var(--ws-der) 14%, transparent); }
+.ws-art-die { color: var(--ws-die); background: color-mix(in srgb, var(--ws-die) 14%, transparent); }
+.ws-art-das { color: var(--ws-das); background: color-mix(in srgb, var(--ws-das) 14%, transparent); }
+.ws-art-blank { color: var(--muted); border-style: dashed; }
+
+/* overview */
+.ws-quick { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.rec:disabled { opacity: 0.6; cursor: default; }
+
+.ws-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.ws-toggle input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
+
+.ws-topics { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.ws-topic { align-items: flex-start; padding: 14px 16px; }
+.ws-topic .ws-topic-body { flex: 1; display: grid; gap: 6px; }
+.ws-topic .sub { margin-top: 0; }
+
+/* topic page */
+.ws-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.ws-row { display: flex; gap: 10px; align-items: center; }
+.ws-row-main { flex: 1; min-width: 0; }
+.ws-row-en { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.ws-row-body { margin-top: 10px; display: grid; gap: 8px; font-size: 14px; }
+.ws-row-body p { margin: 0; }
+
+.ws-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}
+.ws-details dt { color: var(--muted); }
+.ws-details dd { margin: 0; font-weight: 550; }
+
+.ws-example { font-style: normal; }
+.ws-example-en { color: var(--muted); font-style: italic; font-size: 14px; }
+
+/* flashcard */
+.ws-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 260px;
+  text-align: center;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 120ms;
+  user-select: none;
+}
+.ws-card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+.ws-card.flipped { cursor: default; }
+.ws-art-card { cursor: default; min-height: 190px; }
+.ws-art-card:hover { border-color: var(--border); }
+
+.ws-pos { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.ws-word { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+.ws-hint { font-size: 14px; color: var(--muted); }
+.ws-en { display: block; font-size: 20px; font-weight: 600; color: var(--accent); }
+:root[data-theme='light'] .ws-en { color: #8a6d00; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .ws-en { color: #8a6d00; }
+}
+
+.ws-back-side {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  text-align: left;
+  user-select: text;
+}
+.ws-back-side .ws-en { text-align: center; }
+.ws-back-side .ws-example { display: block; }
+.ws-back-side .ws-example-en { display: block; }
+
+.ws-speak { margin-top: 10px; gap: 8px; }
+.ws-speak .ws-toggle { margin-left: auto; }
+
+.sticky-actions .btn.block { flex: 1; }
+.ws-knew { background: var(--good-bg); border-color: var(--good); color: var(--text); }
+.ws-missed-btn { background: var(--bad-bg); border-color: var(--bad); color: var(--text); }
+.ws kbd {
+  font: inherit;
+  font-size: 11px;
+  padding: 0 5px;
+  margin-left: 6px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+/* article trainer */
+.ws-art-options .option { font-size: 18px; font-weight: 650; align-items: center; }
+.ws-art-options .ws-art-opt-der:not(:disabled) .body { color: var(--ws-der); }
+.ws-art-options .ws-art-opt-die:not(:disabled) .body { color: var(--ws-die); }
+.ws-art-options .ws-art-opt-das:not(:disabled) .body { color: var(--ws-das); }
+.verdict .ws-example { margin-top: 6px; color: var(--muted); }
+.verdict .btn { margin-left: 6px; }
+
+/* end screen */
+.ws-end { margin-top: 20px; }
+.ws-missed { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+
+.ws-keys { margin-top: 0; }
+@media (hover: none) {
+  .ws-keys, .ws kbd { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ws-word { font-size: 25px; }
+  .ws-card { min-height: 220px; padding: 16px; }
+  .ws-topics { grid-template-columns: 1fr; }
+}
