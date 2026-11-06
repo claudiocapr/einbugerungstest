@@ -76,7 +76,7 @@ export interface Lesen2Set {
   items: { stem: string; options: [string, string, string]; answer: 0 | 1 | 2; explanation: Text2 }[];
 }
 
-/** Leseverstehen Teil 3: 10 situations, ads a–l (12); one situation has no ad ("x"). */
+/** Leseverstehen Teil 3: 10 situations, ads a–l (12); one or two situations have no fitting ad ("x"). */
 export interface Lesen3Set {
   id: string;
   topic: TopicId;
