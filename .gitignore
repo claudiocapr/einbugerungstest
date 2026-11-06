@@ -4,3 +4,6 @@ dist
 *.local
 tsconfig.tsbuildinfo
 .cache
+
+# Temporary git worktrees used by Claude Code agents
+.claude/worktrees/
