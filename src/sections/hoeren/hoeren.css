@@ -1,0 +1,62 @@
+/* Hörverstehen. Colours come from the shared CSS variables. */
+
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+.rf .rf-head { display: flex; gap: 10px; align-items: baseline; }
+.rf .rf-head .num {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted);
+  min-width: 22px;
+}
+.rf .rf-head .statement { flex: 1; font-weight: 580; }
+.rf .rf-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.rf .rf-options .option { padding: 9px 12px; }
+.rf.ok { border-color: var(--good); }
+.rf.no { border-color: var(--bad); }
+
+.transcript { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.transcript li {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 6px 8px;
+  border-radius: 9px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.transcript li .who {
+  flex: none;
+  min-width: 26px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.transcript li.voice-n .text { font-style: italic; color: var(--muted); }
+.transcript li .text { flex: 1; min-width: 0; }
+.transcript li .play { flex: none; padding: 2px 8px; }
+.transcript li.hl {
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-2));
+  outline: 1px solid color-mix(in srgb, var(--accent) 60%, var(--border));
+}
+.transcript .mark {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-style: normal;
+}
+
+details.tx { margin-top: 10px; }
+details.tx summary { cursor: pointer; font-size: 14px; color: var(--muted); }
+
+.pulse { animation: hoeren-pulse 1.2s ease-in-out infinite; }
+@keyframes hoeren-pulse { 50% { opacity: 0.35; } }
