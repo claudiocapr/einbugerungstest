@@ -2,8 +2,9 @@ import type { Attempt, ItemProgress, StrengthLevel } from '../types.ts';
 
 /**
  * Leitner scheduling. A correct answer promotes the question one box and
- * pushes it further into the future; a wrong answer sends it back to box 1,
- * due immediately. Box 5 counts as mastered.
+ * pushes it further into the future (at least to the next day, so an item
+ * just answered correctly does not crowd the due list); a wrong answer sends
+ * it back to box 1, due immediately. Box 5 counts as mastered.
  */
 export const MAX_BOX = 5;
 
@@ -39,7 +40,7 @@ export function grade(
   const attempt: Attempt = { at: now, chosen, ok: correct };
   return {
     box,
-    due: now + INTERVALS[box],
+    due: now + (correct ? Math.max(INTERVALS[box], DAY) : 0),
     correct: p.correct + (correct ? 1 : 0),
     wrong: p.wrong + (correct ? 0 : 1),
     lastSeen: now,

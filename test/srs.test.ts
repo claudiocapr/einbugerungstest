@@ -52,3 +52,10 @@ test('practice serves unseen questions before scheduled ones', () => {
   assert.equal(order[1], 'vocab:a', 'the lower box should come before the higher one');
   assert.equal(order[2], 'vocab:b');
 });
+
+test('a correct answer is never due again on the same day', () => {
+  const now = 1_000_000;
+  const p = grade(undefined, true, now);
+  assert.equal(isDue(p, now + 60 * 60 * 1000), false, 'not due an hour later');
+  assert.ok(isDue(p, now + 24 * 60 * 60 * 1000), 'due the next day');
+});
