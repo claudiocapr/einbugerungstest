@@ -1,14 +1,80 @@
-// Placeholder. Owned by: Lesen + Sprachbausteine agent. Replace this file's contents; keep the default export.
 import type { SectionProps } from '../types.ts';
+import type { Text2 } from '../../types.ts';
+import type { Lesen1Set, Lesen2Set, Lesen3Set } from '../../content/types.ts';
+import { lesen1, lesen2, lesen3 } from '../../content/lesen.ts';
+import { tr } from '../../lib/i18n.ts';
+import { DrillFrame, NotFound, PartCard } from './drill.tsx';
+import { LESEN_PARTS } from './parts.ts';
+import { Lesen1Task, Lesen2Task, Lesen3Task } from './tasks.tsx';
+import { lesen1Keys, lesen2Keys, lesen3Keys, nextId } from './score.ts';
 
-export default function Section({ lang, go }: SectionProps) {
+const T = {
+  title: { de: 'Leseverstehen', en: 'Reading' },
+  intro: {
+    de: 'Drei Teile, zusammen 75 Punkte. In der Prüfung haben Sie für Leseverstehen und Sprachbausteine zusammen 90 Minuten.',
+    en: 'Three parts, 75 points in total. In the exam you have 90 minutes for Reading and Sprachbausteine together.',
+  },
+  home: { de: 'Start', en: 'Home' },
+} satisfies Record<string, Text2>;
+
+export default function Section({ lang, path, go }: SectionProps) {
+  const [slug, setId] = path;
+  const info = LESEN_PARTS.find((p) => p.slug === slug);
+
+  if (slug && !info) return <NotFound lang={lang} onBack={() => go('lesen')} />;
+
+  if (info && setId) {
+    const back = () => go(`lesen/${info.slug}`);
+    if (info.part === 'lesen1') {
+      const i = lesen1.findIndex((s) => s.id === setId);
+      if (i < 0) return <NotFound lang={lang} onBack={back} />;
+      const set: Lesen1Set = lesen1[i];
+      return (
+        <DrillFrame key={set.id} lang={lang} section="lesen" info={info} setId={set.id} setNumber={i + 1} topic={set.topic}
+          keys={lesen1Keys(set)} go={go} nextSetId={nextId(lesen1.map((s) => s.id), set.id)}>
+          {(ctx) => <Lesen1Task set={set} lang={lang} {...ctx} />}
+        </DrillFrame>
+      );
+    }
+    if (info.part === 'lesen2') {
+      const i = lesen2.findIndex((s) => s.id === setId);
+      if (i < 0) return <NotFound lang={lang} onBack={back} />;
+      const set: Lesen2Set = lesen2[i];
+      return (
+        <DrillFrame key={set.id} lang={lang} section="lesen" info={info} setId={set.id} setNumber={i + 1} topic={set.topic}
+          keys={lesen2Keys(set)} go={go} nextSetId={nextId(lesen2.map((s) => s.id), set.id)}>
+          {(ctx) => <Lesen2Task set={set} lang={lang} {...ctx} />}
+        </DrillFrame>
+      );
+    }
+    const i = lesen3.findIndex((s) => s.id === setId);
+    if (i < 0) return <NotFound lang={lang} onBack={back} />;
+    const set: Lesen3Set = lesen3[i];
+    return (
+      <DrillFrame key={set.id} lang={lang} section="lesen" info={info} setId={set.id} setNumber={i + 1} topic={set.topic}
+        keys={lesen3Keys(set)} go={go} nextSetId={nextId(lesen3.map((s) => s.id), set.id)}>
+        {(ctx) => <Lesen3Task set={set} lang={lang} {...ctx} />}
+      </DrillFrame>
+    );
+  }
+
+  const setsFor = { lesen1, lesen2, lesen3 } as const;
+  const parts = info ? [info] : LESEN_PARTS;
   return (
-    <div className="card" style={{ marginTop: 24 }}>
-      <h1 style={{ marginTop: 0 }}>Lesen</h1>
-      <p className="muted">{lang === 'de' ? 'Kommt bald.' : 'Coming soon.'}</p>
-      <button type="button" className="btn" onClick={() => go('home')}>
-        ← {lang === 'de' ? 'Start' : 'Home'}
-      </button>
+    <div>
+      <div className="drill-head">
+        <button type="button" className="btn small ghost" onClick={() => go(info ? 'lesen' : 'home')}>
+          ← {info ? tr(T.title, lang) : tr(T.home, lang)}
+        </button>
+      </div>
+      <h1>📖 {tr(T.title, lang)}</h1>
+      <p className="muted" style={{ marginTop: 0 }}>{tr(T.intro, lang)}</p>
+      <div className="stack">
+        {parts.map((p) => (
+          <PartCard key={p.slug} lang={lang} section="lesen" info={p} go={go} openTip={!!info}
+            sets={setsFor[p.part as keyof typeof setsFor]} />
+        ))}
+      </div>
     </div>
   );
 }
