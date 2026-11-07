@@ -15,6 +15,20 @@ public by design: every browser receives them, and row-level security (RLS) in
 the database decides what each request may do. The **service-role key** (secret)
 is never in the code; it lives only in a GitHub secret for the upload workflow.
 
+## Current state of the live project (7 November 2026)
+
+- **Migrations:** `20261106120000_analytics_and_admin.sql` is applied, except
+  `purge_old_analytics` (not needed yet; create it from the file when old
+  statistics should be deleted).
+- **Admin:** the owner's account is in `app_admins` and `telc_access`.
+- **Security check:** the only remaining Supabase advisor warning is
+  "leaked password protection", a paid-plan feature; sign-ups are disabled.
+- **telc material:** all 33 objects (74 MB) are in the private bucket `telc`,
+  including `uebungstest-1/key.json` with 60/60 answers. They were uploaded
+  with a temporary edge function, `telc-ingest`, which is now retired
+  (it returns 410) and can be deleted in the dashboard under Edge Functions.
+  The GitHub workflow below remains the way to upload again later.
+
 ## Files
 
 | Path | What |
