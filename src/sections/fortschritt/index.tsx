@@ -8,6 +8,7 @@ import { isMastered } from '../../lib/srs.ts';
 import type { DrillResult, ExamPart } from '../../types.ts';
 import { PART_LABEL, PART_MAX, resultRatio } from '../modelltest/score.ts';
 import { sectionById } from '../registry.ts';
+import { NeuroSwitch } from '../feedback/NeuroSwitch.tsx';
 
 const PARTS = Object.keys(PART_MAX) as ExamPart[];
 
@@ -49,7 +50,7 @@ const L = {
   confirmReset: { de: 'Wirklich den gesamten Lernfortschritt löschen?', en: 'Really delete all learning progress?' },
 };
 
-export default function Fortschritt({ lang }: SectionProps) {
+export default function Fortschritt({ lang, go }: SectionProps) {
   const [store] = useStore();
   const input = useRef<HTMLInputElement>(null);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
@@ -135,6 +136,10 @@ export default function Fortschritt({ lang }: SectionProps) {
           })}
         </div>
       )}
+
+      <div style={{ marginTop: 28 }}>
+        <NeuroSwitch lang={lang} go={go} />
+      </div>
 
       <div style={{ marginTop: 28 }}>
         <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>

@@ -8,6 +8,8 @@
  * Props: small flat values only. Never put free text the user typed, names,
  * emails or anything identifying into props.
  */
+import { flagOn } from './storage.ts';
+
 export type EventProps = Record<string, string | number | boolean | null | undefined>;
 
 type Sink = { track: (name: string, props?: EventProps) => void; error: (err: unknown, context?: string) => void };
@@ -19,9 +21,21 @@ export function setAnalyticsSink(next: Sink | null) {
   sink = next;
 }
 
+/**
+ * Events sent while the neurofeedback test phase is on carry `nf: true`, so
+ * learning with and without the mode can be compared.
+ */
+function withFlags(props?: EventProps): EventProps | undefined {
+  try {
+    return flagOn('neurofeedback') ? { ...props, nf: true } : props;
+  } catch {
+    return props;
+  }
+}
+
 export function track(name: string, props?: EventProps) {
   try {
-    sink?.track(name, props);
+    sink?.track(name, withFlags(props));
   } catch {
     /* analytics must never break the app */
   }
