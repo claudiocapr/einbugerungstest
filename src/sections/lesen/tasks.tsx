@@ -8,6 +8,8 @@ import type { Lesen1Set, Lesen2Set, Lesen3Set } from '../../content/types.ts';
 import { tr } from '../../lib/i18n.ts';
 import { assignUnique, FIRST_NUMBER, letter, lesen3X, type SetScore } from './score.ts';
 import { Verdict, verdictHead, type Answers } from './drill.tsx';
+import type { NfMarks } from './nf.ts';
+import { GuessRow } from './NfReview.tsx';
 import './drill.css';
 
 export interface TaskProps<T> {
@@ -18,6 +20,11 @@ export interface TaskProps<T> {
   lang: Lang;
   /** Number of the first item as printed in the exam (defaults to the exam's numbering). */
   firstNumber?: number;
+  /**
+   * Neurofeedback mode: the "geraten" marks. Only the sections' own exercise
+   * screens pass it (while the flag is on); without it nothing changes.
+   */
+  nf?: NfMarks;
 }
 
 const L = {
@@ -40,7 +47,7 @@ function chipClass(i: number, chosen: number | null, key: number, review: SetSco
 
 /* -------------------------------------------------------------- Teil 1 */
 
-export function Lesen1Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.lesen1 }: TaskProps<Lesen1Set>) {
+export function Lesen1Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.lesen1, nf }: TaskProps<Lesen1Set>) {
   const usedBy = (h: number) => answers.findIndex((a) => a === h);
   return (
     <>
@@ -93,6 +100,10 @@ export function Lesen1Task({ set, answers, update, review, lang, firstNumber = F
                 {tr(L.chosen, lang)}: <b>{letter(chosen)}</b> – {set.headlines[chosen]}
               </p>
             )}
+            {nf && (
+              <GuessRow review={!!review} answered={chosen !== null} guessed={!!nf.guesses[i]} onToggle={() => nf.toggle(i)}
+                lang={lang} label={String(firstNumber + i)} />
+            )}
             {outcome && (
               <Verdict
                 ok={outcome.ok}
@@ -109,7 +120,7 @@ export function Lesen1Task({ set, answers, update, review, lang, firstNumber = F
 
 /* -------------------------------------------------------------- Teil 2 */
 
-export function Lesen2Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.lesen2 }: TaskProps<Lesen2Set>) {
+export function Lesen2Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.lesen2, nf }: TaskProps<Lesen2Set>) {
   return (
     <>
       <article className="card">
@@ -151,6 +162,10 @@ export function Lesen2Task({ set, answers, update, review, lang, firstNumber = F
                 );
               })}
             </div>
+            {nf && (
+              <GuessRow review={!!review} answered={chosen !== null} guessed={!!nf.guesses[i]} onToggle={() => nf.toggle(i)}
+                lang={lang} label={String(firstNumber + i)} />
+            )}
             {outcome && (
               <Verdict
                 ok={outcome.ok}
@@ -167,7 +182,7 @@ export function Lesen2Task({ set, answers, update, review, lang, firstNumber = F
 
 /* -------------------------------------------------------------- Teil 3 */
 
-export function Lesen3Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.lesen3 }: TaskProps<Lesen3Set>) {
+export function Lesen3Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.lesen3, nf }: TaskProps<Lesen3Set>) {
   const x = lesen3X(set);
   const usedBy = (a: number) => answers.findIndex((v) => v === a);
   const adLabel = (i: number) => (i === x ? 'x' : `${letter(i)}${set.ads[i]?.title ? ` – ${set.ads[i].title}` : ''}`);
@@ -225,6 +240,10 @@ export function Lesen3Task({ set, answers, update, review, lang, firstNumber = F
                   </>
                 )}
               </div>
+            )}
+            {nf && (
+              <GuessRow review={!!review} answered={chosen !== null} guessed={!!nf.guesses[i]} onToggle={() => nf.toggle(i)}
+                lang={lang} label={String(firstNumber + i)} />
             )}
             {outcome && (
               <Verdict

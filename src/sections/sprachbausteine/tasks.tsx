@@ -8,6 +8,8 @@ import type { Sb1Set, Sb2Set } from '../../content/types.ts';
 import { tr } from '../../lib/i18n.ts';
 import { Verdict, verdictHead } from '../lesen/drill.tsx';
 import type { TaskProps } from '../lesen/tasks.tsx';
+import { confFor } from '../lesen/nf.ts';
+import { ConfBadge, GuessToggle } from '../lesen/NfReview.tsx';
 import { FIRST_NUMBER, letter, placeWord, splitGaps } from './score.ts';
 import '../lesen/drill.css';
 
@@ -21,7 +23,7 @@ const L = {
 
 /* -------------------------------------------------------------- Teil 1 */
 
-export function Sb1Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.sb1 }: TaskProps<Sb1Set>) {
+export function Sb1Task({ set, answers, update, review, lang, firstNumber = FIRST_NUMBER.sb1, nf }: TaskProps<Sb1Set>) {
   const pieces = splitGaps(set.text);
   return (
     <>
@@ -48,7 +50,7 @@ export function Sb1Task({ set, answers, update, review, lang, firstNumber = FIRS
                 </span>
               );
             }
-            return (
+            const select = (
               <select
                 key={idx}
                 className="gapsel"
@@ -67,6 +69,13 @@ export function Sb1Task({ set, answers, update, review, lang, firstNumber = FIRS
                 ))}
               </select>
             );
+            if (!nf) return select;
+            return (
+              <Fragment key={idx}>
+                {select}
+                <GuessToggle compact on={!!nf.guesses[i]} onToggle={() => nf.toggle(i)} lang={lang} label={`${tr(L.gap, lang)} ${num}`} />
+              </Fragment>
+            );
           })}
         </p>
       </div>
@@ -81,6 +90,12 @@ export function Sb1Task({ set, answers, update, review, lang, firstNumber = FIRS
                 <div className="row wrap">
                   <span className="num">{firstNumber + i}</span>
                   <span className="pointlabel">{g.point}</span>
+                  {nf && (
+                    <>
+                      <span className="spacer" />
+                      <ConfBadge conf={confFor(chosen !== null, !!nf.guesses[i])} lang={lang} />
+                    </>
+                  )}
                 </div>
                 <div className="chips pick" style={{ marginTop: 10 }}>
                   {g.options.map((o, k) => (
@@ -112,7 +127,7 @@ export interface Sb2Props extends TaskProps<Sb2Set> {
 }
 
 /** The text with tappable gaps (and, after submitting, the review). */
-export function Sb2Task({ set, answers, review, lang, active, setActive, firstNumber = FIRST_NUMBER.sb2 }: Sb2Props) {
+export function Sb2Task({ set, answers, review, lang, active, setActive, firstNumber = FIRST_NUMBER.sb2, nf }: Sb2Props) {
   const pieces = splitGaps(set.text);
   return (
     <>
@@ -139,7 +154,7 @@ export function Sb2Task({ set, answers, review, lang, active, setActive, firstNu
                 </span>
               );
             }
-            return (
+            const gapButton = (
               <button
                 key={idx}
                 type="button"
@@ -151,6 +166,13 @@ export function Sb2Task({ set, answers, review, lang, active, setActive, firstNu
                 <span className="gn">{num}</span>
                 {chosen === null ? '……' : set.words[chosen]}
               </button>
+            );
+            if (!nf) return gapButton;
+            return (
+              <Fragment key={idx}>
+                {gapButton}
+                <GuessToggle compact on={!!nf.guesses[i]} onToggle={() => nf.toggle(i)} lang={lang} label={`${tr(L.gap, lang)} ${num}`} />
+              </Fragment>
             );
           })}
         </p>
@@ -165,6 +187,12 @@ export function Sb2Task({ set, answers, review, lang, active, setActive, firstNu
               <div key={i} className="card">
                 <div className="row">
                   <span className="num">{firstNumber + i}</span>
+                  {nf && (
+                    <>
+                      <span className="spacer" />
+                      <ConfBadge conf={confFor(chosen !== null, !!nf.guesses[i])} lang={lang} />
+                    </>
+                  )}
                 </div>
                 <Verdict
                   ok={!!outcome?.ok}

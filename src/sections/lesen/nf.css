@@ -1,0 +1,46 @@
+/* Neurofeedback mode (test phase) in the exam drills. Only nf-* classes, so nothing else changes. */
+
+.nf-guessrow { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin-top: 8px; }
+.stack > .nf-guessrow { margin-top: 0; }
+.nf-guess { flex: none; white-space: nowrap; }
+.nf-dice {
+  font-size: 13px;
+  line-height: 1.3;
+  padding: 1px 6px;
+  margin-left: 3px;
+  vertical-align: baseline;
+}
+.nf-conf {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.nf-conf.guess { border-style: dashed; }
+
+.nf-review { display: grid; gap: 10px; margin-top: 12px; }
+.nf-review h2, .nf-review h3 { margin: 0; }
+.nf-review h3 { font-size: 15px; }
+.nf-review p { margin: 0; }
+.nf-sum { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 14px; }
+.nf-sum b { font-variant-numeric: tabular-nums; }
+.nf-sum .sw { color: var(--bad); }
+.nf-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.nf-items .chip { cursor: default; color: var(--text); font-variant-numeric: tabular-nums; }
+.nf-items .chip.sw { border-color: var(--bad); background: var(--bad-bg); font-weight: 650; }
+.nf-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
