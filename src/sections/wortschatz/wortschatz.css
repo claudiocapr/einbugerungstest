@@ -153,3 +153,13 @@
   .ws-card { min-height: 220px; padding: 16px; }
   .ws-topics { grid-template-columns: 1fr; }
 }
+
+/* neurofeedback mode (test phase) – only rendered while the flag is on */
+.ws-nf-focus { margin-bottom: 10px; }
+.ws-nf-line { min-height: 1.5em; margin: 2px 0 8px; font-weight: 550; }
+.ws-nf-verdict { margin-top: 6px; font-weight: 600; }
+.ws-nf-guess { gap: 10px; align-items: center; margin: 12px 0 0; }
+.ws-nf-speech { margin-top: 10px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 11px; background: var(--surface); }
+.ws-nf-note { gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+.ws-nf-words { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 8px 0 0; font-weight: 600; }
+.ws-nf-end { text-align: left; margin-top: 16px; }

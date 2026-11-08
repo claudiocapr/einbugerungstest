@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Lang } from '../../types.ts';
+import type { Confidence, Lang } from '../../types.ts';
 import type { VocabEntry } from '../../content/types.ts';
-import { getStore, recordItem, recordResult } from '../../lib/storage.ts';
+import { getStore, recordItem, recordResult, useFlag } from '../../lib/storage.ts';
+import { isSlow, pastTimes, shouldHold } from '../../lib/neuro.ts';
+import { ConfidencePicker } from '../../components/ConfidencePicker.tsx';
 import { logError, track } from '../../lib/analytics.ts';
 import { useKeys } from '../../lib/useKeys.ts';
 import { tr } from '../../lib/i18n.ts';
@@ -23,6 +25,11 @@ import {
 } from './shared.tsx';
 import { useWsSettings } from './settings.ts';
 import SessionEnd from './SessionEnd.tsx';
+import { FeedbackLine, FocusMonitor, NF, NfEndLines, SpeechCheck, trackNfFinished, useNfSession, useSpeechAvailable } from './nf.tsx';
+import { feedbackLine } from './nfLogic.ts';
+
+/** How long the feedback line stays after a card is graded (neurofeedback mode). */
+const FEEDBACK_MS = 1500;
 
 /** One flashcard round: German side first, tap to flip, then grade yourself. */
 export default function Cards({
@@ -53,6 +60,15 @@ export default function Cards({
   const [settings, setAutoSpeak] = useWsSettings();
   const backTo = scope === 'due' || scope === 'weak' ? 'wortschatz' : `wortschatz/thema/${scope}`;
 
+  // Neurofeedback mode (test phase): rate before flipping, timing, focus monitor, pronunciation.
+  const [nf] = useFlag('neurofeedback');
+  const nfs = useNfSession(nf, startedAt.current);
+  const { add: nfAdd, flash: nfFlash, getAnswers: nfAnswers } = nfs;
+  const speechOk = useSpeechAvailable(nf);
+  const shownAt = useRef(Date.now());
+  const flipMs = useRef<number | null>(null);
+  const [conf, setConf] = useState<Confidence | undefined>(undefined);
+
   useEffect(() => {
     if (deck.length > 0) track('wortschatz.session_started', { mode: 'cards', topic: scope, n: deck.length });
   }, [deck.length, scope]);
@@ -82,15 +98,24 @@ export default function Cards({
         logError(err, 'wortschatz.cards.result');
       }
       track('wortschatz.session_finished', { mode: 'cards', topic: scope, n: all.length, correct });
+      if (nf) trackNfFinished('cards', nfAnswers());
     },
-    [scope],
+    [scope, nf, nfAnswers],
   );
 
   const grade = useCallback(
     (ok: boolean) => {
       if (!card || !flipped || finished) return;
       try {
-        recordItem(cardKey(card.id), ok);
+        if (nf) {
+          const now = Date.now();
+          const ms = flipMs.current ?? now - shownAt.current;
+          const slow = isSlow(ms, 'card', pastTimes(getStore().progress, 'vocab:'));
+          const hold = shouldHold(ok, conf, slow);
+          recordItem(cardKey(card.id), ok, -1, now, { conf, ms, hold });
+          nfAdd({ ok, conf, ms, hold });
+          nfFlash(feedbackLine(ok, conf, slow, ms), FEEDBACK_MS);
+        } else recordItem(cardKey(card.id), ok);
       } catch (err) {
         logError(err, 'wortschatz.cards.record');
       }
@@ -100,14 +125,36 @@ export default function Cards({
       else {
         setIndex(index + 1);
         setFlipped(false);
+        if (nf) {
+          shownAt.current = Date.now();
+          flipMs.current = null;
+          setConf(undefined);
+        }
       }
     },
-    [card, flipped, finished, answers, index, deck.length, finish],
+    [card, flipped, finished, answers, index, deck.length, finish, nf, conf, nfAdd, nfFlash],
   );
 
   const flip = useCallback(() => {
-    if (!finished) setFlipped((f) => !f);
-  }, [finished]);
+    if (finished) return;
+    // The time to recall counts up to the first flip, with or without a rating.
+    if (nf && flipMs.current === null) flipMs.current = Date.now() - shownAt.current;
+    setFlipped((f) => !f);
+  }, [finished, nf]);
+
+  /** Neurofeedback mode: rating how sure you are flips the card. */
+  const pickConf = useCallback(
+    (c: Confidence) => {
+      if (finished || flipped) return;
+      // Already seen (flipped and turned back): a rating now would not be honest.
+      if (flipMs.current === null) {
+        flipMs.current = Date.now() - shownAt.current;
+        setConf(c);
+      }
+      setFlipped(true);
+    },
+    [finished, flipped],
+  );
 
   useKeys({
     onOption: (i) => {
@@ -160,6 +207,7 @@ export default function Cards({
           onAgain={onRestart}
           onBack={() => go(backTo)}
           backLabel={scopeLabel(scope, lang)}
+          extra={nf ? <NfEndLines answers={nfs.answers} lang={lang} /> : undefined}
         />
       </div>
     );
@@ -183,6 +231,18 @@ export default function Cards({
         </span>
       </div>
 
+      {nf && (
+        <FocusMonitor
+          lang={lang}
+          signal={nfs.hint}
+          onContinue={nfs.dismissHint}
+          onBreak={() => {
+            nfs.breakHint();
+            finish(answers);
+          }}
+        />
+      )}
+
       <div
         role="button"
         tabIndex={0}
@@ -194,7 +254,7 @@ export default function Cards({
         <span className="ws-word">
           <ArticleBadge article={card.article} /> {card.de}
         </span>
-        {!flipped && <span className="ws-hint">{tr(S.tapToFlip, lang)}</span>}
+        {!flipped && <span className="ws-hint">{tr(nf ? NF.rateFirst : S.tapToFlip, lang)}</span>}
         {flipped && (
           <div className="ws-back-side">
             <span className="ws-en">{card.en}</span>
@@ -216,6 +276,8 @@ export default function Cards({
         </div>
       )}
 
+      {nf && flipped && speechOk && <SpeechCheck key={card.id} entry={card} lang={lang} />}
+
       <div className="sticky-actions">
         {flipped ? (
           <>
@@ -226,13 +288,16 @@ export default function Cards({
               ✗ {tr(S.didntKnow, lang)} <kbd>2</kbd>
             </button>
           </>
+        ) : nf ? (
+          <ConfidencePicker lang={lang} onPick={pickConf} />
         ) : (
           <button type="button" className="btn primary block" onClick={flip}>
             {tr(S.tapToFlip, lang)}
           </button>
         )}
       </div>
-      <p className="small muted center ws-keys">{tr(S.keysCards, lang)}</p>
+      {nf && <FeedbackLine feedback={nfs.feedback} lang={lang} />}
+      <p className="small muted center ws-keys">{tr(nf ? NF.keysCards : S.keysCards, lang)}</p>
     </div>
   );
 }

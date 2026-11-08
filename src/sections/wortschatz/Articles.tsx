@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Lang } from '../../types.ts';
 import type { VocabEntry } from '../../content/types.ts';
-import { getStore, recordItem, recordResult } from '../../lib/storage.ts';
+import { getStore, recordItem, recordResult, useFlag } from '../../lib/storage.ts';
+import { isSlow, pastTimes, shouldHold } from '../../lib/neuro.ts';
 import { logError, track } from '../../lib/analytics.ts';
 import { useKeys } from '../../lib/useKeys.ts';
 import { tr } from '../../lib/i18n.ts';
@@ -21,6 +22,8 @@ import {
 } from './shared.tsx';
 import { useWsSettings } from './settings.ts';
 import SessionEnd from './SessionEnd.tsx';
+import { FocusMonitor, NF, NfEndLines, trackNfFinished, useNfSession } from './nf.tsx';
+import { feedbackLine } from './nfLogic.ts';
 
 const ARTICLES = ['der', 'die', 'das'] as const;
 const isNoun = (e: VocabEntry) => e.pos === 'noun' && !!e.article;
@@ -55,6 +58,13 @@ export default function Articles({
   const backTo = scope === 'due' || scope === 'weak' ? 'wortschatz' : `wortschatz/thema/${scope}`;
   const card = deck[index] as VocabEntry | undefined;
 
+  // Neurofeedback mode (test phase): timing per noun, an optional "I'm guessing" toggle, focus monitor.
+  const [nf] = useFlag('neurofeedback');
+  const nfs = useNfSession(nf, startedAt.current);
+  const { add: nfAdd, flash: nfFlash, clearFeedback: nfClear, getAnswers: nfAnswers } = nfs;
+  const shownAt = useRef(Date.now());
+  const [guessing, setGuessing] = useState(false);
+
   useEffect(() => {
     if (deck.length > 0) track('wortschatz.session_started', { mode: 'articles', topic: scope, n: deck.length });
   }, [deck.length, scope]);
@@ -77,8 +87,9 @@ export default function Articles({
         logError(err, 'wortschatz.articles.result');
       }
       track('wortschatz.session_finished', { mode: 'articles', topic: scope, n: all.length, correct });
+      if (nf) trackNfFinished('articles', nfAnswers());
     },
-    [scope],
+    [scope, nf, nfAnswers],
   );
 
   const choose = useCallback(
@@ -88,13 +99,22 @@ export default function Articles({
       setChosen(i);
       setAnswers((a) => [...a, ok]);
       try {
-        recordItem(articleKey(card.id), ok, i);
+        if (nf) {
+          const now = Date.now();
+          const ms = now - shownAt.current;
+          const conf = guessing ? 'guess' : 'sure';
+          const slow = isSlow(ms, 'article', pastTimes(getStore().progress, 'vocab-art:'));
+          const hold = shouldHold(ok, conf, slow);
+          recordItem(articleKey(card.id), ok, i, now, { conf, ms, hold });
+          nfAdd({ ok, conf, ms, hold });
+          nfFlash(feedbackLine(ok, conf, slow, ms));
+        } else recordItem(articleKey(card.id), ok, i);
       } catch (err) {
         logError(err, 'wortschatz.articles.record');
       }
       if (tts && settings.autoSpeak) say(spoken(card));
     },
-    [card, chosen, tts, settings.autoSpeak],
+    [card, chosen, tts, settings.autoSpeak, nf, guessing, nfAdd, nfFlash],
   );
 
   const next = useCallback(() => {
@@ -103,8 +123,13 @@ export default function Articles({
     else {
       setIndex(index + 1);
       setChosen(null);
+      if (nf) {
+        nfClear();
+        setGuessing(false);
+        shownAt.current = Date.now();
+      }
     }
-  }, [chosen, index, deck.length, answers, finish]);
+  }, [chosen, index, deck.length, answers, finish, nf, nfClear]);
 
   useKeys({ onOption: choose, onNext: next });
 
@@ -133,6 +158,7 @@ export default function Articles({
           onAgain={onRestart}
           onBack={() => go(backTo)}
           backLabel={scopeLabel(scope, lang)}
+          extra={nf ? <NfEndLines answers={nfs.answers} lang={lang} /> : undefined}
         />
       </div>
     );
@@ -161,6 +187,18 @@ export default function Articles({
         </span>
       </div>
 
+      {nf && (
+        <FocusMonitor
+          lang={lang}
+          signal={nfs.hint}
+          onContinue={nfs.dismissHint}
+          onBreak={() => {
+            nfs.breakHint();
+            finish(answers);
+          }}
+        />
+      )}
+
       <div className="card ws-card ws-art-card">
         <span className="ws-pos">{tr(S.whichArticle, lang)}</span>
         <span className="ws-word">
@@ -169,6 +207,15 @@ export default function Articles({
         </span>
         <span className="ws-hint">{card.en}</span>
       </div>
+
+      {nf && !answered && (
+        <div className="row wrap ws-nf-guess">
+          <button type="button" className="chip" aria-pressed={guessing} onClick={() => setGuessing((g) => !g)}>
+            🎲 {tr(NF.guessToggle, lang)}
+          </button>
+          <span className="small muted">{tr(NF.guessHint, lang)}</span>
+        </div>
+      )}
 
       <div className="options ws-art-options">
         {ARTICLES.map((a, i) => {
@@ -195,6 +242,9 @@ export default function Articles({
             {tts && <SpeakButton text={spoken(card)} label={S.listen} lang={lang} />}
           </div>
           <div className="body ws-example">{card.example}</div>
+          {nf && nfs.feedback && (
+            <div className={`body ws-nf-verdict ${nfs.feedback.tone === 'neutral' ? '' : nfs.feedback.tone}`}>{tr(nfs.feedback.text, lang)}</div>
+          )}
         </div>
       )}
 

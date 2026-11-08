@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { Lang } from '../../types.ts';
 import type { VocabEntry } from '../../content/types.ts';
 import { tr } from '../../lib/i18n.ts';
@@ -11,6 +12,7 @@ export default function SessionEnd({
   onAgain,
   onBack,
   backLabel,
+  extra,
 }: {
   lang: Lang;
   correct: number;
@@ -19,6 +21,8 @@ export default function SessionEnd({
   onAgain: () => void;
   onBack: () => void;
   backLabel: string;
+  /** Extra lines below the word list (neurofeedback mode only). */
+  extra?: ReactNode;
 }) {
   const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
   return (
@@ -44,6 +48,7 @@ export default function SessionEnd({
       ) : (
         total > 0 && <p className="good">{tr(S.allKnown, lang)}</p>
       )}
+      {extra}
       <div className="row wrap" style={{ justifyContent: 'center', marginTop: 18 }}>
         <button type="button" className="btn primary" onClick={onAgain} autoFocus>
           {tr(S.again, lang)}
