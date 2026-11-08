@@ -9,13 +9,15 @@ import './drill.css';
 import type { Lang, Text2 } from '../../types.ts';
 import type { TopicId } from '../../content/types.ts';
 import { TOPICS } from '../../content/topics.ts';
-import { recordItem, recordResult, useSection, useStore } from '../../lib/storage.ts';
+import { recordItem, recordResult, useFlag, useSection, useStore } from '../../lib/storage.ts';
 import { formatClock, useCountdown } from '../../lib/useCountdown.ts';
 import { logError, track } from '../../lib/analytics.ts';
 import { tr } from '../../lib/i18n.ts';
 import { Confirm } from '../../components/Confirm.tsx';
-import { bestBySet, formatPoints, scoreItems, type ScoredPart, type SetScore } from './score.ts';
+import { bestBySet, FIRST_NUMBER, formatPoints, scoreItems, type ScoredPart, type SetScore } from './score.ts';
 import type { PartInfo } from './parts.ts';
+import { confFor, itemExtra, nfSummary, type NfMarks } from './nf.ts';
+import { NfReview, type NfReviewItem } from './NfReview.tsx';
 
 export type { PartInfo } from './parts.ts';
 
@@ -165,11 +167,19 @@ export interface DrillContext {
   update: (fn: (prev: Answers) => Answers) => void;
   /** Set after submitting: the score with per-item outcomes. */
   review: SetScore | null;
+  /** Neurofeedback mode only: the "geraten" marks. Undefined otherwise (and in the Modelltest). */
+  nf?: NfMarks;
 }
 
 interface SectionState {
   timer?: boolean;
-  draft?: { id: string; answers: Answers; startedAt: number } | null;
+  draft?: { id: string; answers: Answers; startedAt: number; guesses?: boolean[] } | null;
+}
+
+/** What the neurofeedback review needs about one item besides its outcome. */
+export interface NfItemInfo {
+  solution: string;
+  explanation: Text2;
 }
 
 /**
@@ -188,6 +198,7 @@ export function DrillFrame({
   nextSetId,
   children,
   dock,
+  explain,
 }: {
   lang: Lang;
   section: DrillSection;
@@ -202,8 +213,11 @@ export function DrillFrame({
   children: (ctx: DrillContext) => ReactNode;
   /** Extra content for the sticky bottom bar while answering (e.g. the word bank). */
   dock?: (ctx: DrillContext) => ReactNode;
+  /** Solution and explanation per item, for the neurofeedback review. */
+  explain?: (item: number) => NfItemInfo;
 }) {
   const [saved, setSaved] = useSection<SectionState>(section, {});
+  const [nf] = useFlag('neurofeedback');
   const draftId = `${info.part}:${setId}`;
   const [answers, setAnswers] = useState<Answers>(() => {
     const d = saved.draft;
@@ -214,6 +228,11 @@ export function DrillFrame({
   const [startedAt, setStartedAt] = useState(() =>
     saved.draft && saved.draft.id === draftId ? Number(saved.draft.startedAt) || Date.now() : Date.now(),
   );
+  const [guesses, setGuesses] = useState<boolean[]>(() => {
+    const g = saved.draft?.id === draftId ? saved.draft.guesses : undefined;
+    return keys.map((_, i) => (Array.isArray(g) ? g[i] === true : false));
+  });
+  const [nfResult, setNfResult] = useState<{ items: NfReviewItem[]; durationMs: number } | null>(null);
   const [review, setReview] = useState<SetScore | null>(null);
   const [asking, setAsking] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -228,12 +247,26 @@ export function DrillFrame({
   // The latest answers, so an update can persist the draft outside a React updater.
   const latest = useRef(answers);
   latest.current = answers;
+  const latestGuesses = useRef(guesses);
+  latestGuesses.current = guesses;
   const update = useCallback(
     (fn: (prev: Answers) => Answers) => {
       const next = fn(latest.current);
       latest.current = next;
       setAnswers(next);
-      setSaved((s) => ({ ...s, draft: { id: draftId, answers: next, startedAt } }));
+      setSaved((s) => ({
+        ...s,
+        draft: { id: draftId, answers: next, startedAt, ...(nf ? { guesses: latestGuesses.current } : {}) },
+      }));
+    },
+    [draftId, startedAt, setSaved, nf],
+  );
+  const toggleGuess = useCallback(
+    (item: number) => {
+      const next = latestGuesses.current.map((g, i) => (i === item ? !g : g));
+      latestGuesses.current = next;
+      setGuesses(next);
+      setSaved((s) => ({ ...s, draft: { id: draftId, answers: latest.current, startedAt, guesses: next } }));
     },
     [draftId, startedAt, setSaved],
   );
@@ -243,8 +276,14 @@ export function DrillFrame({
   const finish = () => {
     setAsking(false);
     const score = scoreItems(keys, answers, info.maxPoints);
+    const finishedAt = Date.now();
+    const confs = score.items.map((o, i) => (nf ? confFor(o.chosen !== null, guesses[i]) : undefined));
     try {
-      score.items.forEach((o, i) => recordItem(`${info.part}:${setId}:${i + 1}`, o.ok, o.chosen ?? -1));
+      score.items.forEach((o, i) =>
+        nf
+          ? recordItem(`${info.part}:${setId}:${i + 1}`, o.ok, o.chosen ?? -1, finishedAt, itemExtra(o.ok, confs[i]))
+          : recordItem(`${info.part}:${setId}:${i + 1}`, o.ok, o.chosen ?? -1),
+      );
       recordResult({
         section,
         part: info.part,
@@ -254,13 +293,24 @@ export function DrillFrame({
         points: score.points,
         maxPoints: score.maxPoints,
         startedAt,
-        finishedAt: Date.now(),
+        finishedAt,
       });
       setSaved((s) => ({ ...s, draft: null }));
     } catch (err) {
       logError(err, `${section}.finish`);
     }
     track(`${section}.set_finished`, { part: info.part, setId, correct: score.correct, total: score.total });
+    if (nf) {
+      const items: NfReviewItem[] = score.items.map((o, i) => ({
+        ok: o.ok,
+        conf: confs[i],
+        num: FIRST_NUMBER[info.part] + i,
+        ...(explain?.(i) ?? { solution: '', explanation: { de: '', en: '' } }),
+      }));
+      const sum = nfSummary(items);
+      track(`${section}.nf_reviewed`, { part: info.part, sure_wrong: sum.sureWrong, guess_right: sum.guessRight });
+      setNfResult({ items, durationMs: finishedAt - startedAt });
+    }
     setReview(score);
     window.scrollTo(0, 0);
   };
@@ -270,6 +320,8 @@ export function DrillFrame({
   const retry = () => {
     const now = Date.now();
     setAnswers(keys.map(() => null));
+    setGuesses(keys.map(() => false));
+    setNfResult(null);
     setReview(null);
     setStartedAt(now);
     setTimerFrom(now);
@@ -287,7 +339,7 @@ export function DrillFrame({
   };
   const onTimeUp = useCallback(() => setTimeUp(true), []);
 
-  const ctx: DrillContext = { answers, update, review };
+  const ctx: DrillContext = nf ? { answers, update, review, nf: { guesses, toggle: toggleGuess } } : { answers, update, review };
   const back = () => go(`${section}/${info.slug}`);
 
   return (
@@ -314,7 +366,10 @@ export function DrillFrame({
       </div>
 
       {review ? (
-        <ResultCard lang={lang} score={review} onRetry={retry} onNext={nextSetId ? () => go(`${section}/${info.slug}/${nextSetId}`) : undefined} onBack={back} />
+        <>
+          <ResultCard lang={lang} score={review} onRetry={retry} onNext={nextSetId ? () => go(`${section}/${info.slug}/${nextSetId}`) : undefined} onBack={back} />
+          {nf && nfResult && <NfReview lang={lang} items={nfResult.items} durationMs={nfResult.durationMs} paceMinutes={info.minutes} />}
+        </>
       ) : (
         <p className="drill-instr">{tr(info.todo, lang)}</p>
       )}

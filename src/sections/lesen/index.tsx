@@ -6,7 +6,7 @@ import { tr } from '../../lib/i18n.ts';
 import { DrillFrame, NotFound, PartCard } from './drill.tsx';
 import { LESEN_PARTS } from './parts.ts';
 import { Lesen1Task, Lesen2Task, Lesen3Task } from './tasks.tsx';
-import { lesen1Keys, lesen2Keys, lesen3Keys, nextId } from './score.ts';
+import { lesen1Keys, lesen2Keys, lesen3Keys, lesen3X, letter, nextId } from './score.ts';
 
 const T = {
   title: { de: 'Leseverstehen', en: 'Reading' },
@@ -16,6 +16,23 @@ const T = {
   },
   home: { de: 'Start', en: 'Home' },
 } satisfies Record<string, Text2>;
+
+/* Solution and explanation per item, for the neurofeedback review. */
+const explain1 = (set: Lesen1Set) => (i: number) => {
+  const t = set.texts[i];
+  return { solution: `${letter(t.answer)} – ${set.headlines[t.answer]}`, explanation: t.explanation };
+};
+const explain2 = (set: Lesen2Set) => (i: number) => {
+  const item = set.items[i];
+  return { solution: `${letter(item.answer)}) ${item.options[item.answer]}`, explanation: item.explanation };
+};
+const explain3 = (set: Lesen3Set) => (i: number) => {
+  const s = set.situations[i];
+  const x = lesen3X(set);
+  const key = s.answer ?? x;
+  const ad = set.ads[key];
+  return { solution: key === x ? 'x' : `${letter(key)}${ad?.title ? ` – ${ad.title}` : ''}`, explanation: s.explanation };
+};
 
 export default function Section({ lang, path, go }: SectionProps) {
   const [slug, setId] = path;
@@ -31,7 +48,7 @@ export default function Section({ lang, path, go }: SectionProps) {
       const set: Lesen1Set = lesen1[i];
       return (
         <DrillFrame key={set.id} lang={lang} section="lesen" info={info} setId={set.id} setNumber={i + 1} topic={set.topic}
-          keys={lesen1Keys(set)} go={go} nextSetId={nextId(lesen1.map((s) => s.id), set.id)}>
+          keys={lesen1Keys(set)} go={go} nextSetId={nextId(lesen1.map((s) => s.id), set.id)} explain={explain1(set)}>
           {(ctx) => <Lesen1Task set={set} lang={lang} {...ctx} />}
         </DrillFrame>
       );
@@ -42,7 +59,7 @@ export default function Section({ lang, path, go }: SectionProps) {
       const set: Lesen2Set = lesen2[i];
       return (
         <DrillFrame key={set.id} lang={lang} section="lesen" info={info} setId={set.id} setNumber={i + 1} topic={set.topic}
-          keys={lesen2Keys(set)} go={go} nextSetId={nextId(lesen2.map((s) => s.id), set.id)}>
+          keys={lesen2Keys(set)} go={go} nextSetId={nextId(lesen2.map((s) => s.id), set.id)} explain={explain2(set)}>
           {(ctx) => <Lesen2Task set={set} lang={lang} {...ctx} />}
         </DrillFrame>
       );
@@ -52,7 +69,7 @@ export default function Section({ lang, path, go }: SectionProps) {
     const set: Lesen3Set = lesen3[i];
     return (
       <DrillFrame key={set.id} lang={lang} section="lesen" info={info} setId={set.id} setNumber={i + 1} topic={set.topic}
-        keys={lesen3Keys(set)} go={go} nextSetId={nextId(lesen3.map((s) => s.id), set.id)}>
+        keys={lesen3Keys(set)} go={go} nextSetId={nextId(lesen3.map((s) => s.id), set.id)} explain={explain3(set)}>
         {(ctx) => <Lesen3Task set={set} lang={lang} {...ctx} />}
       </DrillFrame>
     );

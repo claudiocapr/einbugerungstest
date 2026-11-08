@@ -4,7 +4,7 @@ import type { Lang, Text2 } from '../../types.ts';
 import { Confirm } from '../../components/Confirm.tsx';
 import { logError, track } from '../../lib/analytics.ts';
 import { tr } from '../../lib/i18n.ts';
-import { recordItem, recordResult, useSection } from '../../lib/storage.ts';
+import { recordItem, recordResult, useFlag, useSection } from '../../lib/storage.ts';
 import { speak, speakLines, stop, ttsAvailable, voicesReady } from '../../lib/tts.ts';
 import { formatClock, useCountdown } from '../../lib/useCountdown.ts';
 import {
@@ -26,6 +26,8 @@ import {
   type Segment,
 } from './score.ts';
 import { Transcript } from './Transcript.tsx';
+import { confFor, itemExtra, nfSummary } from '../lesen/nf.ts';
+import { GuessRow, NfReview, type NfReviewItem } from '../lesen/NfReview.tsx';
 
 type Phase = 'start' | 'reading' | 'playing' | 'answer' | 'results';
 export interface HoerenSettings {
@@ -121,6 +123,8 @@ export function Player({ lang, part, set, onBack }: { lang: Lang; part: HoerenPa
   const [showText, setShowText] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [startedAt, setStartedAt] = useState(() => Date.now());
+  const [nf] = useFlag('neurofeedback');
+  const [guesses, setGuesses] = useState<boolean[]>(() => entries.map(() => false));
   const run = useRef(0);
   const learn = settings.learn;
   const rate = learn && settings.slow ? 0.8 : 0.95;
@@ -237,7 +241,17 @@ export function Player({ lang, part, set, onBack }: { lang: Lang; part: HoerenPa
     setConfirm(false);
     cancel();
     const s = scoreHoeren(part, set, answers);
-    entries.forEach((_, i) => recordItem(hoerenItemId(part, set.id, i), s.perItem[i], rfChoiceIndex(answers[i])));
+    if (nf) {
+      const now = Date.now();
+      const confs = entries.map((_, i) => confFor(answers[i] != null, guesses[i]));
+      entries.forEach((_, i) =>
+        recordItem(hoerenItemId(part, set.id, i), s.perItem[i], rfChoiceIndex(answers[i]), now, itemExtra(s.perItem[i], confs[i])),
+      );
+      const sum = nfSummary(confs.map((conf, i) => ({ ok: s.perItem[i], conf })));
+      track('hoeren.nf_reviewed', { part, sure_wrong: sum.sureWrong, guess_right: sum.guessRight });
+    } else {
+      entries.forEach((_, i) => recordItem(hoerenItemId(part, set.id, i), s.perItem[i], rfChoiceIndex(answers[i])));
+    }
     recordResult({
       section: 'hoeren',
       part: hoerenExamPart(part),
@@ -267,6 +281,7 @@ export function Player({ lang, part, set, onBack }: { lang: Lang; part: HoerenPa
   const restart = () => {
     cancel();
     setAnswers(entries.map(() => null));
+    setGuesses(entries.map(() => false));
     setShowText(false);
     setPhase('start');
     window.scrollTo?.({ top: 0 });
@@ -276,6 +291,16 @@ export function Player({ lang, part, set, onBack }: { lang: Lang; part: HoerenPa
 
   const score = phase === 'results' ? scoreHoeren(part, set, answers) : null;
   const first = FIRST_NUMBER[part];
+  const nfItems: NfReviewItem[] | null =
+    nf && score
+      ? entries.map((e, i) => ({
+          num: first + i,
+          ok: score.perItem[i],
+          conf: confFor(answers[i] != null, !!guesses[i]),
+          solution: tr(e.item.answer ? S.richtig : S.falsch, lang),
+          explanation: e.item.explanation,
+        }))
+      : null;
   const canPractise = learn || !audio;
 
   const statementList = (
@@ -315,6 +340,17 @@ export function Player({ lang, part, set, onBack }: { lang: Lang; part: HoerenPa
                 </button>
               ))}
             </div>
+            {nf && (
+              <GuessRow
+                review={!!score}
+                answered={chosen != null}
+                guessed={!!guesses[i]}
+                onToggle={() => setGuesses((prev) => prev.map((g, k) => (k === i ? !g : g)))}
+                lang={lang}
+                label={String(first + i)}
+                disabled={phase === 'start'}
+              />
+            )}
             {score && (
               <div className={`verdict ${ok ? 'good' : 'bad'}`}>
                 <div className="head">
@@ -484,6 +520,8 @@ export function Player({ lang, part, set, onBack }: { lang: Lang; part: HoerenPa
           </div>
         </div>
       )}
+
+      {nfItems && <NfReview lang={lang} items={nfItems} />}
 
       <div style={{ marginTop: 12 }}>{statementList}</div>
 
