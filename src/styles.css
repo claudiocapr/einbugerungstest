@@ -409,6 +409,11 @@ footer.foot {
   display: flex;
   gap: 10px;
   margin-top: 6px;
+  /* Own compositing layer: iOS Safari otherwise leaves stale paint behind when
+     the buttons inside change (e.g. after a card flips). */
+  transform: translateZ(0);
+  isolation: isolate;
+  z-index: 2;
 }
 
 @media (max-width: 480px) {

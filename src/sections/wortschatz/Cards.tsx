@@ -278,7 +278,8 @@ export default function Cards({
 
       {nf && flipped && speechOk && <SpeechCheck key={card.id} entry={card} lang={lang} />}
 
-      <div className="sticky-actions">
+      {/* Keyed by state so the buttons are rebuilt, not repainted in place (iOS Safari). */}
+      <div className="sticky-actions" key={flipped ? 'grade' : 'flip'}>
         {flipped ? (
           <>
             <button type="button" className="btn block ws-knew" onClick={() => grade(true)}>
