@@ -101,8 +101,8 @@ test('formatDuration and paceText', () => {
   assert.equal(formatDuration(0), '0:00');
   assert.equal(formatDuration(754_000), '12:34');
   assert.equal(formatDuration(3_754_000), '1:02:34');
-  assert.equal(paceText(12 * 60_000, 15, 'de'), 'Deine Zeit 12:00 · Prüfungstempo 15:00 – schneller als Prüfungstempo.');
-  assert.equal(paceText(25 * 60_000, 20, 'de'), 'Deine Zeit 25:00 · Prüfungstempo 20:00 – langsamer als Prüfungstempo.');
+  assert.equal(paceText(12 * 60_000, 15, 'de'), 'Ihre Zeit 12:00 · Prüfungstempo 15:00 – schneller als Prüfungstempo.');
+  assert.equal(paceText(25 * 60_000, 20, 'de'), 'Ihre Zeit 25:00 · Prüfungstempo 20:00 – langsamer als Prüfungstempo.');
   assert.match(paceText(20 * 60_000, 20, 'en'), /on exam pace/);
   assert.match(paceText(-1, 20, 'de'), /nicht aussagekräftig/);
 });

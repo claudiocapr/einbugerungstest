@@ -83,22 +83,22 @@ export function calibrationVerdict(s: NfSummary): Text2 {
       return { de: 'Keine beantworteten Aufgaben – keine Einschätzung möglich.', en: 'No answered items – nothing to assess.' };
     case 'calibrated':
       return {
-        de: 'Gut eingeschätzt: Wo du sicher warst, lagst du richtig – und dein Zweifel war berechtigt.',
+        de: 'Gut eingeschätzt: Wo Sie sicher waren, lagen Sie richtig – und Ihr Zweifel war berechtigt.',
         en: 'Well calibrated: where you were sure you were right – and your doubts were justified.',
       };
     case 'overconfident':
       return {
-        de: `Zu sicher: ${s.sureWrong}× sicher, aber falsch. Lies diese Erklärungen besonders genau.`,
+        de: `Zu sicher: ${s.sureWrong}× sicher, aber falsch. Lesen Sie diese Erklärungen besonders genau.`,
         en: `Overconfident: ${s.sureWrong}× sure but wrong. Read those explanations especially carefully.`,
       };
     case 'underconfident':
       return {
-        de: `Du weißt mehr, als du denkst: ${s.guessRight}× geraten und trotzdem richtig. Diese Aufgaben kommen bald wieder, bis du sicher bist.`,
+        de: `Sie wissen mehr, als Sie denken: ${s.guessRight}× geraten und trotzdem richtig. Diese Aufgaben kommen bald wieder, bis Sie sicher sind.`,
         en: `You know more than you think: ${s.guessRight}× guessed and still right. These items come back soon until you are sure.`,
       };
     default:
       return {
-        de: 'Gemischt: Deine Sicherheit sagt noch wenig darüber, ob du richtig liegst.',
+        de: 'Gemischt: Ihre Sicherheit sagt noch wenig darüber, ob Sie richtig liegen.',
         en: 'Mixed: your confidence does not yet say much about whether you are right.',
       };
   }
@@ -139,13 +139,13 @@ export function formatDuration(ms: number): string {
   return h > 0 ? `${h}:${String(m).padStart(2, '0')}:${s}` : `${m}:${s}`;
 }
 
-/** "Deine Zeit 12:34 · Prüfungstempo 15:00 – schneller als Prüfungstempo." */
+/** "Ihre Zeit 12:34 · Prüfungstempo 15:00 – schneller als Prüfungstempo." */
 export function paceText(ms: number, minutes: number, lang: Lang): string {
   const v = paceVerdict(ms, minutes);
   const pace = formatDuration(minutes * 60_000);
   if (v.kind === 'unclear') {
     return lang === 'de'
-      ? `Prüfungstempo ${pace} – deine Zeit ist nicht aussagekräftig (Pause gemacht?).`
+      ? `Prüfungstempo ${pace} – Ihre Zeit ist nicht aussagekräftig (Pause gemacht?).`
       : `Exam pace ${pace} – your time is not meaningful (did you take a break?).`;
   }
   const verdict: Record<Exclude<PaceKind, 'unclear'>, Text2> = {
@@ -155,6 +155,6 @@ export function paceText(ms: number, minutes: number, lang: Lang): string {
   };
   const time = formatDuration(ms);
   return lang === 'de'
-    ? `Deine Zeit ${time} · Prüfungstempo ${pace} – ${verdict[v.kind].de}.`
+    ? `Ihre Zeit ${time} · Prüfungstempo ${pace} – ${verdict[v.kind].de}.`
     : `Your time ${time} · exam pace ${pace} – ${verdict[v.kind].en}.`;
 }

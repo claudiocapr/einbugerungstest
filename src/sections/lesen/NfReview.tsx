@@ -1,6 +1,6 @@
 /**
  * Neurofeedback mode (test phase) for the exam drills: the "geraten" toggle per
- * item, the confidence badge after submitting, and the "Wie sicher warst du?"
+ * item, the confidence badge after submitting, and the "Wie sicher waren Sie?"
  * review block. Rendered only while the "neurofeedback" flag is on; the
  * Modelltest never passes the marks, so it never shows any of this.
  */
@@ -12,12 +12,12 @@ import './nf.css';
 const N = {
   guess: { de: 'geraten', en: 'guessed' },
   guessHint: {
-    de: 'Markiere, wenn du geraten hast – sonst zählt die Antwort als sicher.',
+    de: 'Markieren Sie, wenn Sie geraten haben – sonst zählt die Antwort als sicher.',
     en: 'Mark it if you guessed – otherwise the answer counts as sure.',
   },
   sure: { de: 'sicher', en: 'sure' },
   open: { de: 'offen', en: 'open' },
-  title: { de: 'Wie sicher warst du?', en: 'How sure were you?' },
+  title: { de: 'Wie sicher waren Sie?', en: 'How sure were you?' },
   sureRight: { de: 'Sicher & richtig', en: 'Sure & right' },
   sureWrong: { de: 'Sicher, aber falsch', en: 'Sure but wrong' },
   guessRight: { de: 'Geraten & richtig', en: 'Guessed & right' },
@@ -110,7 +110,7 @@ export interface NfReviewItem extends NfItem {
   explanation: Text2;
 }
 
-/** The "Wie sicher warst du?" block on the result screen. */
+/** The "Wie sicher waren Sie?" block on the result screen. */
 export function NfReview({
   lang,
   items,
