@@ -1,5 +1,5 @@
 import type { DrillResult, ItemProgress } from '../types.ts';
-import { MAX_RESULTS, normaliseStore, type Store } from '../lib/storage.ts';
+import { EMPTY, MAX_RESULTS, normaliseStore, type Store } from '../lib/storage.ts';
 
 /**
  * Merging the progress of two devices. Pure, so it can be tested without a
@@ -64,4 +64,22 @@ export function mergeStores(localRaw: Partial<Store> | null | undefined, remoteR
     sections,
     updatedAt: Math.max(local.updatedAt, remote.updatedAt),
   };
+}
+
+/**
+ * What this device should hold once `uid` is signed in.
+ *
+ * - The same account as last time, or the first sign-in on this device:
+ *   merge, so progress made while signed out is kept.
+ * - A different account than last time (a shared phone or laptop): never mix
+ *   the previous account's progress into this one. The device switches to
+ *   this account's saved progress, or starts empty; the previous account's
+ *   progress is safe in its own account and comes back when it signs in.
+ */
+export function storeForSignIn(local: Store, remote: unknown, previousUserId: string | null, uid: string): Store {
+  if (previousUserId && previousUserId !== uid) {
+    if (remote && typeof remote === 'object') return normaliseStore(remote as Partial<Store>);
+    return { ...EMPTY, lang: local.lang, theme: local.theme, updatedAt: Date.now() };
+  }
+  return remote && typeof remote === 'object' ? mergeStores(local, remote as Partial<Store>) : local;
 }

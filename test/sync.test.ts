@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mergeItem, mergeResults, mergeStores } from '../src/sync/merge.ts';
+import { mergeItem, mergeResults, mergeStores, storeForSignIn } from '../src/sync/merge.ts';
 import { EMPTY, MAX_RESULTS, type Store } from '../src/lib/storage.ts';
 import type { DrillResult, ItemProgress } from '../src/types.ts';
 
@@ -112,4 +112,24 @@ test('merging is idempotent', () => {
   const once = mergeStores(local, remote);
   assert.deepEqual(mergeStores(once, remote), once);
   assert.deepEqual(mergeStores(once, once), once);
+});
+
+test('a different account on the same device never gets the previous account\'s progress', () => {
+  const mine = store({ progress: { a: item(1) }, lang: 'en' });
+  const theirs = store({ progress: { b: item(2) } });
+  const switched = storeForSignIn(mine, theirs, 'user-me', 'user-friend');
+  assert.deepEqual(Object.keys(switched.progress), ['b'], 'only the friend\'s own progress');
+
+  const fresh = storeForSignIn(mine, null, 'user-me', 'user-friend');
+  assert.deepEqual(fresh.progress, {}, 'a friend without saved progress starts empty');
+  assert.deepEqual(fresh.results, []);
+  assert.equal(fresh.lang, 'en', 'device settings like the language stay');
+});
+
+test('the same account, or the first sign-in on a device, keeps progress made while signed out', () => {
+  const local = store({ progress: { a: item(1) } });
+  const remote = store({ progress: { b: item(2) } });
+  assert.deepEqual(Object.keys(storeForSignIn(local, remote, 'user-me', 'user-me').progress).sort(), ['a', 'b']);
+  assert.deepEqual(Object.keys(storeForSignIn(local, remote, null, 'user-me').progress).sort(), ['a', 'b']);
+  assert.deepEqual(Object.keys(storeForSignIn(local, null, null, 'user-me').progress), ['a']);
 });

@@ -3,7 +3,7 @@ import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import { getStore, replaceStore, subscribe, type Store } from '../lib/storage.ts';
 import { logError } from '../lib/analytics.ts';
 import { describeError, getSupabase, hasStoredSession } from './supabase.ts';
-import { mergeStores } from './merge.ts';
+import { storeForSignIn } from './merge.ts';
 
 /**
  * Offline-first progress sync for signed-in accounts.
@@ -153,17 +153,22 @@ function stop() {
 
 async function roundTrip(sb: SupabaseClient, uid: string) {
   const sameUser = meta.userId === uid;
+  // Another account used this device before: switch to this account's progress, never mix them.
+  const switched = meta.userId !== null && !sameUser;
   const head = await sb.from('progress').select('updated_at').eq('user_id', uid).maybeSingle();
   if (head.error) throw head.error;
 
   let merged = false;
-  if (head.data && (!sameUser || head.data.updated_at !== meta.remoteUpdatedAt)) {
-    // Someone else (another device) wrote since we last looked: merge it in.
+  if (switched && !head.data) {
+    replaceStore(storeForSignIn(getStore(), null, meta.userId, uid));
+    merged = true;
+  } else if (head.data && (!sameUser || head.data.updated_at !== meta.remoteUpdatedAt)) {
+    // Another device wrote since we last looked (or this is a new sign-in here): take it in.
     const full = await sb.from('progress').select('data, updated_at').eq('user_id', uid).maybeSingle();
     if (full.error) throw full.error;
     if (full.data) {
       const local = getStore();
-      const next = mergeStores(local, full.data.data);
+      const next = storeForSignIn(local, full.data.data, meta.userId, uid);
       if (JSON.stringify(next) !== JSON.stringify(local)) replaceStore(next);
       merged = true;
     }
