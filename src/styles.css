@@ -567,3 +567,39 @@ footer.foot {
 /* Text tints for inline feedback. */
 .good { color: var(--good); }
 .bad { color: var(--bad); }
+
+/* ---------- neurofeedback toggle in the top bar ---------- */
+
+.nf-toggle { position: relative; display: inline-flex; }
+/* Hover tip on devices with a mouse; phones get the toast after a tap instead. */
+@media (hover: hover) {
+  .nf-toggle:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 260px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    font-size: 13px;
+    font-weight: 450;
+    line-height: 1.4;
+    white-space: normal;
+    z-index: 30;
+    pointer-events: none;
+  }
+}
+.nf-toast {
+  position: fixed;
+  top: 64px;
+  right: 12px;
+  left: 12px;
+  max-width: 380px;
+  margin-left: auto;
+  z-index: 40;
+  box-shadow: var(--shadow);
+}
