@@ -97,7 +97,10 @@ export function speechErrorText(code: string): Text2 {
   switch (code) {
     case 'not-allowed':
     case 'service-not-allowed':
-      return { de: 'Mikrofon nicht erlaubt. Bitte in den Browser-Einstellungen freigeben.', en: 'Microphone not allowed. Please allow it in the browser settings.' };
+      return {
+        de: 'Mikrofon oder Spracherkennung nicht erlaubt. iPhone: Einstellungen → Ihr Browser (Safari oder Chrome) → „Mikrofon“ und „Spracherkennung“ einschalten, dann die Seite neu laden. Andere Geräte: in den Browser-Einstellungen das Mikrofon für diese Seite erlauben.',
+        en: 'Microphone or speech recognition not allowed. iPhone: Settings → your browser (Safari or Chrome) → turn on “Microphone” and “Speech Recognition”, then reload the page. Other devices: allow the microphone for this site in the browser settings.',
+      };
     case 'no-speech':
       return { de: 'Nichts gehört. Bitte noch einmal und etwas lauter.', en: 'Nothing heard. Please try again a little louder.' };
     case 'network':

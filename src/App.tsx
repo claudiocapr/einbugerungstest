@@ -4,6 +4,7 @@ import Boot from './sync/Boot.tsx';
 import { sectionById } from './sections/registry.ts';
 import { useStore } from './lib/storage.ts';
 import { t, tr } from './lib/i18n.ts';
+import { track } from './lib/analytics.ts';
 
 const NF_TIP = {
   label: { de: 'Neurofeedback-Modus (Testphase) an/aus', en: 'Neurofeedback mode (test phase) on/off' },
@@ -23,7 +24,6 @@ const NF_TIP = {
   },
   more: { de: 'Mehr erfahren', en: 'Learn more' },
 };
-import { track } from './lib/analytics.ts';
 
 const readRoute = () => window.location.hash.replace(/^#\/?/, '') || 'home';
 
