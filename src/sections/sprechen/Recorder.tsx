@@ -3,6 +3,7 @@ import type { Lang, Text2 } from '../../types.ts';
 import { logError, track } from '../../lib/analytics.ts';
 import { tr } from '../../lib/i18n.ts';
 import { formatClock } from '../../lib/useCountdown.ts';
+import type { MicLock } from './NfShared.tsx';
 
 const S = {
   title: { de: 'Aufnehmen und anhören', en: 'Record and listen' },
@@ -40,9 +41,10 @@ const supported = () =>
 
 /**
  * Microphone recorder. Takes live only in memory (object URLs), are revoked on
- * unmount and never leave the device.
+ * unmount and never leave the device. `mic` (neurofeedback mode only) keeps it
+ * from recording while speech recognition uses the microphone.
  */
-export function Recorder({ lang, part, setId }: { lang: Lang; part: number; setId: string }) {
+export function Recorder({ lang, part, setId, mic }: { lang: Lang; part: number; setId: string; mic?: MicLock }) {
   const [state, setState] = useState<'idle' | 'starting' | 'recording'>('idle');
   const [error, setError] = useState<'denied' | 'unsupported' | 'failed' | null>(supported() ? null : 'unsupported');
   const [takes, setTakes] = useState<Take[]>([]);
@@ -52,6 +54,14 @@ export function Recorder({ lang, part, setId }: { lang: Lang; part: number; setI
   const startedAt = useRef(0);
   const urls = useRef<string[]>([]);
   const alive = useRef(true);
+  const micRef = useRef(mic);
+  micRef.current = mic;
+
+  // Neurofeedback mode: hold the microphone while starting or recording.
+  useEffect(() => {
+    micRef.current?.claim(state !== 'idle');
+  }, [state]);
+  useEffect(() => () => micRef.current?.claim(false), []);
 
   const releaseStream = () => {
     stream.current?.getTracks().forEach((t) => t.stop());
@@ -171,7 +181,7 @@ export function Recorder({ lang, part, setId }: { lang: Lang; part: number; setI
               ■ {tr(S.stop, lang)}
             </button>
           ) : (
-            <button type="button" className="btn primary" onClick={start} disabled={state === 'starting'}>
+            <button type="button" className="btn primary" onClick={start} disabled={state === 'starting' || !!mic?.busy}>
               ● {tr(S.record, lang)}
             </button>
           )}

@@ -1,13 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { PhraseGroup, Speaking1Card, Speaking2Task, Speaking3Task } from '../../content/types.ts';
 import type { Lang, Text2 } from '../../types.ts';
 import { sprechenPhrases } from '../../content/sprechen.ts';
 import { track } from '../../lib/analytics.ts';
 import { tr } from '../../lib/i18n.ts';
-import { recordResult, useSection } from '../../lib/storage.ts';
+import { speechRecognitionAvailable } from '../../lib/speech.ts';
+import { recordResult, useFlag } from '../../lib/storage.ts';
 import { stop } from '../../lib/tts.ts';
 import { formatClock, useCountdown } from '../../lib/useCountdown.ts';
 import { Dialogue } from './Dialogue.tsx';
+import { LiveFeedback } from './LiveFeedback.tsx';
+import type { MicLock } from './NfShared.tsx';
 import { Recorder } from './Recorder.tsx';
 import {
   CRITERIA,
@@ -21,13 +24,9 @@ import {
   type SelfRating,
   type SprechenPart,
 } from './score.ts';
+import { useSprechenSettings } from './settings.ts';
 
 export type SprechenTask = Speaking1Card | Speaking2Task | Speaking3Task;
-
-interface Settings {
-  prepMinutes: number;
-}
-const DEFAULT_SETTINGS: Settings = { prepMinutes: 20 };
 
 const S = {
   instruction1: {
@@ -70,6 +69,10 @@ const S = {
   saved: { de: 'Gespeichert. Üben Sie die Aufgabe ruhig noch einmal!', en: 'Saved. Feel free to practise the task again!' },
   rateAll: { de: 'Bitte alle vier Kriterien bewerten.', en: 'Please rate all four criteria.' },
   points: { de: 'Punkte', en: 'points' },
+  noSpeech: {
+    de: 'Spracherkennung nicht verfügbar – Chrome oder Safari verwenden',
+    en: 'Speech recognition not available – use Chrome or Safari',
+  },
 } satisfies Record<string, Text2>;
 
 const GROUPS_FOR: Record<SprechenPart, string[]> = {
@@ -78,23 +81,50 @@ const GROUPS_FOR: Record<SprechenPart, string[]> = {
   3: ['vorschlagen', 'annehmen', 'ablehnen', 'einigen', 'zustimmen', 'widersprechen', 'zeit'],
 };
 
+type MicUser = 'rec' | 'live' | 'repeat';
+
+/**
+ * Neurofeedback mode (test phase): whether it is on and usable here, and one
+ * microphone lock per feature so the recorder, the live transcript and
+ * "Nachsprechen" never use the microphone at the same time.
+ */
+function useNeurofeedback() {
+  const [flag] = useFlag('neurofeedback');
+  const [recognition] = useState(speechRecognitionAvailable);
+  const [user, setUser] = useState<MicUser | null>(null);
+  const claim = useCallback((who: MicUser, on: boolean) => setUser((u) => (on ? (u ?? who) : u === who ? null : u)), []);
+  const locks = useMemo(() => {
+    const lock = (who: MicUser): MicLock => ({ busy: user !== null && user !== who, claim: (on) => claim(who, on) });
+    return { rec: lock('rec'), live: lock('live'), repeat: lock('repeat') };
+  }, [user, claim]);
+  return { flag, on: flag && recognition, locks };
+}
+
 export function Task({ lang, part, task, go }: { lang: Lang; part: SprechenPart; task: SprechenTask; go: (r: string) => void }) {
   const [startedAt] = useState(() => Date.now());
+  const nf = useNeurofeedback();
   useEffect(() => {
     track('sprechen.task_opened', { part, setId: task.id });
     return () => stop();
   }, [part, task.id]);
+  const groups = GROUPS_FOR[part].flatMap((id) => sprechenPhrases.filter((g) => g.id === id));
 
   return (
     <div className="sprechen stack">
       <TaskCard lang={lang} part={part} task={task} />
       <PrepTimer lang={lang} />
-      <PhraseBank lang={lang} groups={GROUPS_FOR[part].flatMap((id) => sprechenPhrases.filter((g) => g.id === id))} />
+      <PhraseBank lang={lang} groups={groups} />
       <button type="button" className="btn small ghost" style={{ justifySelf: 'start' }} onClick={() => go('sprechen/redemittel')}>
         📚 {tr(S.allPhrases, lang)} →
       </button>
-      <Recorder lang={lang} part={part} setId={task.id} />
-      <Dialogue lang={lang} model={task.model} />
+      <Recorder lang={lang} part={part} setId={task.id} mic={nf.on ? nf.locks.rec : undefined} />
+      {nf.flag && !nf.on && (
+        <p className="muted small" style={{ margin: 0 }}>
+          🎙️ {tr(S.noSpeech, lang)}
+        </p>
+      )}
+      {nf.on && <LiveFeedback lang={lang} part={part} groups={groups} mic={nf.locks.live} />}
+      <Dialogue lang={lang} model={task.model} nf={nf.on ? { part, mic: nf.locks.repeat } : undefined} />
       <SelfCheck lang={lang} part={part} setId={task.id} startedAt={startedAt} />
     </div>
   );
@@ -178,7 +208,7 @@ function Clock({ ms, onDone }: { ms: number; onDone: () => void }) {
 }
 
 function PrepTimer({ lang }: { lang: Lang }) {
-  const [settings, setSettings] = useSection<Settings>('sprechen', DEFAULT_SETTINGS);
+  const [settings, setSettings] = useSprechenSettings();
   const minutes = (PREP_MINUTES as readonly number[]).includes(settings.prepMinutes) ? settings.prepMinutes : 20;
   const [run, setRun] = useState<number | null>(null);
   const [done, setDone] = useState(false);

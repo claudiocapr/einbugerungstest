@@ -4,6 +4,9 @@ import type { Lang, Text2 } from '../../types.ts';
 import { logError } from '../../lib/analytics.ts';
 import { tr } from '../../lib/i18n.ts';
 import { speakLines, stop, ttsAvailable, voicesReady } from '../../lib/tts.ts';
+import type { MicLock } from './NfShared.tsx';
+import { RepeatMode } from './Repeat.tsx';
+import type { SprechenPart } from './score.ts';
 
 const S = {
   title: { de: 'Mustergespräch', en: 'Model conversation' },
@@ -26,6 +29,7 @@ const S = {
   restart: { de: 'Von vorn', en: 'Start over' },
   done: { de: 'Gespräch beendet. Gut gemacht!', en: 'Conversation finished. Well done!' },
   start: { de: 'Starten', en: 'Start' },
+  repeat: { de: 'Nachsprechen', en: 'Repeat after me' },
 } satisfies Record<string, Text2>;
 
 export const ROLE_LABELS: Record<Line['voice'], Text2> = {
@@ -49,9 +53,18 @@ function useAudio() {
   return audio;
 }
 
-export function Dialogue({ lang, model }: { lang: Lang; model: Line[] }) {
+type Mode = 'read' | 'partner' | 'repeat';
+const MODE_LABELS: Record<Mode, Text2> = { read: S.read, partner: S.partner, repeat: S.repeat };
+
+/**
+ * `nf` (neurofeedback mode, test phase, only with speech recognition) adds the
+ * "Nachsprechen" tab; without it the dialogue is unchanged.
+ */
+export function Dialogue({ lang, model, nf }: { lang: Lang; model: Line[]; nf?: { part: SprechenPart; mic: MicLock } }) {
   const audio = useAudio();
-  const [mode, setMode] = useState<'read' | 'partner'>('read');
+  const [chosen, setMode] = useState<Mode>('read');
+  const mode: Mode = chosen === 'repeat' && !nf ? 'read' : chosen;
+  const modes: Mode[] = nf ? ['read', 'partner', 'repeat'] : ['read', 'partner'];
   const [playing, setPlaying] = useState(false);
 
   // Stop speech when switching mode or leaving.
@@ -76,7 +89,7 @@ export function Dialogue({ lang, model }: { lang: Lang; model: Line[] }) {
     <div className="card stack">
       <h2 style={{ margin: 0 }}>💬 {tr(S.title, lang)}</h2>
       <div className="chips" role="tablist">
-        {(['read', 'partner'] as const).map((m) => (
+        {modes.map((m) => (
           <button
             key={m}
             type="button"
@@ -89,7 +102,7 @@ export function Dialogue({ lang, model }: { lang: Lang; model: Line[] }) {
               setMode(m);
             }}
           >
-            {tr(m === 'read' ? S.read : S.partner, lang)}
+            {tr(MODE_LABELS[m], lang)}
           </button>
         ))}
       </div>
@@ -130,6 +143,8 @@ export function Dialogue({ lang, model }: { lang: Lang; model: Line[] }) {
             ))}
           </ol>
         </>
+      ) : mode === 'repeat' && nf ? (
+        <RepeatMode lang={lang} model={model} audio={audio} part={nf.part} mic={nf.mic} roleLabels={ROLE_LABELS} />
       ) : (
         <PartnerMode lang={lang} model={model} audio={audio} />
       )}
