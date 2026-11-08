@@ -152,7 +152,7 @@ export default function Home({ lang, go }: SectionProps) {
 
       <h2 style={{ marginTop: 28 }}>{tr(L.allSections, lang)}</h2>
       {GROUPS.map((g) => {
-        const tiles = SECTIONS.filter((s) => s.tile && s.group === g.id);
+        const tiles = SECTIONS.filter((s) => s.tile && s.group === g.id && (!s.flag || store.flags[s.flag] === true));
         if (tiles.length === 0) return null;
         return (
           <section key={g.id} style={{ marginTop: 14 }}>

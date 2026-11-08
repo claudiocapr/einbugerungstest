@@ -89,13 +89,15 @@ export function calibration(attempts: readonly Attempt[]): Calibration {
   // The probability each rating claims: sure ≈ 95 %, unsure ≈ 60 %, guess ≈ 30 %.
   const claim: Record<Confidence, number> = { sure: 0.95, unsure: 0.6, guess: 0.3 };
   for (const a of attempts) {
-    if (!a.conf || !(a.conf in byConf)) continue;
+    // Only the three known ratings: a damaged save could hold e.g. "constructor", which `in` would accept.
+    if (!a || !CONFIDENCES.includes(a.conf as Confidence)) continue;
+    const conf = a.conf as Confidence;
     rated++;
-    byConf[a.conf].n++;
-    if (a.ok) byConf[a.conf].correct++;
-    if (a.conf === 'sure' && !a.ok) confidentErrors++;
-    if (a.conf === 'guess' && a.ok) luckyGuesses++;
-    penalty += (claim[a.conf] - (a.ok ? 1 : 0)) ** 2; // Brier score
+    byConf[conf].n++;
+    if (a.ok) byConf[conf].correct++;
+    if (conf === 'sure' && !a.ok) confidentErrors++;
+    if (conf === 'guess' && a.ok) luckyGuesses++;
+    penalty += (claim[conf] - (a.ok ? 1 : 0)) ** 2; // Brier score
   }
   const score = rated >= 10 ? Math.round(100 * (1 - penalty / rated)) : null;
   return { byConf, confidentErrors, luckyGuesses, score: score === null ? null : Math.max(0, Math.min(100, score)) };
@@ -160,6 +162,8 @@ export function focusState(samples: readonly FocusSample[], sessionMs: number): 
 /** Lower case, no punctuation, "ß" kept, umlauts kept (they matter in German). */
 export const normaliseWords = (text: string) =>
   text
+    // Speech recognition and typed content may encode umlauts differently (ü vs u + ¨).
+    .normalize('NFC')
     .toLowerCase()
     .replace(/[„“”"'’‚‘«»().,;:!?…–—-]+/g, ' ')
     .split(/\s+/)

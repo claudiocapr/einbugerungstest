@@ -13,6 +13,8 @@ export interface SectionMeta {
   group: 'basis' | 'schriftlich' | 'muendlich' | 'pruefung' | 'konto';
   /** Shown as a tile on the home screen. */
   tile: boolean;
+  /** A test-phase flag: the tile is only shown on the home screen while it is on. */
+  flag?: 'neurofeedback';
   component: LazyExoticComponent<ComponentType<SectionProps>>;
 }
 
@@ -101,6 +103,16 @@ export const SECTIONS: SectionMeta[] = [
     group: 'konto',
     tile: true,
     component: lazy(() => import('./fortschritt/index.tsx')),
+  },
+  {
+    id: 'feedback',
+    title: { de: 'Feedback', en: 'Feedback' },
+    blurb: { de: 'Sicherheit, Tempo, Aussprache, Konzentration', en: 'Confidence, tempo, pronunciation, focus' },
+    icon: '🧠',
+    group: 'konto',
+    tile: true,
+    flag: 'neurofeedback',
+    component: lazy(() => import('./feedback/index.tsx')),
   },
   {
     id: 'konto',

@@ -54,7 +54,8 @@ export function grade(
   if (typeof extra.ms === 'number' && Number.isFinite(extra.ms)) attempt.ms = Math.max(0, Math.round(extra.ms));
   return {
     box,
-    due: now + (correct ? Math.max(INTERVALS[box], DAY) : 0),
+    // A held answer comes back tomorrow, whatever box it sits in.
+    due: now + (correct ? (extra.hold ? DAY : Math.max(INTERVALS[box], DAY)) : 0),
     correct: p.correct + (correct ? 1 : 0),
     wrong: p.wrong + (correct ? 0 : 1),
     lastSeen: now,
