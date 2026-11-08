@@ -10,6 +10,19 @@ export interface Attempt {
   /** Index of the option picked, or -1 when the item has no options (e.g. a flashcard). */
   chosen: number;
   ok: boolean;
+  /** Neurofeedback mode only: how sure the learner said they were before answering. */
+  conf?: Confidence;
+  /** Neurofeedback mode only: milliseconds from seeing the item to answering. */
+  ms?: number;
+}
+
+/** Self-rated confidence before an answer is revealed (neurofeedback mode). */
+export type Confidence = 'sure' | 'unsure' | 'guess';
+
+/** Switches for features in a test phase. Off unless the learner turns them on. */
+export interface Flags {
+  /** Feedback on confidence, speed, pronunciation and focus while learning. */
+  neurofeedback: boolean;
 }
 
 /**

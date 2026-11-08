@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { DrillResult, ItemProgress, Lang } from '../types.ts';
-import { grade } from './srs.ts';
+import type { DrillResult, Flags, ItemProgress, Lang } from '../types.ts';
+import { grade, type GradeExtra } from './srs.ts';
 
 /**
  * Everything the app remembers about the learner, kept in localStorage on the
@@ -23,6 +23,8 @@ export interface Store {
    * section id. Read and write it with `useSection`. Synced like the rest.
    */
   sections: Record<string, unknown>;
+  /** Features in a test phase, each off by default. */
+  flags: Flags;
   /** Epoch ms of the last local change; the sync layer uses it. */
   updatedAt: number;
 }
@@ -37,6 +39,7 @@ export const EMPTY: Store = {
   progress: {},
   results: [],
   sections: {},
+  flags: { neurofeedback: false },
   updatedAt: 0,
 };
 
@@ -69,6 +72,7 @@ export function normaliseStore(raw: Partial<Store> | null | undefined): Store {
     progress: normaliseProgress(raw.progress),
     results: Array.isArray(raw.results) ? raw.results.slice(0, MAX_RESULTS) : [],
     sections: raw.sections && typeof raw.sections === 'object' ? raw.sections : {},
+    flags: { neurofeedback: raw.flags?.neurofeedback === true },
     updatedAt: Number(raw.updatedAt) || 0,
   };
 }
@@ -135,10 +139,26 @@ export function useStore(): [Store, (update: (s: Store) => Store) => void] {
   return [store, update];
 }
 
-/** Records one answer to a practice item and reschedules it. */
-export function recordItem(id: string, ok: boolean, chosen = -1, now = Date.now()) {
-  setStore((s) => ({ ...s, progress: { ...s.progress, [id]: grade(s.progress[id], ok, now, chosen) } }));
+/**
+ * Records one answer to a practice item and reschedules it. `extra` carries the
+ * neurofeedback signals (confidence, response time, hold); it is ignored while
+ * the neurofeedback flag is off, so the normal app is unchanged.
+ */
+export function recordItem(id: string, ok: boolean, chosen = -1, now = Date.now(), extra?: GradeExtra) {
+  setStore((s) => {
+    const signals = s.flags.neurofeedback ? extra : undefined;
+    return { ...s, progress: { ...s.progress, [id]: grade(s.progress[id], ok, now, chosen, signals) } };
+  });
 }
+
+/** Reads and sets one test-phase flag. */
+export function useFlag(name: keyof Flags): [boolean, (on: boolean) => void] {
+  const [store] = useStore();
+  const set = useCallback((on: boolean) => setStore((s) => ({ ...s, flags: { ...s.flags, [name]: on } })), [name]);
+  return [store.flags[name] === true, set];
+}
+
+export const flagOn = (name: keyof Flags) => current.flags[name] === true;
 
 /** Records a finished drill set / exam / self-assessed task. */
 export function recordResult(result: DrillResult) {

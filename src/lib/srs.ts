@@ -29,15 +29,29 @@ export const emptyProgress = (): ItemProgress => ({
 export const historyOf = (p: ItemProgress | undefined): Attempt[] =>
   Array.isArray(p?.history) ? p.history : [];
 
+/** Extra signals recorded in neurofeedback mode. */
+export interface GradeExtra {
+  conf?: Attempt['conf'];
+  ms?: number;
+  /**
+   * A correct answer that was not secure (guessed, or much slower than usual):
+   * the item keeps its box instead of moving up, and comes back tomorrow.
+   */
+  hold?: boolean;
+}
+
 export function grade(
   prev: ItemProgress | undefined,
   correct: boolean,
   now = Date.now(),
   chosen = -1,
+  extra: GradeExtra = {},
 ): ItemProgress {
   const p = prev ?? emptyProgress();
-  const box = correct ? Math.min(p.box + 1, MAX_BOX) : 1;
+  const box = correct ? (extra.hold ? Math.max(p.box, 1) : Math.min(p.box + 1, MAX_BOX)) : 1;
   const attempt: Attempt = { at: now, chosen, ok: correct };
+  if (extra.conf) attempt.conf = extra.conf;
+  if (typeof extra.ms === 'number' && Number.isFinite(extra.ms)) attempt.ms = Math.max(0, Math.round(extra.ms));
   return {
     box,
     due: now + (correct ? Math.max(INTERVALS[box], DAY) : 0),
