@@ -106,7 +106,7 @@ export const SECTIONS: SectionMeta[] = [
   },
   {
     id: 'feedback',
-    title: { de: 'Feedback', en: 'Feedback' },
+    title: { de: 'Neurofeedback', en: 'Neurofeedback' },
     blurb: { de: 'Sicherheit, Tempo, Aussprache, Konzentration', en: 'Confidence, tempo, pronunciation, focus' },
     icon: '🧠',
     group: 'konto',

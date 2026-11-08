@@ -26,6 +26,9 @@ const L = {
   days: { de: 'Tage in Folge', en: 'days in a row' },
   outlook: { de: 'Prognose', en: 'Outlook' },
   allSections: { de: 'Alle Bereiche', en: 'All sections' },
+  flagOn: { de: 'Testphase · an', en: 'Test phase · on' },
+  flagOff: { de: 'Testphase · aus', en: 'Test phase · off' },
+  flagHint: { de: 'Neurofeedback-Modus ausprobieren – hier einschalten', en: 'Try the neurofeedback mode – turn it on here' },
 } satisfies Record<string, Text2>;
 
 const OUTLOOK: Record<PredictionLabel, Text2> = {
@@ -152,7 +155,9 @@ export default function Home({ lang, go }: SectionProps) {
 
       <h2 style={{ marginTop: 28 }}>{tr(L.allSections, lang)}</h2>
       {GROUPS.map((g) => {
-        const tiles = SECTIONS.filter((s) => s.tile && s.group === g.id && (!s.flag || store.flags[s.flag] === true));
+        // Flagged sections are always listed, so the test phase can be found;
+        // while their flag is off the tile says so and opens the switch.
+        const tiles = SECTIONS.filter((s) => s.tile && s.group === g.id);
         if (tiles.length === 0) return null;
         return (
           <section key={g.id} style={{ marginTop: 14 }}>
@@ -164,8 +169,11 @@ export default function Home({ lang, go }: SectionProps) {
                 <button key={s.id} type="button" className="tile" onClick={() => go(s.id)}>
                   <span className="icon">{s.icon}</span>
                   <span>
-                    <span className="title">{tr(s.title, lang)}</span>
-                    <span className="sub">{tr(s.blurb, lang)}</span>
+                    <span className="title">
+                      {tr(s.title, lang)}
+                      {s.flag && <span className="badge" style={{ marginLeft: 8 }}>{store.flags[s.flag] ? tr(L.flagOn, lang) : tr(L.flagOff, lang)}</span>}
+                    </span>
+                    <span className="sub">{s.flag && !store.flags[s.flag] ? tr(L.flagHint, lang) : tr(s.blurb, lang)}</span>
                   </span>
                 </button>
               ))}
