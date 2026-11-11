@@ -33,6 +33,15 @@ export const SECTIONS: SectionMeta[] = [
     component: lazy(() => import('./wortschatz/index.tsx')),
   },
   {
+    id: 'grammatik',
+    title: { de: 'Grammatik: Fälle', en: 'Grammar: cases' },
+    blurb: { de: 'Nominativ, Akkusativ, Dativ, Genitiv – Tabellen, Eselsbrücken, Übungen', en: 'Nominative, accusative, dative, genitive – tables, mnemonics, exercises' },
+    icon: '📐',
+    group: 'basis',
+    tile: true,
+    component: lazy(() => import('./grammatik/index.tsx')),
+  },
+  {
     id: 'lesen',
     title: { de: 'Leseverstehen', en: 'Reading' },
     blurb: { de: 'Teil 1–3 im Prüfungsformat', en: 'Parts 1–3 in exam format' },
