@@ -95,7 +95,6 @@ export const medien = [
   n(86, 'die', 'Datei', 'Dateien', 'file (computer)', 'Die Datei ist zu groß, um sie per E-Mail zu schicken.', 'The file is too big to send by e-mail.'),
   v(87, 'speichern', 'speichert, speicherte, hat gespeichert', 'to save, to store', 'Hast du das Dokument gespeichert, bevor der Computer abgestürzt ist?', 'Did you save the document before the computer crashed?'),
   v(88, 'löschen', 'löscht, löschte, hat gelöscht', 'to delete', 'Aus Versehen habe ich alle Fotos vom Urlaub gelöscht.', 'I accidentally deleted all the photos from the holiday.'),
-  v(89, 'ausdrucken', 'druckt aus, druckte aus, hat ausgedruckt', 'to print (out)', 'Die Bordkarte musst du nicht ausdrucken, sie ist auf dem Handy.', 'You don’t have to print the boarding pass, it’s on your phone.'),
   n(90, 'der', 'Drucker', 'Drucker', 'printer', 'Der Drucker im Büro hat schon wieder kein Papier.', 'The printer in the office is out of paper again.'),
   n(91, 'der', 'Laptop', 'Laptops', 'laptop', 'Im Zug arbeite ich oft am Laptop.', 'I often work on my laptop on the train.'),
   n(92, 'die', 'Tastatur', 'Tastaturen', 'keyboard', 'Auf der deutschen Tastatur sind Y und Z vertauscht.', 'On the German keyboard Y and Z are swapped.'),
@@ -129,7 +128,6 @@ export const medien = [
   n(119, 'die', 'SMS', 'SMS', 'text message', 'Die Bank schickt mir zur Sicherheit einen Code per SMS.', 'For security the bank sends me a code by text message.'),
   v(120, 'auflegen', 'legt auf, legte auf, hat aufgelegt', 'to hang up', 'Bevor ich etwas sagen konnte, hat er einfach aufgelegt.', 'Before I could say anything he just hung up.'),
   a(121, 'besetzt', 'engaged, busy (phone); occupied', 'Ich versuche seit einer Stunde, die Praxis anzurufen, aber es ist immer besetzt.', 'I have been trying to call the surgery for an hour, but it’s always engaged.'),
-  v(122, 'klingeln', 'klingelt, klingelte, hat geklingelt', 'to ring', 'Mitten in der Nacht hat mein Handy geklingelt.', 'My phone rang in the middle of the night.'),
   v(123, 'sich verwählen', 'verwählt sich, verwählte sich, hat sich verwählt', 'to dial the wrong number', 'Entschuldigung, ich habe mich verwählt.', 'Sorry, I dialled the wrong number.'),
   v(124, 'verbinden', 'verbindet, verband, hat verbunden', 'to put through (on the phone); to connect', 'Einen Moment, ich verbinde Sie mit der Buchhaltung.', 'One moment, I’ll put you through to accounts.', 'verbinden mit + Dat'),
 

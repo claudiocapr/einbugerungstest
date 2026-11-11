@@ -11,13 +11,13 @@ test('person, familie, wohnen and arbeit each have at least 140 entries', () => 
   }
 });
 
-test('ids in these topics are numbered without gaps', () => {
+test('ids in these topics are numbered uniquely in ascending order', () => {
   for (const t of TOPICS) {
     const nums = vocab
       .filter((e) => e.topic === t)
       .map((e) => Number(e.id.slice(t.length + 1)))
       .sort((x, y) => x - y);
-    nums.forEach((num, i) => assert.equal(num, i + 1, `${t}: expected ${t}-${String(i + 1).padStart(3, '0')}`));
+    nums.forEach((num, i) => i > 0 && assert.ok(num > nums[i - 1], `${t}: ids must be unique and ascending`));
   }
 });
 

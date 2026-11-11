@@ -111,7 +111,6 @@ export const essen = [
   n(106, 'der', 'Durst', '-', 'thirst', 'Bei der Hitze habe ich ständig Durst.', 'In this heat I’m thirsty all the time.'),
   n(107, 'das', 'Restaurant', 'Restaurants', 'restaurant', 'Zum Hochzeitstag gehen wir in ein italienisches Restaurant.', 'For our wedding anniversary we are going to an Italian restaurant.'),
   n(108, 'der', 'Kellner', 'Kellner', 'waiter', 'Der Kellner hat uns einen Wein aus der Region empfohlen.', 'The waiter recommended a local wine to us.'),
-  n(109, 'der', 'Gast', 'Gäste', 'guest; customer (in a restaurant)', 'Am Wochenende hat das Restaurant oft über hundert Gäste.', 'At the weekend the restaurant often has over a hundred guests.'),
   n(110, 'die', 'Bedienung', 'Bedienungen', 'service; waiter, waitress', 'Die Bedienung war sehr freundlich und schnell.', 'The service was very friendly and quick.'),
   n(111, 'die', 'Beilage', 'Beilagen', 'side dish', 'Als Beilage können Sie zwischen Reis und Kartoffeln wählen.', 'As a side you can choose between rice and potatoes.'),
   n(112, 'die', 'Nachspeise', 'Nachspeisen', 'dessert', 'Als Nachspeise empfehle ich Ihnen den Apfelstrudel.', 'For dessert I recommend the apple strudel.'),

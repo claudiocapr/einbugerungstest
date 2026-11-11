@@ -107,7 +107,6 @@ export const reisen = [
   n(96, 'das', 'Fahrzeug', 'Fahrzeuge', 'vehicle', 'Auf diesem Parkplatz dürfen nur Fahrzeuge bis 3,5 Tonnen stehen.', 'Only vehicles up to 3.5 tonnes may park in this car park.'),
   n(97, 'das', 'Motorrad', 'Motorräder', 'motorbike', 'Im Sommer fährt Jonas am liebsten mit dem Motorrad.', 'In summer Jonas likes riding his motorbike best.'),
   n(98, 'die', 'Panne', 'Pannen', 'breakdown', 'Kurz vor Salzburg hatte unser Auto eine Panne.', 'Shortly before Salzburg our car broke down.'),
-  n(99, 'die', 'Werkstatt', 'Werkstätten', 'garage, workshop', 'Das Auto ist noch bis Donnerstag in der Werkstatt.', 'The car is in the garage until Thursday.'),
   n(100, 'der', 'Reifen', 'Reifen', 'tyre', 'Im Herbst lasse ich die Winterreifen montieren.', 'In autumn I have the winter tyres put on.'),
   n(101, 'das', 'Benzin', '-', 'petrol, gasoline', 'Das Benzin ist an der Autobahn immer besonders teuer.', 'Petrol is always particularly expensive on the motorway.'),
   n(102, 'der', 'Strafzettel', 'Strafzettel', 'parking ticket, fine', 'Ich habe nur fünf Minuten falsch geparkt und sofort einen Strafzettel bekommen.', 'I only parked illegally for five minutes and got a ticket straight away.'),
