@@ -1,7 +1,12 @@
 import type { Text2 } from '../types.ts';
 import type { TopicId } from './types.ts';
 
-export const TOPICS: { id: TopicId; label: Text2; icon: string }[] = [
+/**
+ * `vocabOnly`: a Wortschatz-only topic (general words). No Lesen, Hören,
+ * Sprachbausteine, Schreiben or Sprechen set is filed under it, so lists of exam
+ * topics should use EXAM_TOPICS.
+ */
+export const TOPICS: { id: TopicId; label: Text2; icon: string; vocabOnly?: true }[] = [
   { id: 'person', label: { de: 'Person & Alltag', en: 'Personal details & daily life' }, icon: '🙂' },
   { id: 'familie', label: { de: 'Familie & Beziehungen', en: 'Family & relationships' }, icon: '👨‍👩‍👧' },
   { id: 'wohnen', label: { de: 'Wohnen', en: 'Housing' }, icon: '🏠' },
@@ -16,6 +21,10 @@ export const TOPICS: { id: TopicId; label: Text2; icon: string }[] = [
   { id: 'medien', label: { de: 'Medien & Kommunikation', en: 'Media & communication' }, icon: '📱' },
   { id: 'umwelt', label: { de: 'Umwelt & Natur', en: 'Environment & nature' }, icon: '🌳' },
   { id: 'gesellschaft', label: { de: 'Gesellschaft & Zusammenleben', en: 'Society & community' }, icon: '🤝' },
+  { id: 'allgemein', label: { de: 'Allgemeine Wörter', en: 'General words' }, icon: '🔤', vocabOnly: true },
 ];
+
+/** The topics the exam sections (Lesen, Hören, Sprachbausteine, …) draw on. */
+export const EXAM_TOPICS = TOPICS.filter((t) => !t.vocabOnly);
 
 export const topicLabel = (id: TopicId, lang: 'de' | 'en') => TOPICS.find((t) => t.id === id)?.label[lang] ?? id;

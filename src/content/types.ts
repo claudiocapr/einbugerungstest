@@ -26,7 +26,9 @@ export type TopicId =
   | 'freizeit'
   | 'medien'
   | 'umwelt'
-  | 'gesellschaft';
+  | 'gesellschaft'
+  /** General words without a topical home (connectors, adverbs, generic verbs). Wortschatz only. */
+  | 'allgemein';
 
 /* ------------------------------------------------------------------ Wortschatz */
 

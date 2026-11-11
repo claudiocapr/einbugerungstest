@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { sb1, sb2 } from '../src/content/sprachbausteine.ts';
-import { TOPICS } from '../src/content/topics.ts';
+import { EXAM_TOPICS, TOPICS } from '../src/content/topics.ts';
 import type { Text2 } from '../src/types.ts';
 import { MAX_POINTS, placeWord, sb1Keys, sb2Keys, scoreSb1, scoreSb2, splitGaps } from '../src/sections/sprachbausteine/score.ts';
 
@@ -30,8 +30,8 @@ test('there are at least 20 sets per Sprachbausteine part, with unique ids and k
   for (const s of [...sb1, ...sb2]) assert.ok(topicIds.has(s.topic), `${s.id}: topic ${s.topic}`);
   for (const s of sb1) assert.match(s.id, /^sb1-\d\d$/);
   for (const s of sb2) assert.match(s.id, /^sb2-\d\d$/);
-  assert.equal(new Set(sb1.map((s) => s.topic)).size, TOPICS.length, 'Teil 1 covers every topic');
-  assert.equal(new Set(sb2.map((s) => s.topic)).size, TOPICS.length, 'Teil 2 covers every topic');
+  assert.equal(new Set(sb1.map((s) => s.topic)).size, EXAM_TOPICS.length, 'Teil 1 covers every exam topic');
+  assert.equal(new Set(sb2.map((s) => s.topic)).size, EXAM_TOPICS.length, 'Teil 2 covers every exam topic');
 });
 
 test('Teil 1: 10 gaps with 3 distinct options, a grammar point and explanations', () => {
