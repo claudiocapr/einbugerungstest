@@ -18,6 +18,7 @@ import { freizeit } from './wortschatz/freizeit.ts';
 import { medien } from './wortschatz/medien.ts';
 import { umwelt } from './wortschatz/umwelt.ts';
 import { gesellschaft } from './wortschatz/gesellschaft.ts';
+import { allgemein } from './wortschatz/allgemein.ts';
 
 export const vocab: VocabEntry[] = [
   ...person,
@@ -34,6 +35,7 @@ export const vocab: VocabEntry[] = [
   ...medien,
   ...umwelt,
   ...gesellschaft,
+  ...allgemein,
 ];
 
 /** Entries of one topic, in their stored order. */
