@@ -5,8 +5,8 @@ import { TOPICS } from '../src/content/topics.ts';
 
 const ID = /^([a-z]+)-(\d{3})$/;
 
-test('there are at least 550 entries', () => {
-  assert.ok(vocab.length >= 550, `only ${vocab.length} entries`);
+test('there are at least 2,400 entries (the full B1 inventory)', () => {
+  assert.ok(vocab.length >= 2400, `only ${vocab.length} entries`);
 });
 
 test('ids are unique, well-formed and match the topic', () => {
