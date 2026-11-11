@@ -104,7 +104,6 @@ export const medien = [
   n(95, 'das', 'Kabel', 'Kabel', 'cable, lead', 'Ich habe das Kabel für mein Handy zu Hause vergessen.', 'I left my phone cable at home.'),
   n(96, 'das', 'Netz', 'Netze', 'network; (phone) reception; net', 'Im Tunnel habe ich leider kein Netz.', 'Unfortunately I have no reception in the tunnel.'),
   n(97, 'das', 'WLAN', 'WLANs', 'Wi-Fi', 'Wie ist das Passwort für das WLAN?', 'What is the Wi-Fi password?'),
-  n(98, 'das', 'Gerät', 'Geräte', 'device, appliance', 'Mit einem Konto kann man die App auf mehreren Geräten nutzen.', 'With one account you can use the app on several devices.'),
   n(99, 'das', 'Benutzerkonto', 'Benutzerkonten', 'user account', 'Für die Bestellung müssen Sie kein Benutzerkonto anlegen.', 'You don’t have to create a user account to order.'),
   v(100, 'sich ausloggen', 'loggt sich aus, loggte sich aus, hat sich ausgeloggt', 'to log out', 'Vergiss nicht, dich am Computer in der Bibliothek auszuloggen.', 'Don’t forget to log out on the computer in the library.'),
   v(101, 'hochladen', 'lädt hoch, lud hoch, hat hochgeladen', 'to upload', 'Laden Sie Ihre Zeugnisse bitte als PDF hoch.', 'Please upload your certificates as a PDF.'),

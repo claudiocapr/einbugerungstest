@@ -101,7 +101,6 @@ export const dienstleistungen = [
 
   /* Bank */
   n(94, 'die', 'Bank', 'Banken', 'bank', 'Meine Bank hat samstags leider geschlossen.', 'Unfortunately my bank is closed on Saturdays.'),
-  n(95, 'die', 'Kreditkarte', 'Kreditkarten', 'credit card', 'Kann ich hier mit Kreditkarte bezahlen?', 'Can I pay by credit card here?'),
   n(96, 'die', 'EC-Karte', 'EC-Karten', 'debit card, bank card', 'Mit der EC-Karte kann man fast überall bezahlen.', 'You can pay almost everywhere with a debit card.'),
   n(97, 'das', 'Girokonto', 'Girokonten', 'current account, checking account', 'Ein Girokonto ist bei dieser Bank für Studenten kostenlos.', 'A current account is free for students at this bank.'),
   n(98, 'der', 'Kontoauszug', 'Kontoauszüge', 'bank statement', 'Auf dem Kontoauszug sehe ich alle Zahlungen des letzten Monats.', 'On the bank statement I can see all payments from last month.'),
@@ -139,7 +138,6 @@ export const dienstleistungen = [
   n(126, 'der', 'Friseur', 'Friseure', 'hairdresser (male); hairdresser’s', 'Ich habe morgen um zehn einen Termin beim Friseur.', 'I have an appointment at the hairdresser’s tomorrow at ten.'),
   n(127, 'der', 'Kostenvoranschlag', 'Kostenvoranschläge', 'cost estimate, quote', 'Bevor die Werkstatt anfängt, möchte ich einen Kostenvoranschlag.', 'Before the garage starts, I would like a quote.'),
   n(128, 'die', 'Beratung', 'Beratungen', 'advice, consultation', 'Die Beratung bei der Verbraucherzentrale war sehr hilfreich.', 'The advice at the consumer advice centre was very helpful.'),
-  v(129, 'beraten', 'berät, beriet, hat beraten', 'to advise', 'Die Mitarbeiterin hat mich bei der Wahl der Versicherung gut beraten.', 'The employee gave me good advice on choosing the insurance.'),
   n(130, 'die', 'Beratungsstelle', 'Beratungsstellen', 'advice centre, counselling service', 'Bei Problemen mit Schulden hilft eine Beratungsstelle kostenlos.', 'If you have problems with debts an advice centre will help free of charge.'),
   n(131, 'das', 'Fundbüro', 'Fundbüros', 'lost property office', 'Meinen Regenschirm habe ich im Fundbüro wiederbekommen.', 'I got my umbrella back at the lost property office.'),
   v(132, 'versichern', 'versichert, versicherte, hat versichert', 'to insure; to assure', 'Unser Fahrrad ist gegen Diebstahl versichert.', 'Our bike is insured against theft.', 'versichern gegen + Akk'),

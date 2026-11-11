@@ -71,7 +71,6 @@ export const freizeit = [
   n(64, 'die', 'Meisterschaft', 'Meisterschaften', 'championship', 'Die Mannschaft hat dieses Jahr gute Chancen auf die Meisterschaft.', 'The team has a good chance of winning the championship this year.'),
   v(65, 'mitmachen', 'macht mit, machte mit, hat mitgemacht', 'to take part, to join in', 'Beim Stadtlauf machen dieses Jahr über 3000 Leute mit.', 'More than 3,000 people are taking part in the city run this year.', 'mitmachen bei + Dat'),
   n(66, 'die', 'Fitness', '-', 'fitness', 'Für meine Fitness gehe ich jeden Tag zu Fuß zur Arbeit.', 'I walk to work every day to keep fit.'),
-  a(67, 'fit', 'fit', 'Mit 70 ist meine Oma noch erstaunlich fit.', 'At 70 my grandma is still amazingly fit.'),
   n(68, 'der', 'Spaziergang', 'Spaziergänge', 'walk, stroll', 'Nach dem Essen machen wir gern einen Spaziergang am Fluss.', 'After the meal we like to go for a walk by the river.'),
   v(69, 'spazieren gehen', 'geht spazieren, ging spazieren, ist spazieren gegangen', 'to go for a walk', 'Am Sonntag sind wir trotz Regen im Wald spazieren gegangen.', 'On Sunday we went for a walk in the woods despite the rain.'),
   n(70, 'die', 'Wanderung', 'Wanderungen', 'hike, walk', 'Die Wanderung zur Hütte dauert etwa drei Stunden.', 'The hike to the mountain hut takes about three hours.'),

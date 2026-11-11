@@ -158,7 +158,6 @@ export const reisen = [
   p(143, 'den Anschluss verpassen', 'to miss one’s connection', 'Wenn der Zug noch später kommt, verpasse ich den Anschluss in Hannover.', 'If the train is any later I will miss my connection in Hanover.'),
   p(144, 'eine Fahrkarte lösen', 'to buy a ticket (formal)', 'Fahrgäste ohne gültigen Fahrschein müssen im Bus eine Fahrkarte lösen.', 'Passengers without a valid ticket have to buy one on the bus.'),
   p(145, 'Gute Reise!', 'Have a good trip!', '„Morgen fliege ich nach Lissabon.“ – „Gute Reise und viel Spaß!“', '“Tomorrow I’m flying to Lisbon.” – “Have a good trip and have fun!”'),
-  p(146, 'Ist hier noch frei?', 'Is this seat free?', 'Entschuldigung, ist hier noch frei? – Ja, bitte.', 'Excuse me, is this seat free? – Yes, go ahead.'),
   p(147, 'Wie komme ich zum/zur …?', 'How do I get to …?', 'Entschuldigen Sie, wie komme ich zum Rathaus?', 'Excuse me, how do I get to the town hall?'),
   p(148, 'im Stau stehen', 'to be stuck in a traffic jam', 'Ich komme später, ich stehe gerade im Stau.', 'I’ll be late, I’m stuck in a traffic jam right now.'),
   p(149, 'eine Panne haben', 'to break down (car)', 'Was macht man, wenn man auf der Autobahn eine Panne hat?', 'What do you do if you break down on the motorway?'),
