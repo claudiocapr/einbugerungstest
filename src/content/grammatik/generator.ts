@@ -56,7 +56,21 @@ export function isRegularNoun(e: VocabEntry): boolean {
   return true;
 }
 
-export const NOUNS: GenNoun[] = vocab.filter((e) => isRegularNoun(e) && !ODD_IN_FRAMES.has(e.de)).map((e) => ({
+/**
+ * The generator's frames were reviewed against the first 650 vocabulary
+ * entries. Later entries (the full B1 list) include many abstract nouns that
+ * read oddly in the generic frames, so only the reviewed range is used.
+ */
+const REVIEWED_UP_TO: Record<string, number> = {
+  person: 50, familie: 44, wohnen: 48, arbeit: 52, ausbildung: 43, gesundheit: 49, essen: 42,
+  einkaufen: 46, dienstleistungen: 51, reisen: 48, freizeit: 41, medien: 46, umwelt: 42, gesellschaft: 48,
+};
+const reviewed = (id: string) => {
+  const [topic, num] = id.split('-');
+  return Number(num) <= (REVIEWED_UP_TO[topic] ?? 0);
+};
+
+export const NOUNS: GenNoun[] = vocab.filter((e) => reviewed(e.id) && isRegularNoun(e) && !ODD_IN_FRAMES.has(e.de)).map((e) => ({
   id: e.id,
   de: e.de,
   article: e.article!,
