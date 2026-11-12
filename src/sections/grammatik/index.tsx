@@ -17,6 +17,20 @@ import Drill, { type DrillId } from './Drill.tsx';
 import { BackLink, S } from './shared.tsx';
 import './grammatik.css';
 
+/** The drill that practises what a learn page teaches (its "Üben" button). */
+const PRACTICE_FOR: Record<string, DrillId> = {
+  faelle: 'fall',
+  artikel: 'tabelle',
+  possessiv: 'tabelle',
+  pronomen: 'pronomen',
+  fragen: 'luecke',
+  allein: 'luecke',
+  adjektive: 'adjektiv',
+  ndekl: 'luecke',
+  warum: 'praep',
+  eselsbruecken: 'luecke',
+};
+
 const isDrill = (s: string | undefined): s is DrillId => s === 'schwach' || (EXERCISES as string[]).includes(s ?? '');
 
 function LearnShell({ page, lang, go }: { page: string; lang: SectionProps['lang']; go: SectionProps['go'] }) {
@@ -45,7 +59,7 @@ function LearnShell({ page, lang, go }: { page: string; lang: SectionProps['lang
         )}
       </div>
       <div className="sticky-actions">
-        <button type="button" className="btn primary block" onClick={() => go('grammatik')}>
+        <button type="button" className="btn primary block" onClick={() => go(`grammatik/ueben/${PRACTICE_FOR[page] ?? 'luecke'}`)}>
           {tr(S.practise, lang)} ✍️
         </button>
       </div>
