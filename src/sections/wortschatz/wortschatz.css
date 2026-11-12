@@ -163,3 +163,64 @@
 .ws-nf-note { gap: 10px; align-items: flex-start; margin-bottom: 10px; }
 .ws-nf-words { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 8px 0 0; font-weight: 600; }
 .ws-nf-end { text-align: left; margin-top: 16px; }
+
+/* Merktipps */
+.ws-tip {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 60%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  font-size: 14px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.ws-tip-title { font-weight: 650; font-size: 13px; }
+.ws-tip ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.ws-tip-kind {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.ws-tip-exc { color: var(--bad); font-weight: 600; }
+.ws-tip-exc .ws-tip-kind { color: var(--bad); }
+.ws-missed-tip { display: block; font-size: 13px; color: var(--muted); margin: 2px 0 4px; }
+.ws-missed-tip.ws-tip-exc { color: var(--bad); }
+.verdict .ws-verdict-tip { margin-top: 6px; font-weight: 600; overflow-wrap: anywhere; }
+.ws-retry-badge { margin-left: 8px; font-size: 11px; text-transform: none; letter-spacing: 0; vertical-align: 1px; }
+
+/* Genus-Regeln page */
+.ws-rules { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.ws-rule { display: grid; gap: 6px; padding: 14px 16px; min-width: 0; }
+.ws-rule p { margin: 0; }
+.ws-rule-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.ws-rule-head .ws-art { font-size: 12px; vertical-align: 0; }
+.ws-rule-head .btn { margin-left: auto; }
+.ws-rule-arrow { color: var(--muted); }
+.ws-rule-tip { font-size: 14px; overflow-wrap: anywhere; }
+.ws-rule-words { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ws-word-chip { cursor: default; font-size: 13px; padding: 3px 9px; }
+.ws-rel { font-size: 11px; }
+.ws-rel-immer { background: var(--good-bg); color: var(--good); border: 1px solid var(--good); }
+.ws-rel-fast-immer { border: 1px solid var(--good); color: var(--good); }
+.ws-rel-meistens { border: 1px solid var(--border); color: var(--muted); }
+.ws-compounds, .ws-exc-list { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
+.ws-exc-list { list-style: none; padding-left: 0; }
+.ws-exc-list .ws-art { font-size: 12px; vertical-align: 1px; }
+.ws h2 .ws-art { font-size: 14px; vertical-align: 2px; }
+
+/* Genus drill: three dots per noun */
+.ws-dots { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; margin: 4px 0 12px; }
+.ws-dot-group { display: inline-flex; gap: 3px; padding: 3px 4px; border-radius: 999px; border: 1px solid transparent; }
+.ws-dot-group.current { border-color: var(--accent); }
+.ws-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.ws-dot.on { background: var(--accent); }
+.ws-dot-group.done .ws-dot { background: var(--good); }
+
+@media (max-width: 480px) {
+  .ws-rules { grid-template-columns: 1fr; }
+}

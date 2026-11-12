@@ -13,7 +13,7 @@ import { tr } from '../../lib/i18n.ts';
 
 export const S = {
   title: { de: 'Wortschatz', en: 'Vocabulary' },
-  intro: { de: 'B1-Wörter und Wendungen nach Themen – mit Karteikarten und Artikel-Trainer.', en: 'B1 words and phrases by topic – with flashcards and an article trainer.' },
+  intro: { de: 'B1-Wörter und Wendungen nach Themen – mit Karteikarten, Artikel-Trainer und Merktipps.', en: 'B1 words and phrases by topic – with flashcards, an article trainer and memory tips.' },
   back: { de: 'Wortschatz', en: 'Vocabulary' },
   due: { de: 'Fällige Karten', en: 'Cards due' },
   dueSub: { de: 'Wiederholen, was heute dran ist', en: 'Review what is scheduled for today' },
@@ -24,7 +24,9 @@ export const S = {
   mixed: { de: 'Gemischt lernen', en: 'Mixed practice' },
   mixedSub: { de: '15 Karten aus allen Themen', en: '15 cards from all topics' },
   articles: { de: 'Artikel-Trainer', en: 'Article trainer' },
-  articlesSub: { de: 'der, die oder das?', en: 'der, die or das?' },
+  articlesSub: { de: 'der, die oder das? Falsche kommen wieder.', en: 'der, die or das? Wrong ones come back.' },
+  genus: { de: 'Genus-Regeln', en: 'Gender rules' },
+  genusSub: { de: 'Merktipps: -ung → die, -chen → das …', en: 'Memory tips: -ung → die, -chen → das …' },
   browseAll: { de: 'Alle Wörter durchsuchen', en: 'Search all words' },
   browseAllSub: { de: 'Liste mit Lernstand', en: 'List with your progress' },
   topics: { de: 'Themen', en: 'Topics' },
