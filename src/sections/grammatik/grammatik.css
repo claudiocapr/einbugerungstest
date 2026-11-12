@@ -186,3 +186,24 @@ table.gr-table td.gr-hl { background: color-mix(in srgb, var(--accent) 16%, tran
   border: 0;
 }
 .gr-sentence > span { white-space: nowrap; }
+
+/* Einprägen: streak dots, the round strip, the memory tip */
+.gr-dots { display: inline-flex; gap: 2px; font-size: 14px; line-height: 1; color: var(--muted); letter-spacing: 0; white-space: nowrap; }
+.gr-dots .on { color: var(--good); }
+.gr-mstrip { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 10px; }
+.gr-mitem { padding: 2px 5px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); }
+.gr-mitem .gr-dots { font-size: 9px; gap: 1px; }
+.gr-mitem.now { border-color: var(--accent); }
+.gr-mitem.sat { border-color: var(--good); background: var(--good-bg); }
+.gr-tip { margin-top: 10px; }
+.gr-tip.strong {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+}
+.gr-tip.strong .body { font-size: 16px; }
+.gr-merk-list { margin-top: 14px; }
+.gr-details { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px; }
+.gr-details summary { cursor: pointer; font-weight: 600; overflow-wrap: anywhere; }
+.gr-details .gr-verb .ex + .ex { margin-top: 4px; }
