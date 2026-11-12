@@ -73,7 +73,7 @@ function LearnShell({ page, lang, go }: { page: string; lang: SectionProps['lang
         )}
       </div>
       <div className="sticky-actions">
-        <button type="button" className="btn primary block" onClick={() => go(`grammatik/ueben/${PRACTICE_FOR[page] ?? 'luecke'}`)}>
+        <button type="button" className="btn primary block" onClick={() => go(page === 'merktipps' ? 'grammatik/einpraegen/verb' : `grammatik/ueben/${PRACTICE_FOR[page] ?? 'luecke'}`)}>
           {tr(S.practise, lang)} ✍️
         </button>
       </div>
