@@ -67,6 +67,13 @@ export default function Overview({ lang, go }: { lang: Lang; go: (r: string) => 
               <span className="sub">{tr(S.articlesSub, lang)}</span>
             </span>
           </button>
+          <button type="button" className="tile" onClick={() => go('wortschatz/genus')}>
+            <span className="icon">💡</span>
+            <span>
+              <span className="title">{tr(S.genus, lang)}</span>
+              <span className="sub">{tr(S.genusSub, lang)}</span>
+            </span>
+          </button>
           <button type="button" className="tile" onClick={() => go('wortschatz/thema/all')}>
             <span className="icon">🔎</span>
             <span>

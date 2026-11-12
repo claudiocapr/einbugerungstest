@@ -24,11 +24,23 @@ import { useWsSettings } from './settings.ts';
 import SessionEnd from './SessionEnd.tsx';
 import { FocusMonitor, NF, NfEndLines, trackNfFinished, useNfSession } from './nf.tsx';
 import { feedbackLine } from './nfLogic.ts';
+import { genderTip, genderTipText } from '../../content/merktipps.ts';
+import { MT, spokenTip } from './Merktipp.tsx';
+import { RETRY_GAP, requeue } from './genusDrill.ts';
 
 const ARTICLES = ['der', 'die', 'das'] as const;
 const isNoun = (e: VocabEntry) => e.pos === 'noun' && !!e.article;
 
-/** Artikel-Trainer: pick der, die or das for a noun; graded at once. */
+const AT = {
+  retry: { de: 'Kommt gleich noch einmal – bis es sitzt.', en: 'Coming back in a moment – until it sticks.' },
+  retryBadge: { de: 'Wiederholung', en: 'Retry' },
+};
+
+/**
+ * Artikel-Trainer: pick der, die or das for a noun; graded at once, with the
+ * Merktipp. A wrong noun is asked again three cards later, so a round ends
+ * only when every noun was answered correctly.
+ */
 export default function Articles({
   scope,
   lang,
@@ -48,15 +60,20 @@ export default function Articles({
       return [];
     }
   });
+  // The cards still to show: the deck plus every re-queued retry.
+  const [queue, setQueue] = useState<VocabEntry[]>(deck);
   const [index, setIndex] = useState(0);
   const [chosen, setChosen] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<boolean[]>([]);
+  /** First answer per noun id: what the score counts. */
+  const [first, setFirst] = useState<Record<string, boolean>>({});
+  const [retries, setRetries] = useState(0);
   const [finished, setFinished] = useState(false);
   const startedAt = useRef(Date.now());
   const tts = useTts();
   const [settings] = useWsSettings();
   const backTo = scope === 'due' || scope === 'weak' ? 'wortschatz' : `wortschatz/thema/${scope}`;
-  const card = deck[index] as VocabEntry | undefined;
+  const card = queue[index] as VocabEntry | undefined;
+  const isRetry = !!card && first[card.id] !== undefined && chosen === null;
 
   // Neurofeedback mode (test phase): timing per noun, an optional "I'm guessing" toggle, focus monitor.
   const [nf] = useFlag('neurofeedback');
@@ -70,8 +87,9 @@ export default function Articles({
   }, [deck.length, scope]);
 
   const finish = useCallback(
-    (all: boolean[]) => {
+    (firstAnswers: Record<string, boolean>) => {
       setFinished(true);
+      const all = Object.values(firstAnswers);
       if (all.length === 0) return;
       const correct = all.filter(Boolean).length;
       try {
@@ -86,10 +104,10 @@ export default function Articles({
       } catch (err) {
         logError(err, 'wortschatz.articles.result');
       }
-      track('wortschatz.session_finished', { mode: 'articles', topic: scope, n: all.length, correct });
+      track('wortschatz.session_finished', { mode: 'articles', topic: scope, n: all.length, correct, retries });
       if (nf) trackNfFinished('articles', nfAnswers());
     },
-    [scope, nf, nfAnswers],
+    [scope, nf, nfAnswers, retries],
   );
 
   const choose = useCallback(
@@ -97,7 +115,11 @@ export default function Articles({
       if (!card || chosen !== null || i < 0 || i > 2) return;
       const ok = ARTICLES[i] === card.article;
       setChosen(i);
-      setAnswers((a) => [...a, ok]);
+      if (first[card.id] === undefined) setFirst((f) => ({ ...f, [card.id]: ok }));
+      if (!ok) {
+        setQueue((q) => requeue(q, index, card, RETRY_GAP));
+        setRetries((r) => r + 1);
+      }
       try {
         if (nf) {
           const now = Date.now();
@@ -114,12 +136,12 @@ export default function Articles({
       }
       if (tts && settings.autoSpeak) say(spoken(card));
     },
-    [card, chosen, tts, settings.autoSpeak, nf, guessing, nfAdd, nfFlash],
+    [card, chosen, tts, settings.autoSpeak, nf, guessing, nfAdd, nfFlash, first, index],
   );
 
   const next = useCallback(() => {
     if (chosen === null) return;
-    if (index + 1 >= deck.length) finish(answers);
+    if (index + 1 >= queue.length) finish(first);
     else {
       setIndex(index + 1);
       setChosen(null);
@@ -129,7 +151,7 @@ export default function Articles({
         shownAt.current = Date.now();
       }
     }
-  }, [chosen, index, deck.length, answers, finish, nf, nfClear]);
+  }, [chosen, index, queue.length, first, finish, nf, nfClear]);
 
   useKeys({ onOption: choose, onNext: next });
 
@@ -148,13 +170,16 @@ export default function Articles({
   }
 
   if (finished || !card) {
+    const answered = Object.values(first);
     return (
       <div className="ws">
         <SessionEnd
           lang={lang}
-          correct={answers.filter(Boolean).length}
-          total={answers.length}
-          missed={deck.filter((_, i) => answers[i] === false)}
+          correct={answered.filter(Boolean).length}
+          total={answered.length}
+          missed={deck.filter((e) => first[e.id] === false)}
+          retries={retries}
+          complete={index + 1 >= queue.length}
           onAgain={onRestart}
           onBack={() => go(backTo)}
           backLabel={scopeLabel(scope, lang)}
@@ -166,6 +191,9 @@ export default function Articles({
 
   const answered = chosen !== null;
   const right = answered && ARTICLES[chosen] === card.article;
+  const tip = answered ? genderTip(card) : null;
+  const tipText = tip ? genderTipText(tip, card) : null;
+  const answeredCount = Object.keys(first).length;
 
   return (
     <div className="ws">
@@ -174,17 +202,18 @@ export default function Articles({
         <span className="small muted ws-scope">
           {tr(S.articles, lang)} · {scopeLabel(scope, lang)}
         </span>
-        <button type="button" className="btn small ghost" onClick={() => (answers.length ? finish(answers) : go(backTo))}>
+        <button type="button" className="btn small ghost" onClick={() => (answeredCount ? finish(first) : go(backTo))}>
           {tr(S.finish, lang)}
         </button>
       </div>
       <div className="row small muted" style={{ marginBottom: 8 }}>
         <span>
-          {index + 1} / {deck.length}
+          {index + 1} / {queue.length}
         </span>
         <span style={{ flex: 1 }}>
-          <ShareBar value={index / deck.length} />
+          <ShareBar value={index / queue.length} />
         </span>
+        {retries > 0 && <span>🔁 {retries}</span>}
       </div>
 
       {nf && (
@@ -194,13 +223,16 @@ export default function Articles({
           onContinue={nfs.dismissHint}
           onBreak={() => {
             nfs.breakHint();
-            finish(answers);
+            finish(first);
           }}
         />
       )}
 
       <div className="card ws-card ws-art-card">
-        <span className="ws-pos">{tr(S.whichArticle, lang)}</span>
+        <span className="ws-pos">
+          {tr(S.whichArticle, lang)}
+          {isRetry && <span className="badge bad ws-retry-badge">🔁 {tr(AT.retryBadge, lang)}</span>}
+        </span>
         <span className="ws-word">
           {answered ? <span className={`ws-art ws-art-${card.article}`}>{card.article}</span> : <span className="ws-art ws-art-blank">___</span>}{' '}
           {card.de}
@@ -241,6 +273,13 @@ export default function Articles({
             · {tr(S.plural, lang)}: {pluralText(card, lang)}
             {tts && <SpeakButton text={spoken(card)} label={S.listen} lang={lang} />}
           </div>
+          {tipText && (
+            <div className={`body ws-verdict-tip ${tip!.matches ? '' : 'ws-tip-exc'}`}>
+              💡 {tr(tipText, lang)}
+              {tts && <SpeakButton text={spokenTip(tipText.de)} label={MT.listenTip} lang={lang} />}
+            </div>
+          )}
+          {!right && <div className="body small">{tr(AT.retry, lang)}</div>}
           <div className="body ws-example">{card.example}</div>
           {nf && nfs.feedback && (
             <div className={`body ws-nf-verdict ${nfs.feedback.tone === 'neutral' ? '' : nfs.feedback.tone}`}>{tr(nfs.feedback.text, lang)}</div>

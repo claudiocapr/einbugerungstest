@@ -21,6 +21,7 @@ import {
   spoken,
   useTts,
 } from './shared.tsx';
+import { MerktippBox } from './Merktipp.tsx';
 
 type PosFilter = 'all' | 'noun' | 'verb' | 'adjective' | 'phrase';
 const FILTERS: PosFilter[] = ['all', 'noun', 'verb', 'adjective', 'phrase'];
@@ -135,6 +136,7 @@ export default function TopicView({ scope, lang, go }: { scope: TopicId | 'all';
                   {tts && <SpeakButton text={spoken(e)} label={S.listen} lang={lang} />}
                 </div>
                 <EntryDetails e={e} lang={lang} />
+                <MerktippBox entry={e} lang={lang} />
                 <p className="ws-example">
                   {e.example}
                   {tts && <SpeakButton text={e.example} label={S.listenExample} lang={lang} />}

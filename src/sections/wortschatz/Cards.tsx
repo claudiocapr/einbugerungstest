@@ -27,6 +27,7 @@ import { useWsSettings } from './settings.ts';
 import SessionEnd from './SessionEnd.tsx';
 import { FeedbackLine, FocusMonitor, NF, NfEndLines, SpeechCheck, trackNfFinished, useNfSession, useSpeechAvailable } from './nf.tsx';
 import { feedbackLine } from './nfLogic.ts';
+import { MerktippBox } from './Merktipp.tsx';
 
 /** How long the feedback line stays after a card is graded (neurofeedback mode). */
 const FEEDBACK_MS = 1500;
@@ -259,6 +260,7 @@ export default function Cards({
           <div className="ws-back-side">
             <span className="ws-en">{card.en}</span>
             <EntryDetails e={card} lang={lang} />
+            <MerktippBox entry={card} lang={lang} />
             <span className="ws-example">{card.example}</span>
             <span className="ws-example-en">{card.exampleEn}</span>
           </div>
