@@ -31,7 +31,7 @@ import { Aid, CaseTag, Ending, LastLetter, SpeakButton, useTts } from './shared.
 
 export type LearnPage = 'faelle' | 'artikel' | 'possessiv' | 'pronomen' | 'fragen' | 'allein' | 'adjektive' | 'ndekl';
 
-export const LEARN_PAGES: { id: LearnPage | 'warum' | 'eselsbruecken'; icon: string; title: Text2; sub: Text2 }[] = [
+export const LEARN_PAGES: { id: LearnPage | 'warum' | 'eselsbruecken' | 'merktipps'; icon: string; title: Text2; sub: Text2 }[] = [
   { id: 'faelle', icon: '🎯', title: { de: 'Die vier Fälle', en: 'The four cases' }, sub: { de: 'Fragen, Rollen, Farben – ein Beispielsatz', en: 'Questions, roles, colours – one example sentence' } },
   { id: 'artikel', icon: '📋', title: { de: 'der · ein · kein', en: 'der · ein · kein' }, sub: { de: 'Artikel in allen Fällen', en: 'Articles in every case' } },
   { id: 'possessiv', icon: '🧱', title: { de: 'mein, dein, sein …', en: 'mein, dein, sein …' }, sub: { de: 'Possessivartikel + Baukasten', en: 'Possessives + form builder' } },
@@ -42,6 +42,7 @@ export const LEARN_PAGES: { id: LearnPage | 'warum' | 'eselsbruecken'; icon: str
   { id: 'ndekl', icon: '➕', title: { de: 'n-Deklination', en: 'Weak nouns (n-declension)' }, sub: { de: 'der Kollege → dem Kollegen', en: 'der Kollege → dem Kollegen' } },
   { id: 'warum', icon: '⚖️', title: { de: 'Was bestimmt den Fall?', en: 'What decides the case?' }, sub: { de: 'Verben, Präpositionen, Wo?/Wohin?', en: 'Verbs, prepositions, where?/where to?' } },
   { id: 'eselsbruecken', icon: '💡', title: { de: 'Eselsbrücken', en: 'Memory aids' }, sub: { de: 'Alle Merksätze zum Anhören', en: 'Every mnemonic, with audio' } },
+  { id: 'merktipps', icon: '🧠', title: { de: 'Merktipps', en: 'Memory tips' }, sub: { de: 'Verb + Fall, Präposition + Fall, warten auf + Akk', en: 'Verb + case, preposition + case, warten auf + acc' } },
 ];
 
 const GENDER_COL: Record<Gender, Text2> = {
